@@ -1,0 +1,110 @@
+using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
+
+public class PlayerInputHandler : MonoBehaviour
+{
+	[Header("Character Input Values")]
+    public Vector2 move;
+    public Vector2 look;
+    public bool jump;
+    public bool sprint;
+
+    [Header("Mouse Cursor Settings")]
+    public bool cursorLocked = true;
+    public bool cursorInputForLook = true;
+
+    private PlayerInputAction _inputActions;
+
+    private void Awake()
+    {
+        _inputActions = new PlayerInputAction(); // create input action instance
+    }
+
+    private void OnEnable()
+    {
+        _inputActions.Player.Enable();
+
+        _inputActions.Player.Move.performed += OnMove;
+        _inputActions.Player.Move.canceled += OnMove;
+
+        _inputActions.Player.Look.performed += OnLook;
+        _inputActions.Player.Look.canceled += OnLook;
+
+        _inputActions.Player.Jump.started += OnJump;
+        _inputActions.Player.Jump.canceled += OnJump;
+
+        _inputActions.Player.Sprint.performed += OnSprint;
+    }
+
+    private void OnDisable()
+    {
+        _inputActions.Player.Move.performed -= OnMove;
+        _inputActions.Player.Move.canceled -= OnMove;
+
+        _inputActions.Player.Look.performed -= OnLook;
+        _inputActions.Player.Look.canceled -= OnLook;
+
+        _inputActions.Player.Jump.started -= OnJump;
+        _inputActions.Player.Jump.canceled -= OnJump;
+
+        _inputActions.Player.Sprint.performed -= OnSprint;
+
+        _inputActions.Player.Disable();
+    }
+
+#region Input Action Callbacks
+	private void OnMove(InputAction.CallbackContext ctx)
+	{
+		MoveInput(ctx.ReadValue<Vector2>());
+	}
+
+    private void OnLook(InputAction.CallbackContext ctx)
+    {
+		LookInput(ctx.ReadValue<Vector2>());
+    }
+
+    private void OnJump(InputAction.CallbackContext ctx)
+    {
+        JumpInput(ctx.ReadValueAsButton());
+    }
+
+    private void OnSprint(InputAction.CallbackContext ctx)
+    {
+        SprintInput(ctx.ReadValueAsButton());
+    }
+#endregion
+
+	public void MoveInput(Vector2 newMoveDirection)
+	{
+		move = newMoveDirection;
+	} 
+
+	public void LookInput(Vector2 newLookDirection)
+	{
+		if(cursorInputForLook)
+			look = newLookDirection;
+	}
+
+	public void JumpInput(bool newJumpState)
+	{
+		jump = newJumpState;
+	}
+
+	public void SprintInput(bool newSprintState)
+	{
+		sprint = newSprintState;
+	}
+	
+	private void OnApplicationFocus(bool hasFocus)
+	{
+		SetCursorState(cursorLocked);
+	}
+
+	private void SetCursorState(bool newState)
+	{
+		Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+	}
+}
+
