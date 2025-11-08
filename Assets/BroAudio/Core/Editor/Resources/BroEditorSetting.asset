@@ -24,7 +24,7 @@ MonoBehaviour:
   AddressableDecision: 0
   EditTheNewClipAfterSaveAs: 1
   PingTheNewClipAfterSaveAs: 1
-  HasSetupWizardAutoLaunched: 0
+  HasSetupWizardAutoLaunched: 1
   VirtualTrackCount: 4
   AudioTypeSettings:
   - AudioType: 1
