@@ -21,4 +21,15 @@ public class Spear : MonoBehaviour
             rb.MoveRotation(targetRotation);
         }
     }
+    void OnCollisionEnter(Collision collision)
+    {   
+
+        if(collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            // // Stick the spear into the enemy
+            // rb.isKinematic = true;
+            // transform.SetParent(collision.transform);
+            damageable.TakeDamage(10f);
+        }
+    }
 }
