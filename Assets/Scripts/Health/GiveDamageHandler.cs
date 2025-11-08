@@ -10,6 +10,14 @@ public class GiveDamageHandler : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(damageAmount);
-        }  
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            damageable.TakeDamage(damageAmount);
+        }
     }
 }

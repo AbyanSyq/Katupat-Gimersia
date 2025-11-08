@@ -3,5 +3,8 @@
   <Project Path="BroAudioEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="OmniShade.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Pools.csproj" />
+  <Project Path="OmniShade.Editor.csproj" />
 </Solution>

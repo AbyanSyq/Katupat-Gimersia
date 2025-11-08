@@ -12,6 +12,7 @@ public static partial class Events
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
 {
+    
     [Header("References")]
     [SerializeField] private Health healthComponent;
     [SerializeField] private BehaviorGraphAgent enemyBehaviorGraphAgent;
@@ -22,6 +23,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform detectionStartPoint;
     [SerializeField] private float attackRange = 2f;
     [SerializeField, ReadOnly] private bool isEnemyInRangeAttack = false;
+    [Header("Attack Rock Appear")]
+    [SerializeField] private RockFromGround rockFromGroundObject;
+    [SerializeField] private float damageRockFromGround;
 
     [Header("Facing / Rotation")]
     [SerializeField, ReadOnly] private Transform playerTarget;
@@ -31,6 +35,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Renderer enemyMeshRenderer;
     [SerializeField, ReadOnly] private Material enemyMaterial;
 
+    public enum EnemyAnimationEventTriggerType
+    {
+        OnAttackGroundSlam,
+        OnAttackRockAppear,
+    }
+
     #region Unity Methods
 
     private void Awake()
@@ -39,6 +49,7 @@ public class Enemy : MonoBehaviour
             healthComponent = GetComponent<Health>();
 
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
+        enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
     }
 
     private void OnEnable()
@@ -138,7 +149,7 @@ public class Enemy : MonoBehaviour
         if (playerTarget == null) return;
 
         Vector3 direction = playerTarget.position - transform.position;
-        direction.y = 0f; 
+        direction.y = 0f;
 
         if (direction.sqrMagnitude < 0.0001f) return;
 
@@ -151,4 +162,26 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion
+    #region Attack Rock From Ground
+    
+
+    #endregion
+
+    #region Animation Trigger
+    
+    public void OnAnimationEventTrigger(EnemyAnimationEventTriggerType type)
+    {
+        switch (type)
+        {
+            case EnemyAnimationEventTriggerType.OnAttackGroundSlam:
+
+                break;
+            case EnemyAnimationEventTriggerType.OnAttackRockAppear:
+                rockFromGroundObject.initRock(playerTarget.position, 10);
+                break;
+        }
+    }
+
+    #endregion
+
 }
