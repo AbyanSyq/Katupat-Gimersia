@@ -138,6 +138,11 @@ public class PlayerController3D : MonoBehaviour
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        
+        if (cinemachineCameraComponent == null)
+        {
+            cinemachineCameraComponent = GameObject.Find("PlayerFollowCamera3D").GetComponent<CinemachineCamera>();
+        }
 
         originalCameraFOV = cinemachineCameraComponent.Lens.FieldOfView;
 
