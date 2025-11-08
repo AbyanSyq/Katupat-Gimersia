@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Redcode.Pools;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,6 +70,9 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Cinemachine Camera"), ReadOnly] private float cinemachineTargetYaw;
     [FoldoutGroup("Cinemachine Camera"), ReadOnly] private float cinemachineTargetPitch;
     [FoldoutGroup("Cinemachine Camera"), ReadOnly] private GameObject mainCamera;
+    [FoldoutGroup("Cinemachine Camera"), Range(0f, 120f), ReadOnly] private float originalCameraFOV;
+    [FoldoutGroup("Cinemachine Camera"), SerializeField] private CinemachineCamera cinemachineCameraComponent;
+    
     #endregion
 
     #region Input System
@@ -119,14 +123,14 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField] GameObject spearPrefab;
     [FoldoutGroup("Throw"), SerializeField] Transform throwPoint;
     [Header("Throwing Spear")]
-    [FoldoutGroup("Throw"), SerializeField] public float minThrowForce = 10f;
-    [FoldoutGroup("Throw"), SerializeField] public float maxThrowForce = 50f;
-    [FoldoutGroup("Throw"), SerializeField] public float chargeSpeed = 1.5f;
+    [FoldoutGroup("Throw"), SerializeField] public float minThrowForce;
+    [FoldoutGroup("Throw"), SerializeField] public float maxThrowForce;
+    [FoldoutGroup("Throw"), SerializeField] public float chargeSpeed;
+    [FoldoutGroup("Throw"), SerializeField] private float fovResetSpeed;
 
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
-
     
     #endregion
 
@@ -134,6 +138,9 @@ public class PlayerController3D : MonoBehaviour
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        originalCameraFOV = cinemachineCameraComponent.Lens.FieldOfView;
+
         input = GetComponent<PlayerInputHandler>();
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
@@ -162,6 +169,15 @@ public class PlayerController3D : MonoBehaviour
     private void LateUpdate()
     {
         CameraRotation();
+
+        // Camera behavior When charging
+        // Use MoveTowards so the FOV changes at a steady rate (units per second) instead of exponential Lerp.
+        float targetFOV = isCharging ? originalCameraFOV * 1.2f : originalCameraFOV;
+
+        // Calculate speed needed to complete transition in chargeSpeed seconds (1.5s)
+        float fovDifference = Mathf.Abs(targetFOV - originalCameraFOV);  // Total FOV change needed
+        float fovSpeed = isCharging ? fovDifference / chargeSpeed : fovResetSpeed;  // Units per second needed to complete in chargeSpeed time
+        cinemachineCameraComponent.Lens.FieldOfView = Mathf.MoveTowards(cinemachineCameraComponent.Lens.FieldOfView, targetFOV, fovSpeed * Time.deltaTime);
     }
     #endregion
 

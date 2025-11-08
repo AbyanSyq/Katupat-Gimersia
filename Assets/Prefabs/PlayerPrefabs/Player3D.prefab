@@ -2380,6 +2380,7 @@ MonoBehaviour:
   bottomClamp: -30
   cameraAngleOverride: 0
   lockCameraPosition: 0
+  cinemachineCameraComponent: {fileID: 0}
   controller: {fileID: 0}
   input: {fileID: 0}
   playerInput: {fileID: 0}
@@ -2400,6 +2401,7 @@ MonoBehaviour:
   minThrowForce: 10
   maxThrowForce: 30
   chargeSpeed: 3
+  fovResetSpeed: 40
   isCharging: 0
   chargeStartTime: 0
   currentThrowForce: 0
