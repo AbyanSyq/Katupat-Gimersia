@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Redcode.Pools;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -409,9 +411,9 @@ public class PlayerController3D : MonoBehaviour
 
     private void ThrowSpear()
     {
-        if (spearPrefab == null || throwPoint == null)
+        if (PoolManager.Instance.GetPool<Spear>("Spear") == null || throwPoint == null)
         {
-            Debug.LogWarning("Missing spearPrefab or throwPoint reference!");
+            Debug.LogWarning("Missing Spear pool or throwPoint reference!");
             return;
         }
 
@@ -428,7 +430,16 @@ public class PlayerController3D : MonoBehaviour
         throwPoint.rotation = Quaternion.LookRotation(throwDirection, Vector3.up);
 
         // Spawn spear at throw point
-        GameObject spearInstance = Instantiate(spearPrefab, throwPoint.position, throwPoint.rotation);
+        var spearInstance = PoolManager.Instance.GetFromPool<Spear>(0);
+        if (spearInstance == null)
+        {
+            Debug.LogWarning("No spear available in the pool!");
+            return;
+        }
+        
+        spearInstance.transform.position = throwPoint.position;
+        spearInstance.transform.rotation = throwPoint.rotation;
+        //GameObject spearInstance = Instantiate(spearPrefab, throwPoint.position, throwPoint.rotation);
 
         // Get or add Rigidbody
         Rigidbody rb = spearInstance.GetComponent<Rigidbody>();
