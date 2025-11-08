@@ -73,7 +73,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private CharacterController controller;
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private PlayerInputHandler input;
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private PlayerInput playerInput;
-    private const float THRESHOLD = 0.01f;
+    [FoldoutGroup("Input System"), SerializeField, ReadOnly] private const float THRESHOLD = 0.01f;
 
     private bool IsCurrentDeviceMouse
     {
@@ -111,6 +111,21 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDMotionSpeed;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private Animator animator;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private bool hasAnimator;
+
+
+    [Header("Throwing Spear")]
+    [FoldoutGroup("Throw"), SerializeField] GameObject spearPrefab;
+    [FoldoutGroup("Throw"), SerializeField] Transform throwPoint;
+    [Header("Throwing Spear")]
+    [FoldoutGroup("Throw"), SerializeField] public float minThrowForce = 10f;
+    [FoldoutGroup("Throw"), SerializeField] public float maxThrowForce = 50f;
+    [FoldoutGroup("Throw"), SerializeField] public float chargeSpeed = 1.5f;
+
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
+
+    
     #endregion
 
     #region Unity Lifecycle
@@ -136,9 +151,10 @@ public class PlayerController3D : MonoBehaviour
     {
         hasAnimator = TryGetComponent(out animator);
 
-        JumpAndGravity();
+        // JumpAndGravity();
         GroundedCheck();
         Move();
+        HandleSpearCharge();
     }
 
     private void LateUpdate()
@@ -178,18 +194,12 @@ public class PlayerController3D : MonoBehaviour
         animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
         if (animationBlend < 0.01f) animationBlend = 0f;
 
+        // ✅ Move relative to camera direction, but don’t rotate player
+        float cameraYaw = mainCamera.transform.eulerAngles.y;
         Vector3 inputDirection = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
+        Vector3 moveDirection = Quaternion.Euler(0.0f, cameraYaw, 0.0f) * inputDirection;
 
-        if (input.move != Vector2.zero)
-        {
-            targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSmoothTime);
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-        }
-
-        Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
-
-        controller.Move(targetDirection.normalized * (speed * Time.deltaTime) +
+        controller.Move(moveDirection.normalized * (speed * Time.deltaTime) +
                         new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
 
         if (hasAnimator)
@@ -198,67 +208,69 @@ public class PlayerController3D : MonoBehaviour
             animator.SetFloat(animParameterIDMotionSpeed, inputMagnitude);
         }
     }
+
+
     #endregion
 
-    #region Jump and Gravity
-    private void JumpAndGravity()
-    {
-        if (grounded)
-        {
-            fallTimeoutDelta = fallTimeout;
+    // #region Jump and Gravity
+    // private void JumpAndGravity()
+    // {
+    //     if (grounded)
+    //     {
+    //         fallTimeoutDelta = fallTimeout;
 
-            if (hasAnimator)
-            {
-                animator.SetBool(animParameterIDJump, false);
-                animator.SetBool(animParameterIDFreeFall, false);
-            }
+    //         if (hasAnimator)
+    //         {
+    //             animator.SetBool(animParameterIDJump, false);
+    //             animator.SetBool(animParameterIDFreeFall, false);
+    //         }
 
-            if (verticalVelocity < 0.0f)
-            {
-                verticalVelocity = -2f;
-            }
+    //         if (verticalVelocity < 0.0f)
+    //         {
+    //             verticalVelocity = -2f;
+    //         }
 
-            if (input.jump && jumpTimeoutDelta <= 0.0f)
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    //         if (input.jump && jumpTimeoutDelta <= 0.0f)
+    //         {
+    //             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-                if (hasAnimator)
-                {
-                    animator.SetBool(animParameterIDJump, true);
-                }
-            }
+    //             if (hasAnimator)
+    //             {
+    //                 animator.SetBool(animParameterIDJump, true);
+    //             }
+    //         }
 
-            if (jumpTimeoutDelta >= 0.0f)
-            {
-                jumpTimeoutDelta -= Time.deltaTime;
-            }
-        }
-        else
-        {
-            jumpTimeoutDelta = jumpTimeout;
+    //         if (jumpTimeoutDelta >= 0.0f)
+    //         {
+    //             jumpTimeoutDelta -= Time.deltaTime;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         jumpTimeoutDelta = jumpTimeout;
 
-            if (fallTimeoutDelta >= 0.0f)
-            {
-                fallTimeoutDelta -= Time.deltaTime;
-            }
-            else
-            {
-                // update animator if using character
-                if (hasAnimator)
-                {
-                    animator.SetBool(animParameterIDFreeFall, true);
-                }
-            }
+    //         if (fallTimeoutDelta >= 0.0f)
+    //         {
+    //             fallTimeoutDelta -= Time.deltaTime;
+    //         }
+    //         else
+    //         {
+    //             // update animator if using character
+    //             if (hasAnimator)
+    //             {
+    //                 animator.SetBool(animParameterIDFreeFall, true);
+    //             }
+    //         }
 
-            input.jump = false;
-        }
+    //         input.jump = false;
+    //     }
 
-        if (verticalVelocity < terminalVelocity)
-        {
-            verticalVelocity += gravity * Time.deltaTime;
-        }
-    }
-    #endregion
+    //     if (verticalVelocity < terminalVelocity)
+    //     {
+    //         verticalVelocity += gravity * Time.deltaTime;
+    //     }
+    // }
+    // #endregion
 
     #region Grounded Check
     private void GroundedCheck()
@@ -274,47 +286,40 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Camera
-    private void CameraRotation()//
+    private void CameraRotation()
     {
-        if (isFirstPerson)
+        if (lockCameraPosition) return;
+
+        // ✅ Handle camera input (mouse/stick)
+        if (input.look.sqrMagnitude >= THRESHOLD)
         {
-            if (input.look.sqrMagnitude >= THRESHOLD)
-            {
-                //Don't multiply mouse input by Time.deltaTime
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-                cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
-                rotationVelocity = input.look.x * rotationSpeed * deltaTimeMultiplier;
+            float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                // clamp our pitch rotation
-                cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
-
-                // Update Cinemachine camera target pitch
-                cinemachineCameraTarget.transform.localRotation = Quaternion.Euler(cinemachineTargetPitch, 0.0f, 0.0f);
-
-                // rotate the player left and right
-                transform.Rotate(Vector3.up * rotationVelocity);
-            }
+            cinemachineTargetYaw += input.look.x * rotationSpeed * deltaTimeMultiplier;
+            cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
         }
-        else
-        {
-            if (input.look.sqrMagnitude >= THRESHOLD)
-            {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                cinemachineTargetYaw += input.look.x * rotationSpeed * deltaTimeMultiplier;
-                cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
-            }
+        // ✅ Clamp pitch to prevent flipping
+        cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
 
-            // clamp our rotations so our values are limited 360 degrees
-            cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
+        // ✅ Apply rotation to the camera target (used by Cinemachine)
+        cinemachineCameraTarget.transform.rotation = Quaternion.Euler(
+            cinemachineTargetPitch + cameraAngleOverride,
+            cinemachineTargetYaw,
+            0.0f
+        );
 
-            // Cinemachine will follow this target
-            cinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + cameraAngleOverride,
-                cinemachineTargetYaw, 0.0f);
-        }
+        // ✅ Smoothly rotate player to face camera direction (yaw only)
+        float smoothYaw = Mathf.SmoothDampAngle(
+            transform.eulerAngles.y,
+            cinemachineTargetYaw,
+            ref rotationVelocity,
+            rotationSmoothTime
+        );
+
+        transform.rotation = Quaternion.Euler(0.0f, smoothYaw, 0.0f);
     }
+
 
 
     private static float ClampAngle(float angle, float min, float max)
@@ -372,4 +377,77 @@ public class PlayerController3D : MonoBehaviour
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z), groundedRadius);
     }
     #endregion
+
+    #region Attack (Throw Spear)
+    public void StartCharging()
+    {
+        if (isCharging) return;
+        isCharging = true;
+        chargeStartTime = Time.time;
+    }
+
+    public void ReleaseThrow()
+    {
+        if (!isCharging) return;
+        isCharging = false;
+
+        float chargeDuration = Time.time - chargeStartTime;
+        currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
+        currentThrowForce = Mathf.Clamp(currentThrowForce, minThrowForce, maxThrowForce);
+
+        ThrowSpear();
+    }
+
+    private void HandleSpearCharge()
+    {
+        if (isCharging)
+        {
+            float chargeDuration = Time.time - chargeStartTime;
+            currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
+        }
+    }
+
+    private void ThrowSpear()
+    {
+        if (spearPrefab == null || throwPoint == null)
+        {
+            Debug.LogWarning("Missing spearPrefab or throwPoint reference!");
+            return;
+        }
+
+        // How far ahead the crosshair point is (you can tweak this)
+        float crosshairDistance = 15f;
+
+        // Get the world position of the crosshair (center of the screen)
+        Vector3 crosshairWorldPos = mainCamera.transform.position + mainCamera.transform.forward * crosshairDistance;
+
+        // Calculate direction from throw point to that position
+        Vector3 throwDirection = (crosshairWorldPos - throwPoint.position).normalized;
+
+        // Rotate the throw point to aim at the crosshair (vertical + horizontal)
+        throwPoint.rotation = Quaternion.LookRotation(throwDirection, Vector3.up);
+
+        // Spawn spear at throw point
+        GameObject spearInstance = Instantiate(spearPrefab, throwPoint.position, throwPoint.rotation);
+
+        // Get or add Rigidbody
+        Rigidbody rb = spearInstance.GetComponent<Rigidbody>();
+        if (rb == null)
+            rb = spearInstance.AddComponent<Rigidbody>();
+
+        rb.useGravity = true;
+        rb.isKinematic = false;
+
+        // Apply throw force
+        rb.linearVelocity = throwDirection * currentThrowForce;
+
+        // Optional: make spear face its velocity while flying
+        Spear spearRotator = spearInstance.GetComponent<Spear>();
+        if (spearRotator == null)
+            spearRotator = spearInstance.AddComponent<Spear>();
+    }
+
+    #endregion
+
 }
+

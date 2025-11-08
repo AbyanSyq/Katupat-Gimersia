@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -16,7 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool cursorInputForLook = true;
 
     private PlayerInputAction _inputActions;
-
+    [SerializeField] private PlayerController3D playerController;
     private void Awake()
     {
         _inputActions = new PlayerInputAction(); // create input action instance
@@ -36,6 +37,8 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.canceled += OnJump;
 
         _inputActions.Player.Sprint.performed += OnSprint;
+        _inputActions.Player.Throw.started += OnThrowStarted;
+        _inputActions.Player.Throw.canceled += OnThrowReleased;
     }
 
     private void OnDisable()
@@ -73,6 +76,18 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnSprint(InputAction.CallbackContext ctx)
     {
         SprintInput(ctx.ReadValueAsButton());
+
+    }
+    
+    
+    private void OnThrowStarted(InputAction.CallbackContext context)
+    {
+       playerController.StartCharging();
+    }
+
+    private void OnThrowReleased(InputAction.CallbackContext context)
+    {
+        playerController.ReleaseThrow();
     }
 #endregion
 
