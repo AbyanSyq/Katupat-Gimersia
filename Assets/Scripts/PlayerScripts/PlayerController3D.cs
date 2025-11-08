@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+
 public class PlayerController3D : MonoBehaviour
 {
     #region State
@@ -75,16 +76,16 @@ public class PlayerController3D : MonoBehaviour
     private const float THRESHOLD = 0.01f;
 
     private bool IsCurrentDeviceMouse
-		{
-			get
-			{
-				#if ENABLE_INPUT_SYSTEM
-				return playerInput.currentControlScheme == "KeyboardMouse";
-				#else
+    {
+        get
+        {
+#if ENABLE_INPUT_SYSTEM
+            return playerInput.currentControlScheme == "KeyboardMouse";
+#else
 				return false;
-				#endif
-			}
-		}
+#endif
+        }
+    }
     #endregion
 
     #region Animation
@@ -278,21 +279,21 @@ public class PlayerController3D : MonoBehaviour
         if (isFirstPerson)
         {
             if (input.look.sqrMagnitude >= THRESHOLD)
-			{
-				//Don't multiply mouse input by Time.deltaTime
-				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
-				rotationVelocity = input.look.x * rotationSpeed * deltaTimeMultiplier;
+            {
+                //Don't multiply mouse input by Time.deltaTime
+                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
+                rotationVelocity = input.look.x * rotationSpeed * deltaTimeMultiplier;
 
-				// clamp our pitch rotation
-				cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
+                // clamp our pitch rotation
+                cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
 
-				// Update Cinemachine camera target pitch
-				cinemachineCameraTarget.transform.localRotation = Quaternion.Euler(cinemachineTargetPitch, 0.0f, 0.0f);
+                // Update Cinemachine camera target pitch
+                cinemachineCameraTarget.transform.localRotation = Quaternion.Euler(cinemachineTargetPitch, 0.0f, 0.0f);
 
-				// rotate the player left and right
-				transform.Rotate(Vector3.up * rotationVelocity);
-			}
+                // rotate the player left and right
+                transform.Rotate(Vector3.up * rotationVelocity);
+            }
         }
         else
         {

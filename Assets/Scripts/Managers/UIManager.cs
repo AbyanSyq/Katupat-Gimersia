@@ -7,7 +7,10 @@ using System.Collections;
 using System;
 using System.Linq;
 
-
+public static partial class Events
+{
+    public static readonly GameEvent<UIType> OnUIChanged = new GameEvent<UIType>();
+}
 [System.Serializable]
 public class UIEntry
 {
