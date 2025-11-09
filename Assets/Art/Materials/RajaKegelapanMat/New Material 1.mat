@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Peepul-Leaf.001
+  m_Name: New Material 1
   m_Shader: {fileID: 4800000, guid: a2a06e22c08354d9699356710b69ca9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -17,8 +17,8 @@ Material:
   - DIFFUSE
   - FOG
   - MATCAP_PERSPECTIVE
+  - NORMAL_MAP
   - OUTLINE_PASS_DISABLED
-  - PLANT_SWAY
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
   - _DETAILUV_UV1
@@ -33,19 +33,19 @@ Material:
   - _MATCAPBLEND_MULTIPLY
   - _NORMALUV2_UV1
   - _NORMALUV_UV1
-  - _PLANTTYPE_LEAF
+  - _PLANTTYPE_PLANT
   - _RIMBLEND_ADDITIVE
   - _SHADOWOVERLAYANIMATION_SCROLL
   - _SPECULARUV_UV1
-  m_InvalidKeywords:
-  - _ALPHATEST_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
+  - ALWAYS
   - SRPDEFAULTUNLIT
   m_LockedProperties: 
   m_SavedProperties:
@@ -104,7 +104,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4addc1c052c07ad4aad8f3cf4dd4099d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapTex:
@@ -116,7 +116,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 382681fd93705e3478ced04c23ebd58d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex2:
@@ -166,13 +166,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 1
-    - _AlphaToMask: 1
-    - _AmbientBrightness: 1
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _AmbientBrightness: 3.3
     - _Anime: 0
-    - _AnimeSoftness: 0.01
+    - _AnimeSoftness: 0.04
     - _AnimeThreshold1: 0.45
-    - _AnimeThreshold2: 0.85
+    - _AnimeThreshold2: 0.4
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -185,7 +185,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Contrast: 1
     - _Cull: 2
-    - _Cutoff: 1
+    - _Cutoff: 0.5
     - _Cutout: 0
     - _CutoutCutoff: 0.5
     - _DestBlend: 0
@@ -198,7 +198,7 @@ Material:
     - _DetailUV: 0
     - _DetailVertexColors: 0
     - _Diffuse: 1
-    - _DiffuseBrightness: 1
+    - _DiffuseBrightness: 1.15
     - _DiffuseContrast: 1
     - _DiffusePerPixel: 0
     - _DiffuseWrap: 0
@@ -207,9 +207,9 @@ Material:
     - _EnvironmentReflections: 1
     - _Flat: 0
     - _Fog: 1
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _HeightColors: 0
     - _HeightColorsAlpha: 1
     - _HeightColorsBlend: 0
@@ -242,9 +242,8 @@ Material:
     - _MatCapStatic: 0
     - _Metallic: 0
     - _MixedLighting: 0
-    - _Mode: 0
     - _Normal2Strength: 1
-    - _NormalStrength: 1
+    - _NormalStrength: 0.62
     - _NormalUV: 0
     - _NormalUV2: 0
     - _OcclusionStrength: 1
@@ -255,14 +254,14 @@ Material:
     - _OutlineWidth: 0.002
     - _OutlineWidthIndependent: 0
     - _OutlineZPos: 0
-    - _Parallax: 0.02
-    - _Plant: 1
+    - _Parallax: 0.005
+    - _Plant: 0
     - _PlantBaseHeight: 0
     - _PlantLocal: 0
     - _PlantPhaseVariation: 0.3
     - _PlantSwayAmount: 0.15
     - _PlantSwaySpeed: 1
-    - _PlantType: 1
+    - _PlantType: 0
     - _Preset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -296,7 +295,6 @@ Material:
     - _Surface: 0
     - _TransparencyMaskAmount: 1
     - _TransparencyMaskContrast: 1
-    - _UVSec: 0
     - _UVTile: 0
     - _UVTileDiscardUV: 1
     - _UVTileV0U0: 0
@@ -323,13 +321,13 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AnimeColor1: {r: 1, g: 1, b: 1, a: 1}
-    - _AnimeColor2: {r: 1.35, g: 1.35, b: 1.35, a: 1}
+    - _AnimeColor1: {r: 0.31990921, g: 0.32572204, b: 0.745283, a: 1}
+    - _AnimeColor2: {r: 1.4792923, g: 0.7047572, b: 0.7451335, a: 1}
     - _AnimeColor3: {r: 2, g: 2, b: 2, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.49056602, g: 0.34488, b: 0.23371306, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive: {r: 0, g: 0, b: 0, a: 0}
     - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
@@ -342,12 +340,12 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+    - _ShadowColor: {r: 0.47573397, g: 0.4233268, b: 0.5943396, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4871518597100513561
+--- !u!114 &7043548605751974276
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

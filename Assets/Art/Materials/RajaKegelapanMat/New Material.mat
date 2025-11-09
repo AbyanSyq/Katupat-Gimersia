@@ -13,9 +13,11 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - AMBIENT
+  - ANIME
   - ANIME_SOFT
   - DIFFUSE
   - FOG
+  - HEIGHT_COLORS
   - MATCAP_PERSPECTIVE
   - NORMAL_MAP
   - OUTLINE_PASS_DISABLED
@@ -169,7 +171,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _AmbientBrightness: 1
-    - _Anime: 0
+    - _Anime: 1
     - _AnimeSoftness: 0.04
     - _AnimeThreshold1: 0.45
     - _AnimeThreshold2: 0.4
@@ -210,11 +212,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HeightColors: 0
+    - _HeightColors: 1
     - _HeightColorsAlpha: 1
     - _HeightColorsBlend: 0
-    - _HeightColorsEdgeThickness: 1
-    - _HeightColorsHeight: 0
+    - _HeightColorsEdgeThickness: 3
+    - _HeightColorsHeight: 0.5
     - _HeightColorsSpace: 0
     - _HeightColorsThickness: 0
     - _IgnoreMainTexAlpha: 0
@@ -243,7 +245,7 @@ Material:
     - _Metallic: 0
     - _MixedLighting: 0
     - _Normal2Strength: 1
-    - _NormalStrength: 0.5
+    - _NormalStrength: 0.62
     - _NormalUV: 0
     - _NormalUV2: 0
     - _OcclusionStrength: 1
@@ -266,7 +268,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflection: 0
-    - _ReflectionAmount: 1
+    - _ReflectionAmount: 0.07
     - _ReflectionRim: 0
     - _ReflectionSpecular: 0
     - _Rim: 0
@@ -323,13 +325,13 @@ Material:
     m_Colors:
     - _AnimeColor1: {r: 0.31990921, g: 0.32572204, b: 0.745283, a: 1}
     - _AnimeColor2: {r: 1.4792923, g: 0.7047572, b: 0.7451335, a: 1}
-    - _AnimeColor3: {r: 2, g: 2, b: 2, a: 1}
+    - _AnimeColor3: {r: 1.9396423, g: 1.9396423, b: 1.9396423, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.4716981, g: 0.3604897, b: 0.26032394, a: 1}
+    - _Color: {r: 0.4528302, g: 0.36311856, b: 0.2798149, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive: {r: 0, g: 0, b: 0, a: 0}
-    - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HeightColorsColor: {r: 0.3301887, g: 0.22897328, b: 0.19468673, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer3Color: {r: 1, g: 1, b: 1, a: 1}
@@ -340,7 +342,7 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.28028548, g: 0.14117646, b: 0.58431375, a: 1}
+    - _ShadowColor: {r: 0.47573397, g: 0.4233268, b: 0.5943396, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
