@@ -331,6 +331,8 @@ public class PlayerController3D : MonoBehaviour
         if (isCharging) return;
         isCharging = true;
         chargeStartTime = Time.time;
+
+        animator.SetTrigger("ChargeSpear");
     }
 
     public void ReleaseThrow()
@@ -341,6 +343,8 @@ public class PlayerController3D : MonoBehaviour
         float chargeDuration = Time.time - chargeStartTime;
         currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
         currentThrowForce = Mathf.Clamp(currentThrowForce, minThrowForce, maxThrowForce);
+
+        animator.SetTrigger("ThrowSpear");
 
         ThrowSpear();
     }
