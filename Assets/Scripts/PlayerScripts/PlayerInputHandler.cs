@@ -10,7 +10,6 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 move;
     public Vector2 look;
     public bool jump;
-    public bool sprint;
 
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
@@ -36,7 +35,6 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.started += OnJump;
         _inputActions.Player.Jump.canceled += OnJump;
 
-        _inputActions.Player.Sprint.performed += OnSprint;
         _inputActions.Player.Throw.started += OnThrowStarted;
         _inputActions.Player.Throw.canceled += OnThrowReleased;
     }
@@ -52,7 +50,6 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.started -= OnJump;
         _inputActions.Player.Jump.canceled -= OnJump;
 
-        _inputActions.Player.Sprint.performed -= OnSprint;
 
         _inputActions.Player.Disable();
     }
@@ -73,11 +70,7 @@ public class PlayerInputHandler : MonoBehaviour
         JumpInput(ctx.ReadValueAsButton());
     }
 
-    private void OnSprint(InputAction.CallbackContext ctx)
-    {
-        SprintInput(ctx.ReadValueAsButton());
-
-    }
+   
     
     
     private void OnThrowStarted(InputAction.CallbackContext context)
@@ -106,12 +99,6 @@ public class PlayerInputHandler : MonoBehaviour
 	{
 		jump = newJumpState;
 	}
-
-	public void SprintInput(bool newSprintState)
-	{
-		sprint = newSprintState;
-	}
-	
 	private void OnApplicationFocus(bool hasFocus)
 	{
 		SetCursorState(cursorLocked);

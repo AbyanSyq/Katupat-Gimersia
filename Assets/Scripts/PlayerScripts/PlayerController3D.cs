@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
-
 public class PlayerController3D : MonoBehaviour
 {
     #region State
@@ -17,9 +16,8 @@ public class PlayerController3D : MonoBehaviour
     {
         IDLE = 0,
         WALK = 1 << 0,
-        RUN = 1 << 1,
-        DEAD = 1 << 2,
-        MOVING = WALK | RUN
+        DEAD = 1 << 1,
+        MOVING = WALK
     }
 
     [SerializeField, FoldoutGroup("State Settings")] private bool isFirstPerson = false;
@@ -29,7 +27,6 @@ public class PlayerController3D : MonoBehaviour
 
     #region Movement
     [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeed = 2.0f;
-    [FoldoutGroup("Movement Settings"), SerializeField] private float sprintSpeed = 5.335f;
     [FoldoutGroup("Movement Settings"), SerializeField, Range(0.0f, 0.3f)] private float rotationSmoothTime = 0.12f;
     [FoldoutGroup("Movement Settings"), SerializeField] private float speedChangeRate = 10.0f;
 
@@ -72,7 +69,6 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Cinemachine Camera"), ReadOnly] private GameObject mainCamera;
     [FoldoutGroup("Cinemachine Camera"), Range(0f, 120f), ReadOnly] private float originalCameraFOV;
     [FoldoutGroup("Cinemachine Camera"), SerializeField] private CinemachineCamera cinemachineCameraComponent;
-    
     #endregion
 
     #region Input System
@@ -88,7 +84,7 @@ public class PlayerController3D : MonoBehaviour
 #if ENABLE_INPUT_SYSTEM
             return playerInput.currentControlScheme == "KeyboardMouse";
 #else
-				return false;
+            return false;
 #endif
         }
     }
@@ -118,7 +114,6 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private Animator animator;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private bool hasAnimator;
 
-
     [Header("Throwing Spear")]
     [FoldoutGroup("Throw"), SerializeField] GameObject spearPrefab;
     [FoldoutGroup("Throw"), SerializeField] Transform throwPoint;
@@ -131,14 +126,13 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
-    
     #endregion
 
     #region Unity Lifecycle
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        
+
         if (cinemachineCameraComponent == null)
         {
             cinemachineCameraComponent = GameObject.Find("PlayerFollowCamera3D").GetComponent<CinemachineCamera>();
@@ -164,8 +158,6 @@ public class PlayerController3D : MonoBehaviour
     private void Update()
     {
         hasAnimator = TryGetComponent(out animator);
-
-        // JumpAndGravity();
         GroundedCheck();
         Move();
         HandleSpearCharge();
@@ -175,14 +167,14 @@ public class PlayerController3D : MonoBehaviour
     {
         CameraRotation();
 
-        // Camera behavior When charging
-        // Use MoveTowards so the FOV changes at a steady rate (units per second) instead of exponential Lerp.
         float targetFOV = isCharging ? originalCameraFOV * 1.2f : originalCameraFOV;
-
-        // Calculate speed needed to complete transition in chargeSpeed seconds (1.5s)
-        float fovDifference = Mathf.Abs(targetFOV - originalCameraFOV);  // Total FOV change needed
-        float fovSpeed = isCharging ? fovDifference / chargeSpeed : fovResetSpeed;  // Units per second needed to complete in chargeSpeed time
-        cinemachineCameraComponent.Lens.FieldOfView = Mathf.MoveTowards(cinemachineCameraComponent.Lens.FieldOfView, targetFOV, fovSpeed * Time.deltaTime);
+        float fovDifference = Mathf.Abs(targetFOV - originalCameraFOV);
+        float fovSpeed = isCharging ? fovDifference / chargeSpeed : fovResetSpeed;
+        cinemachineCameraComponent.Lens.FieldOfView = Mathf.MoveTowards(
+            cinemachineCameraComponent.Lens.FieldOfView,
+            targetFOV,
+            fovSpeed * Time.deltaTime
+        );
     }
     #endregion
 
@@ -197,7 +189,8 @@ public class PlayerController3D : MonoBehaviour
     #region Movement
     private void Move()
     {
-        float targetSpeed = input.sprint ? sprintSpeed : moveSpeed;
+        // ✅ Always use moveSpeed, no sprint
+        float targetSpeed = moveSpeed;
         if (input.move == Vector2.zero) targetSpeed = 0.0f;
 
         float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
@@ -217,7 +210,6 @@ public class PlayerController3D : MonoBehaviour
         animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
         if (animationBlend < 0.01f) animationBlend = 0f;
 
-        // ✅ Move relative to camera direction, but don’t rotate player
         float cameraYaw = mainCamera.transform.eulerAngles.y;
         Vector3 inputDirection = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
         Vector3 moveDirection = Quaternion.Euler(0.0f, cameraYaw, 0.0f) * inputDirection;
@@ -231,69 +223,7 @@ public class PlayerController3D : MonoBehaviour
             animator.SetFloat(animParameterIDMotionSpeed, inputMagnitude);
         }
     }
-
-
     #endregion
-
-    // #region Jump and Gravity
-    // private void JumpAndGravity()
-    // {
-    //     if (grounded)
-    //     {
-    //         fallTimeoutDelta = fallTimeout;
-
-    //         if (hasAnimator)
-    //         {
-    //             animator.SetBool(animParameterIDJump, false);
-    //             animator.SetBool(animParameterIDFreeFall, false);
-    //         }
-
-    //         if (verticalVelocity < 0.0f)
-    //         {
-    //             verticalVelocity = -2f;
-    //         }
-
-    //         if (input.jump && jumpTimeoutDelta <= 0.0f)
-    //         {
-    //             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-    //             if (hasAnimator)
-    //             {
-    //                 animator.SetBool(animParameterIDJump, true);
-    //             }
-    //         }
-
-    //         if (jumpTimeoutDelta >= 0.0f)
-    //         {
-    //             jumpTimeoutDelta -= Time.deltaTime;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         jumpTimeoutDelta = jumpTimeout;
-
-    //         if (fallTimeoutDelta >= 0.0f)
-    //         {
-    //             fallTimeoutDelta -= Time.deltaTime;
-    //         }
-    //         else
-    //         {
-    //             // update animator if using character
-    //             if (hasAnimator)
-    //             {
-    //                 animator.SetBool(animParameterIDFreeFall, true);
-    //             }
-    //         }
-
-    //         input.jump = false;
-    //     }
-
-    //     if (verticalVelocity < terminalVelocity)
-    //     {
-    //         verticalVelocity += gravity * Time.deltaTime;
-    //     }
-    // }
-    // #endregion
 
     #region Grounded Check
     private void GroundedCheck()
@@ -313,7 +243,6 @@ public class PlayerController3D : MonoBehaviour
     {
         if (lockCameraPosition) return;
 
-        // ✅ Handle camera input (mouse/stick)
         if (input.look.sqrMagnitude >= THRESHOLD)
         {
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
@@ -322,17 +251,14 @@ public class PlayerController3D : MonoBehaviour
             cinemachineTargetPitch += input.look.y * rotationSpeed * deltaTimeMultiplier;
         }
 
-        // ✅ Clamp pitch to prevent flipping
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
 
-        // ✅ Apply rotation to the camera target (used by Cinemachine)
         cinemachineCameraTarget.transform.rotation = Quaternion.Euler(
             cinemachineTargetPitch + cameraAngleOverride,
             cinemachineTargetYaw,
             0.0f
         );
 
-        // ✅ Smoothly rotate player to face camera direction (yaw only)
         float smoothYaw = Mathf.SmoothDampAngle(
             transform.eulerAngles.y,
             cinemachineTargetYaw,
@@ -342,8 +268,6 @@ public class PlayerController3D : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0.0f, smoothYaw, 0.0f);
     }
-
-
 
     private static float ClampAngle(float angle, float min, float max)
     {
@@ -438,31 +362,22 @@ public class PlayerController3D : MonoBehaviour
             return;
         }
 
-        // How far ahead the crosshair point is (you can tweak this)
         float crosshairDistance = 15f;
-
-        // Get the world position of the crosshair (center of the screen)
         Vector3 crosshairWorldPos = mainCamera.transform.position + mainCamera.transform.forward * crosshairDistance;
-
-        // Calculate direction from throw point to that position
         Vector3 throwDirection = (crosshairWorldPos - throwPoint.position).normalized;
 
-        // Rotate the throw point to aim at the crosshair (vertical + horizontal)
         throwPoint.rotation = Quaternion.LookRotation(throwDirection, Vector3.up);
 
-        // Spawn spear at throw point
         var spearInstance = PoolManager.Instance.GetFromPool<Spear>(0);
         if (spearInstance == null)
         {
             Debug.LogWarning("No spear available in the pool!");
             return;
         }
-        
+
         spearInstance.transform.position = throwPoint.position;
         spearInstance.transform.rotation = throwPoint.rotation;
-        //GameObject spearInstance = Instantiate(spearPrefab, throwPoint.position, throwPoint.rotation);
 
-        // Get or add Rigidbody
         Rigidbody rb = spearInstance.GetComponent<Rigidbody>();
         if (rb == null)
             rb = spearInstance.AddComponent<Rigidbody>();
@@ -470,16 +385,11 @@ public class PlayerController3D : MonoBehaviour
         rb.useGravity = true;
         rb.isKinematic = false;
 
-        // Apply throw force
         rb.linearVelocity = throwDirection * currentThrowForce;
 
-        // Optional: make spear face its velocity while flying
         Spear spearRotator = spearInstance.GetComponent<Spear>();
         if (spearRotator == null)
             spearRotator = spearInstance.AddComponent<Spear>();
     }
-
     #endregion
-
 }
-
