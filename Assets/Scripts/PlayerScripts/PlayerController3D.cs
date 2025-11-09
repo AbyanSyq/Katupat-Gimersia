@@ -104,6 +104,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField] private string animParameterGroundedName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterFreeFallName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterMotionSpeedName;
+    [FoldoutGroup("Animation"), SerializeField] private string animParameterThrowForceName;
 
     [Space]
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDSpeed;
@@ -111,6 +112,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDGrounded;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDFreeFall;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDMotionSpeed;
+    [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDThrowForce;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private Animator animator;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private bool hasAnimator;
 
@@ -126,6 +128,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForceNormalized;
     #endregion
 
     #region Unity Lifecycle
@@ -300,6 +303,7 @@ public class PlayerController3D : MonoBehaviour
         animParameterIDGrounded = Animator.StringToHash(animParameterGroundedName);
         animParameterIDFreeFall = Animator.StringToHash(animParameterFreeFallName);
         animParameterIDMotionSpeed = Animator.StringToHash(animParameterMotionSpeedName);
+        animParameterIDThrowForce = Animator.StringToHash(animParameterThrowForceName);
     }
 
     public void OnAnimationEventTrigger(AnimationEventTriggerType type)
@@ -356,6 +360,13 @@ public class PlayerController3D : MonoBehaviour
             float chargeDuration = Time.time - chargeStartTime;
             currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
         }
+        else
+        {
+            currentThrowForce = 0f;
+        }
+        
+        currentThrowForceNormalized = Mathf.InverseLerp(minThrowForce, maxThrowForce, currentThrowForce);
+        animator.SetFloat(animParameterIDThrowForce, currentThrowForceNormalized);
     }
 
     private void ThrowSpear()
