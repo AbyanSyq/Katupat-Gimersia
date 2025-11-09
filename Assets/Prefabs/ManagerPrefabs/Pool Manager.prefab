@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5529002539356071871}
+  - {fileID: 9147766329830424838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2688554184703466255
@@ -51,6 +52,42 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 5529002539356071871}
     _nonLazy: 0
+  - _name: SpearTrail
+    _component: {fileID: 2541015799392657996, guid: 8a615e5efb7f08f4eb56e41bac688126, type: 3}
+    _count: 0
+    _container: {fileID: 9147766329830424838}
+    _nonLazy: 0
+--- !u!1 &5441126946617323258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9147766329830424838}
+  m_Layer: 0
+  m_Name: SpearTrail Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9147766329830424838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441126946617323258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3054216956180155483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7956867281326375968
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5529002539356071871}
   m_Layer: 0
-  m_Name: Object Pools
+  m_Name: Spear Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
