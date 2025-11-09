@@ -19,7 +19,7 @@ Material:
   - FOG
   - MATCAP_PERSPECTIVE
   - NORMAL_MAP
-  - OUTLINE
+  - OUTLINE_PASS_DISABLED
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
   - _DETAILUV_UV1
@@ -48,6 +48,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
+  - SRPDEFAULTUNLIT
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -63,19 +64,22 @@ Material:
     - _AnimeSoftness: 0.01
     - _AnimeThreshold2: 0.85
     - _Contrast: 1
-    - _Outline: 1
+    - _Fog: 1
+    - _Outline: 0
     - _OutlineWidth: 0.001
     - _Reflection: 0
     - _ReflectionAmount: 1
     - _RimAmount: 1
     - _Saturation: 1
+    - _ShadowsEnabled: 1
     m_Colors:
     - _AnimeColor1: {r: 1, g: 1, b: 1, a: 1}
     - _AnimeColor2: {r: 1.35, g: 1.35, b: 1.35, a: 1}
     - _Color: {r: 0.18867922, g: 0.13972943, b: 0.13972943, a: 1}
     - _Emissive: {r: 0.045062497, g: 0.1654015, b: 0.38213003, a: 1}
     - _OutlineColor: {r: 0.1509434, g: 0.03061588, b: 0.03061588, a: 1}
-    - _ShadowColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+    - _RimColor: {r: 0.066037714, g: 0.054512266, b: 0.054512266, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7702900901162833801

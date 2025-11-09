@@ -35,7 +35,7 @@ Material:
   - FOG
   - MATCAP_PERSPECTIVE
   - NORMAL_MAP
-  - OUTLINE
+  - OUTLINE_PASS_DISABLED
   - REFLECTION
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
@@ -65,6 +65,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
+  - SRPDEFAULTUNLIT
   m_LockedProperties: _AnimeColor2 _AnimeColor3
   m_SavedProperties:
     serializedVersion: 3
@@ -188,7 +189,7 @@ Material:
     - _AlphaToMask: 0
     - _AmbientBrightness: 0.75
     - _Anime: 1
-    - _AnimeSoftness: 0.25
+    - _AnimeSoftness: 0.145
     - _AnimeThreshold1: 0.45
     - _AnimeThreshold2: 0.5
     - _Blend: 0
@@ -266,7 +267,7 @@ Material:
     - _NormalUV: 0
     - _NormalUV2: 0
     - _OcclusionStrength: 1
-    - _Outline: 1
+    - _Outline: 0
     - _OutlineComp: 8
     - _OutlineGroup: 0
     - _OutlinePass: 0
@@ -289,9 +290,9 @@ Material:
     - _ReflectionRim: 0
     - _ReflectionSpecular: 0
     - _Rim: 0
-    - _RimAmount: 0.005
+    - _RimAmount: 0
     - _RimBlend: 1
-    - _RimContrast: 5
+    - _RimContrast: 50
     - _RimInverse: 0
     - _Saturation: 1.1
     - _ShadowOverlayAnimation: 0
