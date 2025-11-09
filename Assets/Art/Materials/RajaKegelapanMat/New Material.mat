@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: monster_eye
+  m_Name: New Material
   m_Shader: {fileID: 4800000, guid: a2a06e22c08354d9699356710b69ca9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,11 +16,9 @@ Material:
   - ANIME
   - ANIME_SOFT
   - DIFFUSE
-  - EMISSIVE_MAP
   - FOG
   - MATCAP_PERSPECTIVE
-  - NORMAL_MAP
-  - OUTLINE_PASS_DISABLED
+  - OUTLINE
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
   - _DETAILUV_UV1
@@ -39,17 +37,15 @@ Material:
   - _RIMBLEND_ADDITIVE
   - _SHADOWOVERLAYANIMATION_SCROLL
   - _SPECULARUV_UV1
-  m_InvalidKeywords:
-  - _EMISSION
-  - _NORMALMAP
-  m_LightmapFlags: 2
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  - SRPDEFAULTUNLIT
+  - ALWAYS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -83,7 +79,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveTex:
-        m_Texture: {fileID: 2800000, guid: 386a2124364b9134db59eea12b42878f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightColorsTex:
@@ -107,7 +103,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 85eff1c1392e8894e94c3710aacf9074, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapTex:
@@ -119,7 +115,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 3566dcf5c7f809645895e18467e1b22e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex2:
@@ -173,9 +169,9 @@ Material:
     - _AlphaToMask: 0
     - _AmbientBrightness: 1
     - _Anime: 1
-    - _AnimeSoftness: 0.25
+    - _AnimeSoftness: 0.04
     - _AnimeThreshold1: 0.45
-    - _AnimeThreshold2: 0.75
+    - _AnimeThreshold2: 0.4
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -210,9 +206,9 @@ Material:
     - _EnvironmentReflections: 1
     - _Flat: 0
     - _Fog: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _HeightColors: 0
     - _HeightColorsAlpha: 1
     - _HeightColorsBlend: 0
@@ -245,20 +241,19 @@ Material:
     - _MatCapStatic: 0
     - _Metallic: 0
     - _MixedLighting: 0
-    - _Mode: 0
     - _Normal2Strength: 1
     - _NormalStrength: 1
     - _NormalUV: 0
     - _NormalUV2: 0
     - _OcclusionStrength: 1
-    - _Outline: 0
+    - _Outline: 1
     - _OutlineComp: 8
     - _OutlineGroup: 0
     - _OutlinePass: 0
     - _OutlineWidth: 0.002
     - _OutlineWidthIndependent: 0
     - _OutlineZPos: 0
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _Plant: 0
     - _PlantBaseHeight: 0
     - _PlantLocal: 0
@@ -285,7 +280,7 @@ Material:
     - _ShadowOverlaySpeedV: 0.03
     - _ShadowOverlaySwayAmount: 0.01
     - _ShadowsEnabled: 1
-    - _Smoothness: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SourceBlend: 1
     - _Specular: 0
@@ -299,7 +294,6 @@ Material:
     - _Surface: 0
     - _TransparencyMaskAmount: 1
     - _TransparencyMaskContrast: 1
-    - _UVSec: 0
     - _UVTile: 0
     - _UVTileDiscardUV: 1
     - _UVTileV0U0: 0
@@ -326,14 +320,14 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AnimeColor1: {r: 0.0047084615, g: 0, b: 0.509434, a: 1}
-    - _AnimeColor2: {r: 1.6493258, g: 0, b: 0, a: 1}
+    - _AnimeColor1: {r: 0.31990921, g: 0.32572204, b: 0.745283, a: 1}
+    - _AnimeColor2: {r: 1.4792923, g: 0.7047572, b: 0.7451335, a: 1}
     - _AnimeColor3: {r: 2, g: 2, b: 2, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.509434, g: 0.3977387, b: 0.31959775, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 5.9921575, g: 5.9921575, b: 5.9921575, a: 1}
-    - _Emissive: {r: 3.2520468, g: 3.5703487, b: 6.5660377, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Emissive: {r: 0, g: 0, b: 0, a: 0}
     - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
@@ -350,7 +344,7 @@ Material:
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &2898418974935558817
+--- !u!114 &7043548605751974276
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
