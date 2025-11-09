@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 3566239037623672089}
   - component: {fileID: 4053619406562249732}
   - component: {fileID: 8092706978960922111}
-  - component: {fileID: 5906764204999085655}
   m_Layer: 3
   m_Name: Player3D
   m_TagString: Player
@@ -309,7 +308,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7679298912095861667}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4178813d86bc90943b6c74f2e7e16fdc, type: 3}
+  m_Avatar: {fileID: 9000000, guid: d5b0249c7996482499723dac6c015ba4, type: 3}
   m_Controller: {fileID: 9100000, guid: 7505d6a7f2910614fabc394e3b69e9ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -524,27 +523,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5906764204999085655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679298912095861667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94dd5c51f8d84c42925988e505876b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractHandler
-  detectionStartPoint: {fileID: 96313985075213301}
-  raycastDetectionDistance: 1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  enableInteraction: 1
-  OnCurrentInteractableChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7813797393314642714
 GameObject:
   m_ObjectHideFlags: 0
