@@ -28,7 +28,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     [SerializeField, ReadOnly] private bool isEnemyInRangeAttack = false;
     [Header("Attack Rock Appear")]
-    [SerializeField] private RockFromGround rockFromGroundObject;
+    [SerializeField] private RockFromGround rockFromGroundPrefab;
+    [SerializeField,ReadOnly] private RockFromGround rockFromGroundObject;
     [SerializeField] private float damageRockFromGround;
 
     [Header("Facing / Rotation")]
@@ -54,6 +55,11 @@ public class Enemy : MonoBehaviour
 
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
         enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
+    }
+    private void Start()
+    {
+        rockFromGroundObject = Instantiate(rockFromGroundPrefab);
+        rockFromGroundObject.gameObject.SetActive(false);
     }
 
     private void OnEnable()
