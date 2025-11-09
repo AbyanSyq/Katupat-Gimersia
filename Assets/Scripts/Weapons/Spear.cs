@@ -6,6 +6,7 @@ public class Spear : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject tailObject;
+    [SerializeField] GameObject spearDummyModel;
 
     private Rigidbody rb;
     [SerializeField] float timeToLive = 5f;
@@ -62,6 +63,11 @@ public class Spear : MonoBehaviour
             damageable.TakeDamage(10f);
             Despawn();
         }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            CreateDummyObject();
+            Despawn();
+        }
     }
 
     void Despawn()
@@ -81,6 +87,13 @@ public class Spear : MonoBehaviour
         }
 
         PoolManager.Instance.TakeToPool(0, this);
+    }
+
+    void CreateDummyObject()
+    {
+        var dummy = PoolManager.Instance.GetFromPool<SpearDummy>(2);
+        dummy.transform.position = transform.position;
+        dummy.transform.rotation = transform.rotation;
     }
 
     void OnEnable()
