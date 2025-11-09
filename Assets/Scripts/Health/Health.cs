@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
         onHealthChanged.Invoke(currentHealth, maxHealth);
     }
 
-    public void ReduceHealth(float amount)
+    public virtual void ReduceHealth(float amount)
     {
         if (isDead) return;
 

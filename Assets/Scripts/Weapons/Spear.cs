@@ -1,6 +1,7 @@
 using UnityEngine;
 using Redcode.Pools;
 
+
 public class Spear : MonoBehaviour
 {
     private Rigidbody rb;

@@ -5,8 +5,8 @@ using Unity.Behavior;
 
 public static partial class Events
 {
-    public static Action<float, float> OnEnemyHealthChanged;
-    public static Action<float> OnEnemyTakeDamaged;
+    public static readonly GameEvent<float, float> OnEnemyHealthChanged;
+    public static readonly GameEvent<float> OnEnemyTakeDamaged;
 }
 
 [RequireComponent(typeof(Health))]
@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     [SerializeField] private Health healthComponent;
     [SerializeField] private BehaviorGraphAgent enemyBehaviorGraphAgent;
+
+    [Header("Enemy Stats")]
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float movementSpeed = 3f;
 
     [Header("Enemy Attack")]
     [SerializeField] private LayerMask playerLayer;
@@ -90,8 +94,8 @@ public class Enemy : MonoBehaviour
 
     private void OnHealthChanged(float currentHealth, float maxHealth)
     {
-        Events.OnEnemyHealthChanged?.Invoke(currentHealth, maxHealth);
-        Events.OnEnemyTakeDamaged?.Invoke(currentHealth);
+        Events.OnEnemyHealthChanged?.Publish(currentHealth, maxHealth);
+        Events.OnEnemyTakeDamaged?.Publish(currentHealth);
 
         if (enemyMaterial == null) return;
 
