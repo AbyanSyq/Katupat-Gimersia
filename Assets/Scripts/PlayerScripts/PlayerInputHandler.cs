@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 public class PlayerInputHandler : MonoBehaviour
@@ -69,10 +70,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         JumpInput(ctx.ReadValueAsButton());
     }
-
-   
-    
-    
     private void OnThrowStarted(InputAction.CallbackContext context)
     {
        playerController.StartCharging();
@@ -81,6 +78,11 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnThrowReleased(InputAction.CallbackContext context)
     {
         playerController.ReleaseThrow();
+    }
+
+    private void OnRestartScene(InputAction.CallbackContext context)
+    {
+        RestartScene();
     }
 #endregion
 
@@ -95,10 +97,14 @@ public class PlayerInputHandler : MonoBehaviour
 			look = newLookDirection;
 	}
 
-	public void JumpInput(bool newJumpState)
-	{
-		jump = newJumpState;
-	}
+    public void JumpInput(bool newJumpState)
+    {
+        jump = newJumpState;
+    }
+    public void RestartScene()
+    {
+        SceneTransitionManager.Instance.LoadScene(SceneManager.GetActiveScene().name, TransitionEffect.Slide);
+    }
 	private void OnApplicationFocus(bool hasFocus)
 	{
 		SetCursorState(cursorLocked);
