@@ -4,7 +4,6 @@ using TMPro;
 
 public class UIControlsSettings : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown sensitivityDropdown;
     [SerializeField] private Slider mouseSensitivitySlider;
     [SerializeField] private TMP_Text mouseSensitivityValueText;
 
@@ -28,10 +27,5 @@ public class UIControlsSettings : MonoBehaviour
             mouseSensitivityValueText.text = $"{value:F2}";
     }
 
-    // Optional: implement keybinding UI here
-    public void ResetBindings()
-    {
-        Debug.Log("Resetting controls to default...");
-        // Implement rebinding logic with Unity Input System if needed
-    }
+
 }
