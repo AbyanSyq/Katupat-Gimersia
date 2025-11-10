@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem
       objectReference: {fileID: 0}
+    - target: {fileID: 8825839709223182352, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 87c469d10e7ad396c88df1be256ac1bd, type: 2}
+    - target: {fileID: 8825839709223182352, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d7551a4ebb6c94e3a988495346d802c2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -228,10 +236,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6437765092499711280, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd8b5439748b2d49ea779970a4ca08a7, type: 2}
     - target: {fileID: 7679298912095861667, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
       propertyPath: m_Name
       value: Player3D
       objectReference: {fileID: 0}
+    - target: {fileID: 7692366969930168931, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 895c06db93f9079baaedfb5f5fb81b1a, type: 2}
     - target: {fileID: 7813797393314642714, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
       propertyPath: m_IsActive
       value: 0
