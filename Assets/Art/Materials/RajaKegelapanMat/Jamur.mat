@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: Jamur
   m_Shader: {fileID: 4800000, guid: a2a06e22c08354d9699356710b69ca9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,9 +16,10 @@ Material:
   - ANIME_SOFT
   - DIFFUSE
   - FOG
+  - HEIGHT_COLORS
   - MATCAP_PERSPECTIVE
-  - NORMAL_MAP
   - OUTLINE_PASS_DISABLED
+  - REFLECTION
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
   - _DETAILUV_UV1
@@ -37,17 +38,18 @@ Material:
   - _RIMBLEND_ADDITIVE
   - _SHADOWOVERLAYANIMATION_SCROLL
   - _SPECULARUV_UV1
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
-  - ALWAYS
   - SRPDEFAULTUNLIT
-  m_LockedProperties: 
+  m_LockedProperties: _ReflectionRim
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -116,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 382681fd93705e3478ced04c23ebd58d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex2:
@@ -168,11 +170,11 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _AmbientBrightness: 3.3
+    - _AmbientBrightness: 1
     - _Anime: 0
-    - _AnimeSoftness: 0.04
+    - _AnimeSoftness: 0.01
     - _AnimeThreshold1: 0.45
-    - _AnimeThreshold2: 0.4
+    - _AnimeThreshold2: 0.85
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -198,7 +200,7 @@ Material:
     - _DetailUV: 0
     - _DetailVertexColors: 0
     - _Diffuse: 1
-    - _DiffuseBrightness: 1.15
+    - _DiffuseBrightness: 6.8
     - _DiffuseContrast: 1
     - _DiffusePerPixel: 0
     - _DiffuseWrap: 0
@@ -207,14 +209,14 @@ Material:
     - _EnvironmentReflections: 1
     - _Flat: 0
     - _Fog: 1
-    - _GlossMapScale: 0
+    - _GlossMapScale: 1
     - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _HeightColors: 0
+    - _GlossyReflections: 1
+    - _HeightColors: 1
     - _HeightColorsAlpha: 1
     - _HeightColorsBlend: 0
     - _HeightColorsEdgeThickness: 1
-    - _HeightColorsHeight: 0
+    - _HeightColorsHeight: 0.5
     - _HeightColorsSpace: 0
     - _HeightColorsThickness: 0
     - _IgnoreMainTexAlpha: 0
@@ -242,8 +244,9 @@ Material:
     - _MatCapStatic: 0
     - _Metallic: 0
     - _MixedLighting: 0
+    - _Mode: 0
     - _Normal2Strength: 1
-    - _NormalStrength: 0.62
+    - _NormalStrength: 1
     - _NormalUV: 0
     - _NormalUV2: 0
     - _OcclusionStrength: 1
@@ -251,10 +254,10 @@ Material:
     - _OutlineComp: 8
     - _OutlineGroup: 0
     - _OutlinePass: 0
-    - _OutlineWidth: 0.002
+    - _OutlineWidth: 0.001
     - _OutlineWidthIndependent: 0
     - _OutlineZPos: 0
-    - _Parallax: 0.005
+    - _Parallax: 0.02
     - _Plant: 0
     - _PlantBaseHeight: 0
     - _PlantLocal: 0
@@ -265,14 +268,14 @@ Material:
     - _Preset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflection: 0
-    - _ReflectionAmount: 1
+    - _Reflection: 1
+    - _ReflectionAmount: 0.5
     - _ReflectionRim: 0
     - _ReflectionSpecular: 0
     - _Rim: 0
     - _RimAmount: 1
     - _RimBlend: 1
-    - _RimContrast: 5
+    - _RimContrast: 50
     - _RimInverse: 0
     - _Saturation: 1
     - _ShadowOverlayAnimation: 0
@@ -281,7 +284,7 @@ Material:
     - _ShadowOverlaySpeedV: 0.03
     - _ShadowOverlaySwayAmount: 0.01
     - _ShadowsEnabled: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SourceBlend: 1
     - _Specular: 0
@@ -295,6 +298,7 @@ Material:
     - _Surface: 0
     - _TransparencyMaskAmount: 1
     - _TransparencyMaskContrast: 1
+    - _UVSec: 0
     - _UVTile: 0
     - _UVTileDiscardUV: 1
     - _UVTileV0U0: 0
@@ -321,31 +325,31 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AnimeColor1: {r: 0.31990921, g: 0.32572204, b: 0.745283, a: 1}
-    - _AnimeColor2: {r: 1.4792923, g: 0.7047572, b: 0.7451335, a: 1}
-    - _AnimeColor3: {r: 2, g: 2, b: 2, a: 1}
+    - _AnimeColor1: {r: 0.5547793, g: 0.68941414, b: 0.8584906, a: 1}
+    - _AnimeColor2: {r: 0.9811321, g: 0.67739034, b: 0.38412246, a: 1}
+    - _AnimeColor3: {r: 2.8114734, g: 2.9525418, b: 3.6123173, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.3679245, g: 0.25747234, b: 0.17875579, a: 1}
+    - _Color: {r: 0.5754717, g: 0.32691967, b: 0.20901565, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Emissive: {r: 0, g: 0, b: 0, a: 0}
-    - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 5.9921575, g: 5.9921575, b: 5.9921575, a: 1}
+    - _Emissive: {r: 0.030696979, g: 0, b: 0.3301887, a: 1}
+    - _HeightColorsColor: {r: 0.2924528, g: 0.20911533, b: 0.18623175, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer3Color: {r: 1, g: 1, b: 1, a: 1}
     - _LightmapColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapRot: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.1509434, g: 0.03061588, b: 0.03061588, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0.066037714, g: 0.054512266, b: 0.054512266, a: 1}
     - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.47573397, g: 0.4233268, b: 0.5943396, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &7043548605751974276
+--- !u!114 &7702900901162833801
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

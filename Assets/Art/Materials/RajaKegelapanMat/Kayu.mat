@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8982395759394778687
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,23 +7,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: monster_stone
+  m_Name: Kayu
   m_Shader: {fileID: 4800000, guid: a2a06e22c08354d9699356710b69ca9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - AMBIENT
-  - ANIME
   - ANIME_SOFT
-  - BASE_CONTRAST
-  - BASE_SATURATION
   - DIFFUSE
   - EMISSIVE_MAP
   - FOG
   - MATCAP_PERSPECTIVE
   - NORMAL_MAP
   - OUTLINE_PASS_DISABLED
-  - REFLECTION
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
   - _DETAILUV_UV1
@@ -57,16 +40,16 @@ Material:
   - _SPECULARUV_UV1
   m_InvalidKeywords:
   - _EMISSION
-  - _NORMALMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   - SRPDEFAULTUNLIT
-  m_LockedProperties: _AnimeColor1 _AnimeColor2 _AnimeColor3
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -135,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 3566dcf5c7f809645895e18467e1b22e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 49b55f497c337ef43bf0c37cb96fd7a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex2:
@@ -187,11 +170,11 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _AmbientBrightness: 0.75
-    - _Anime: 1
-    - _AnimeSoftness: 0.145
+    - _AmbientBrightness: 1
+    - _Anime: 0
+    - _AnimeSoftness: 0.01
     - _AnimeThreshold1: 0.45
-    - _AnimeThreshold2: 0.5
+    - _AnimeThreshold2: 0.85
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -202,7 +185,7 @@ Material:
     - _CameraFadeStart: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 1.2
+    - _Contrast: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _Cutout: 0
@@ -217,7 +200,7 @@ Material:
     - _DetailUV: 0
     - _DetailVertexColors: 0
     - _Diffuse: 1
-    - _DiffuseBrightness: 1.2
+    - _DiffuseBrightness: 1
     - _DiffuseContrast: 1
     - _DiffusePerPixel: 0
     - _DiffuseWrap: 0
@@ -271,7 +254,7 @@ Material:
     - _OutlineComp: 8
     - _OutlineGroup: 0
     - _OutlinePass: 0
-    - _OutlineWidth: 0.02
+    - _OutlineWidth: 0.001
     - _OutlineWidthIndependent: 0
     - _OutlineZPos: 0
     - _Parallax: 0.02
@@ -285,16 +268,16 @@ Material:
     - _Preset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflection: 1
-    - _ReflectionAmount: 0.05
+    - _Reflection: 0
+    - _ReflectionAmount: 1
     - _ReflectionRim: 0
     - _ReflectionSpecular: 0
     - _Rim: 0
-    - _RimAmount: 0
+    - _RimAmount: 1
     - _RimBlend: 1
     - _RimContrast: 50
     - _RimInverse: 0
-    - _Saturation: 1.1
+    - _Saturation: 1
     - _ShadowOverlayAnimation: 0
     - _ShadowOverlayBrightness: 1
     - _ShadowOverlaySpeedU: 0.1
@@ -346,10 +329,10 @@ Material:
     - _AnimeColor2: {r: 0.9811321, g: 0.67739034, b: 0.38412246, a: 1}
     - _AnimeColor3: {r: 2.8114734, g: 2.9525418, b: 3.6123173, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _Color: {r: 0.2735849, g: 0.20848323, b: 0.1716358, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 5.9921575, g: 5.9921575, b: 5.9921575, a: 1}
-    - _Emissive: {r: 0.518334, g: 0.8611393, b: 1.2075472, a: 1}
+    - _Emissive: {r: 0.25792095, g: 0.4778059, b: 0.8679245, a: 1}
     - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
@@ -357,12 +340,25 @@ Material:
     - _LightmapColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapRot: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0.16981131, g: 0.050462794, b: 0.050462794, a: 1}
+    - _OutlineColor: {r: 0.1509434, g: 0.03061588, b: 0.03061588, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0.066037714, g: 0.054512266, b: 0.054512266, a: 1}
     - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.2922446, g: 0.29013884, b: 0.3773585, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!114 &7702900901162833801
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
