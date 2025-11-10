@@ -63,7 +63,7 @@ public class Spear : MonoBehaviour
             damageable.TakeDamage(10f);
             Despawn();
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("SpearObstructor"))
         {
             CreateDummyObject();
             Despawn();
