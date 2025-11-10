@@ -3,9 +3,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Ami.BroAudio;
 
+
+public enum TransitionEffect
+{
+    Fade,
+    Slide,
+    CircleFade,
+}
 public class SceneTransitionManager : SingletonMonoBehaviour<SceneTransitionManager>
 {
+
     [SerializeField] private Slider progressBar;
     [SerializeField] private GameObject transitionsContainer;
 
@@ -17,17 +26,21 @@ public class SceneTransitionManager : SingletonMonoBehaviour<SceneTransitionMana
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadScene(string sceneName, string transitionName)
+    public void LoadScene(string sceneName, TransitionEffect transitionType)
     {
-        StartCoroutine(LoadSceneAsync(sceneName, transitionName));
+        AnimationController transition = transitions[((int)transitionType)];
+        StartCoroutine(LoadSceneAsync(sceneName, transition));
+    }
+    public void LoadScene(int sceneIndex, AnimationController transition)
+    {
+        StartCoroutine(LoadSceneAsync(SceneManager.GetSceneByBuildIndex(sceneIndex).name, transition));
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName, string transitionName)
+    private IEnumerator LoadSceneAsync(string sceneName, AnimationController transition)
     {
-        AnimationController transition = transitions.First(t => t.name == transitionName);
         AsyncOperation scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
-        
+
         transition.Show();
         yield return new WaitForSeconds(transition.Duration);
 
@@ -50,7 +63,7 @@ public class SceneTransitionManager : SingletonMonoBehaviour<SceneTransitionMana
     }
 
     [SerializeField] private SceneField targetScene;
-    [SerializeField] private string transitionEffect;
+    [SerializeField] private TransitionEffect transitionEffect;
     [ContextMenu("Load Target Scene")]
     public void LoadTargetScene()
     {
