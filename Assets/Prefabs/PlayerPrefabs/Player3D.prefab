@@ -335,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController3D
   isFirstPerson: 0
   currentState: 0
-  moveSpeed: 2
+  moveSpeed: 8
   rotationSmoothTime: 0.12
   speedChangeRate: 10
   speed: 0

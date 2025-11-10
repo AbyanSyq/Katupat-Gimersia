@@ -25,7 +25,10 @@ public enum UIType
 {
     MAINMENU,
     GAMEPLAY,
-    PAUSEMENU
+    PAUSEMENU,
+    SETTINGS,
+    ABOUT,
+    EXIT
 }
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {
@@ -88,6 +91,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         InitUI();
 
         inputActions = new PlayerInputAction();
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
@@ -186,7 +190,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
         else if(currentUI == UIType.PAUSEMENU)
         {
-            ChangeUI(UIType.GAMEPLAY);
+            ChangeUI(UIType.MAINMENU);
         }
         else
         {

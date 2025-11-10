@@ -21,7 +21,7 @@ public class UIMainMenu : UIBase
         });
         optionsButton.onClick.AddListener(() =>
         {
-            // Open options menu
+            UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
         });
         exitButton.onClick.AddListener(() =>
         {
