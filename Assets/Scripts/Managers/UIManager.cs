@@ -90,7 +90,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         base.Awake();
         InitUI();
         
-        inputActions = new PlayerInputAction();
+        inputActions = GameplayManager.Instance.playerInputAction;
         DontDestroyOnLoad(gameObject);
     }
     void Start()
@@ -163,7 +163,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         var config = uiConfigs[toUI];
         GameplayManager.Instance.PauseGame(config.pauseGame);
-        GameplayManager.Instance.SetInput(!config.enableInput);
+        GameplayManager.Instance.SetInput(config.enableInput);
         
         Cursor.lockState = CursorLockMode.None;
 
