@@ -20,13 +20,13 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private PlayerController3D playerController;
     private void Awake()
     {
-        _inputActions = new PlayerInputAction(); // create input action instance
+        _inputActions = GameplayManager.Instance.playerInputAction; 
     }
 
     private void OnEnable()
     {
-        _inputActions.Player.Enable();
 
+        _inputActions.Enable();
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMove;
 
@@ -51,8 +51,8 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.started -= OnJump;
         _inputActions.Player.Jump.canceled -= OnJump;
 
+        _inputActions.Disable();
 
-        _inputActions.Player.Disable();
     }
 
 #region Input Action Callbacks

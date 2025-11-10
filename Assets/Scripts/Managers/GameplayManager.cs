@@ -15,7 +15,7 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 
     [Header("Game State")]
     [SerializeField] private bool isGamePaused = false;
-    private PlayerInputAction playerInputAction;
+    public PlayerInputAction playerInputAction { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -27,7 +27,7 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
         Events.OnPlayerAttackHitted.Add(OnPlayerAttackHitted);
         Events.OnPlayerAttackMissed.Add(OnPlayerAttackMissed);
     }
-    
+
     void OnDisable()
     {
         Events.OnPlayerAttackHitted.Remove(OnPlayerAttackHitted);
@@ -43,12 +43,16 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
         playerAttackMissedCount++;
         playerAttackHittedCombo = 0;
     }
-    public void SetInput( bool enable )
+    public void SetInput(bool enable)
     {
         if (enable)
+        {
             playerInputAction.Enable();
+        }
         else
+        {
             playerInputAction.Disable();
+        }
     }
     public void PauseGame(bool pause)
     {
@@ -58,8 +62,14 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     {
         Time.timeScale = pause ? 0f : 1f;
     }
-
-
-
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    
+    public void MainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }   
 
 }

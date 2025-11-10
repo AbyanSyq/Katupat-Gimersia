@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public enum UISettingsType
 {
+    MAIN,
     GRAPHICS,
     CONTROLS,
     VOLUME,
@@ -12,21 +13,27 @@ public enum UISettingsType
 }
 public class UISettings : UIBase
 {
-    [SerializeField] private UISettingsType settingsType;
+    [SerializeField, ReadOnly] private UISettingsType settingsType;
+
+    [Header("Buttons")]
     [SerializeField] private Button graphicsButton;
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button volumeButton;
     [SerializeField] private Button aboutButton;
+    [SerializeField] private Button backButton;
+    [Header("Panels")]
     [SerializeField] private AnimationController mainPanel;
     [SerializeField] private AnimationController graphicsPanel;
     [SerializeField] private AnimationController controlsPanel;
     [SerializeField] private AnimationController volumePanel;
+    [SerializeField] private AnimationController aboutPanel;
     // [SerializeField] private AnimationController aboutPanel;
 
     void Start()
     {
         SetUpButton();
     }
+
     public void SetUpButton()
     {
         graphicsButton.onClick.AddListener(() =>
@@ -43,12 +50,18 @@ public class UISettings : UIBase
         });
         aboutButton.onClick.AddListener(() =>
         {
-            SwitchPanel(UISettingsType.ABOUT);
+            UIManager.Instance.ChangeUI(UIType.ABOUT);
         });
+        backButton.onClick.AddListener(() =>
+        {
+            UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
+        });
+
     }
 
     public void SwitchPanel(UISettingsType type)
     {
+        settingsType = type;
         switch (type)
         {
             case UISettingsType.GRAPHICS:
