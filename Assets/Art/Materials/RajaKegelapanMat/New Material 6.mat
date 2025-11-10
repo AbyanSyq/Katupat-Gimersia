@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 5
+  m_Name: New Material 6
   m_Shader: {fileID: -6465566751694194690, guid: d2f91465ec99a41cca1de94d4dce60e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -127,15 +127,15 @@ Material:
     - _StrokeBlendingNoiseScale: 500
     - _StrokeBlendingNoiseStrength: 0.098
     - _StrokeRandomness: 1
-    - _StrokeScale: 6
+    - _StrokeScale: 3
     - _Surface: 0
     - _UseBlendingNoise: 1
     - _Variation: 0.301
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.5, g: 0.42642435, b: 0.41273585, a: 1}
-    - _Color: {r: 0.4207458, g: 0.47990566, b: 0.57547164, a: 1}
+    - _BaseColor: {r: 0.6763052, g: 0.54147387, b: 0.9811321, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
