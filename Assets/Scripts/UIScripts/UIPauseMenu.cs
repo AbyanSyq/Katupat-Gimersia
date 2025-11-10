@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIPauseMenu : UIBase
 {
-    [SerializeField] private Button buttonrResume;
+    [SerializeField] private Button buttonResume;
     [SerializeField] private Button buttonSettings;
     [SerializeField] private Button buttonMainMenu;
 
@@ -14,9 +14,20 @@ public class UIPauseMenu : UIBase
 
     public void SetUpButton()
     {
-        buttonrResume.onClick.AddListener(() =>
+        buttonResume.onClick.AddListener(() =>
         {
+            print("clicked pause");
             UIManager.Instance.ChangeUI(UIType.GAMEPLAY);
+        });
+        buttonSettings.onClick.AddListener(() =>
+        {
+            print("clicked settings");
+            UIManager.Instance.ChangeUI(UIType.SETTINGS);
+        });
+        buttonMainMenu.onClick.AddListener(() =>
+        {
+            print("clicked main menu");
+            UIManager.Instance.ChangeUI(UIType.MAINMENU);
         });
     }
     public void CloseButton()

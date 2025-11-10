@@ -89,7 +89,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         base.Awake();
         InitUI();
-
+        
         inputActions = new PlayerInputAction();
         DontDestroyOnLoad(gameObject);
     }
@@ -162,9 +162,9 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
 
         var config = uiConfigs[toUI];
-        // GameManager.Instance.PauseGame(config.pauseGame);
-        // GameManager.Instance.SetInput(!config.enableInput);
-        // GameManager.Instance.SetEscape(config.allowEscape);
+        GameplayManager.Instance.PauseGame(config.pauseGame);
+        GameplayManager.Instance.SetInput(!config.enableInput);
+        
         Cursor.lockState = CursorLockMode.None;
 
 
@@ -184,18 +184,25 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
     public void OnEscape()
     {
-        if(currentUI == UIType.GAMEPLAY)
+        if (currentUI == UIType.GAMEPLAY)
         {
             ChangeUI(UIType.PAUSEMENU);
         }
-        else if(currentUI == UIType.PAUSEMENU)
-        {
-            ChangeUI(UIType.MAINMENU);
-        }
+        // else if(currentUI == UIType.PAUSEMENU)
+        // {
+        //     ChangeUI(UIType.MAINMENU);
+        // }
         else
         {
             ChangeUI(previousUI);
         }
+    }
+    public void SetEscape(bool enable)
+    {
+        if (enable)
+            inputActions.UI.Escape.performed += ctx => OnEscape();
+        else
+            inputActions.UI.Escape.performed -= ctx => OnEscape();
     }
 }
 

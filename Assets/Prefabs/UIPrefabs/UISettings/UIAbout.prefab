@@ -382,7 +382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8963073175230724163}
   - component: {fileID: 558992381761917297}
-  - component: {fileID: 7947608938932903442}
   - component: {fileID: 385008743043540203}
   - component: {fileID: 998343618788960214}
   - component: {fileID: 7232661822001448073}
@@ -422,24 +421,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666949904216747320}
   m_CullTransparentMesh: 1
---- !u!114 &7947608938932903442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666949904216747320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e9d1ea9d26c4e6439874cf28d7ba9cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIPauseMenu
-  animationController: {fileID: 385008743043540203}
-  firstSelected: {fileID: 0}
-  isActive: 0
-  buttonrResume: {fileID: 0}
-  buttonSettings: {fileID: 0}
-  buttonMainMenu: {fileID: 0}
 --- !u!114 &385008743043540203
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public static partial class Events
@@ -12,7 +13,14 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     [SerializeField] private int playerAttackHittedCombo;//when the spear hit the enemy
     [SerializeField] private int playerAttackMissedCount;//when the spear missed the enemy
 
-
+    [Header("Game State")]
+    [SerializeField] private bool isGamePaused = false;
+    private PlayerInputAction playerInputAction;
+    protected override void Awake()
+    {
+        base.Awake();
+        playerInputAction = new PlayerInputAction();
+    }
 
     void OnEnable()
     {
@@ -35,5 +43,23 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
         playerAttackMissedCount++;
         playerAttackHittedCombo = 0;
     }
+    public void SetInput( bool enable )
+    {
+        if (enable)
+            playerInputAction.Enable();
+        else
+            playerInputAction.Disable();
+    }
+    public void PauseGame(bool pause)
+    {
+        Time.timeScale = pause ? 0f : 1f;
+    }
+    public void ResumeGame(bool pause)
+    {
+        Time.timeScale = pause ? 0f : 1f;
+    }
+
+
+
 
 }

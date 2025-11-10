@@ -168,3 +168,9 @@ MonoBehaviour:
     prefab: {fileID: 7947608938932903442, guid: 2bcb6e5b49c18354f8bd90f5b522176f, type: 3}
     pauseGame: 1
     enableInput: 0
+  - name: SETTINGS
+    type: 3
+    layer: 1
+    prefab: {fileID: 3394867734906818138, guid: c6ada715ae973d54b80f6092054610d7, type: 3}
+    pauseGame: 1
+    enableInput: 0
