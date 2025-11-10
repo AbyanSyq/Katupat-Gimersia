@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 public static partial class Events
 {
-    
+    public static readonly GameEvent<int> OnPlayerAttackHittedCount = new GameEvent<int>();
+    public static readonly GameEvent<int> OnPlayerAttackHittedCombo = new GameEvent<int>();
 }
 public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 {

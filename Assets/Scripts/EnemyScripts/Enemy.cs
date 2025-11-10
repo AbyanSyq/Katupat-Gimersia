@@ -5,8 +5,8 @@ using Unity.Behavior;
 
 public static partial class Events
 {
-    public static readonly GameEvent<float, float> OnEnemyHealthChanged;
-    public static readonly GameEvent<float> OnEnemyTakeDamaged;
+    public static readonly GameEvent<float, float> OnEnemyHealthChanged = new GameEvent<float, float>();
+    public static readonly GameEvent<float> OnEnemyTakeDamaged = new GameEvent<float>();
 }
 
 [RequireComponent(typeof(Health))]
