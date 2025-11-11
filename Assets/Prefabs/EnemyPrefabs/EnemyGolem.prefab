@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cdcc06fda7cb44888c58954d73c6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthComponent: {fileID: 2703981664607948302}
+  healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 1
   rendererComponent: {fileID: 6154197088903633712}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 930471099645866374}
   - component: {fileID: 8077810893013477270}
   - component: {fileID: 5324928209874898373}
-  - component: {fileID: 2703981664607948302}
+  - component: {fileID: 3848893665312160355}
   m_Layer: 7
   m_Name: EnemyGolem
   m_TagString: Untagged
@@ -266,8 +266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414f6ee3377912e439ab99927a38d1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthComponent: {fileID: 2703981664607948302}
+  healthComponent: {fileID: 0}
   enemyBehaviorGraphAgent: {fileID: 930471099645866374}
+  IsEnemyAttacking:
+    GUID:
+      m_Value0: 0
+      m_Value1: 0
+    Name: 
+    m_Value: 0
   maxHealth: 100
   movementSpeed: 3
   playerLayer:
@@ -284,7 +290,7 @@ MonoBehaviour:
   rotationLerpSpeed: 10
   enemyMeshRenderer: {fileID: 0}
   enemyMaterial: {fileID: 0}
---- !u!114 &2703981664607948302
+--- !u!114 &3848893665312160355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +299,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5420691852208598869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f4ac1b9db90064d892dec4da86cced, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a9621298e4c4c946b26b085bd0c7de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
@@ -304,6 +310,21 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  enemyBehaviorGraphAgent: {fileID: 930471099645866374}
+  OnEnemyHurtEventChannel:
+    GUID:
+      m_Value0: 0
+      m_Value1: 0
+    Name: 
+    m_Value: {fileID: 0}
+  IsGetHurt:
+    GUID:
+      m_Value0: 0
+      m_Value1: 0
+    Name: 
+    m_Value: 0
+  hitCount: 0
+  hitCombo: 0
 --- !u!1 &7094592699187577315
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cdcc06fda7cb44888c58954d73c6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthComponent: {fileID: 2703981664607948302}
+  healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
