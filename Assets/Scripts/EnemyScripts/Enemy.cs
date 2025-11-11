@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using Unity.Behavior;
+using Redcode.Pools;
+using Unity.VisualScripting;
 
 public static partial class Events
 {
@@ -32,8 +34,12 @@ public class Enemy : MonoBehaviour
     public float AttackDamage => attackDamage;
     [Header("Attack Rock Appear")]
     [SerializeField] private RockFromGround rockFromGroundPrefab;
-    [SerializeField,ReadOnly] private RockFromGround rockFromGroundObject;
-    [SerializeField] private float damageRockFromGround;
+    private Pool<RockFromGround> rockPool;
+    [SerializeField] private int rockTotalSpawn = 10;
+    [SerializeField] private float rockAppearRange = 5f;
+    [SerializeField] private float rockAppearInterval = 1f;
+
+    
 
     [Header("Facing / Rotation")]
     [SerializeField, ReadOnly] private Transform playerTarget;
@@ -61,8 +67,7 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        rockFromGroundObject = Instantiate(rockFromGroundPrefab);
-        rockFromGroundObject.gameObject.SetActive(false);
+        rockPool = Pool.Create(rockFromGroundPrefab, rockTotalSpawn).NonLazy();
     }
 
     private void OnEnable()
@@ -177,7 +182,34 @@ public class Enemy : MonoBehaviour
 
     #endregion
     #region Attack Rock From Ground
-    
+    private void SpawnRocks()
+    {
+        for (int i = 0; i < rockTotalSpawn; i++)
+        {
+            // Ambil dari PoolManager berdasarkan index pool RockFromGround
+            var rock = PoolManager.Instance.GetFromPool<RockFromGround>(3);
+            if (rock == null) continue;
+
+            Vector3 randomPos = transform.position + new Vector3(
+                UnityEngine.Random.Range(-rockAppearRange, rockAppearRange),
+                0,
+                UnityEngine.Random.Range(-rockAppearRange, rockAppearRange)
+            );
+
+            // Batu pertama muncul di bawah player
+            if (i == 0 && playerTarget != null)
+                randomPos = playerTarget.position;
+
+            rock.InitRock(randomPos, attackDamage);
+        }
+    }
+
+
+    private System.Collections.IEnumerator ReturnRockToPoolAfterDelay(RockFromGround rock, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        rockPool.Take(rock);
+    }
 
     #endregion
 
@@ -191,7 +223,7 @@ public class Enemy : MonoBehaviour
 
                 break;
             case EnemyAnimationEventTriggerType.OnAttackRockAppear:
-                rockFromGroundObject.initRock(playerTarget.position, attackDamage);
+                    SpawnRocks();
                 break;
         }
     }

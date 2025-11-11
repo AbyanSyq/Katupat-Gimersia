@@ -1,48 +1,79 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Redcode.Pools;
 
-public class RockFromGround : MonoBehaviour
+public class RockFromGround : MonoBehaviour, IPoolObject
 {
+    [Header("Damage Settings")]
     [SerializeField] private Transform damageStartPoint;
     [SerializeField] private float damageRange = 2f;
     [SerializeField] private LayerMask damageLayer;
     [SerializeField] private float damage = 10f;
     [SerializeField] private float yOffset = 0.6f;
-    [Space]
+
+    [Header("Visuals")]
     [SerializeField] private ParticleSystem RockVisual;
-    [ContextMenu("Test Attack")]
-    public void TestAttack()
+
+    [Header("Pool Settings")]
+    [SerializeField] private int poolIndex = 3; // index pool di PoolManager
+
+    private Coroutine attackRoutine;
+
+    // dipanggil 1x ketika prefab pertama kali dibuat oleh pool
+    public void OnCreatedInPool()
     {
-        initRock(new Vector3(0, 0, 10), damage);
+        if (RockVisual != null)
+            RockVisual.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
-    public void initRock(Vector3 targetPosition, float damage)
+
+    // dipanggil setiap kali object diambil dari pool
+    public void OnGettingFromPool()
     {
+        if (RockVisual != null)
+            RockVisual.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Panggil untuk mengaktifkan serangan batu di posisi target.
+    /// </summary>
+    public void InitRock(Vector3 targetPosition, float damage)
+    {
         transform.position = new Vector3(targetPosition.x, yOffset, targetPosition.z);
         this.damage = damage;
 
-        StartCoroutine(StartAttackSequence());
+        if (attackRoutine != null)
+            StopCoroutine(attackRoutine);
+
+        attackRoutine = StartCoroutine(StartAttackSequence());
     }
-    public IEnumerator StartAttackSequence()
+
+    private IEnumerator StartAttackSequence()
     {
         StartPreAttack();
         yield return new WaitForSeconds(1.5f);
+
         StartAttack();
         yield return new WaitForSeconds(3f);
-        // RockVisual.Hide();
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
+
+
+        // Setelah selesai animasi, kembalikan ke pool
+        PoolManager.Instance.TakeToPool(poolIndex, this);
     }
-    public void StartPreAttack()
+
+    private void StartPreAttack()
     {
-        RockVisual.Play();
+        if (RockVisual != null)
+            RockVisual.Play();
     }
-    public void StartAttack()
+
+    private void StartAttack()
     {
         GiveDamage();
     }
-    public void GiveDamage()
+
+    private void GiveDamage()
     {
         var hitColliders = Physics.OverlapSphere(
             damageStartPoint.position,
@@ -52,17 +83,17 @@ public class RockFromGround : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            var target = hitCollider.GetComponent<IDamageable>();
-            if (target != null)
-            {
+            if (hitCollider.TryGetComponent<IDamageable>(out var target))
                 target.TakeDamage(damage);
-            }
         }
     }
 
-    public void OnDrawGizmos()
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
     {
+        if (damageStartPoint == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(damageStartPoint.position, damageRange);
     }
+#endif
 }

@@ -845,8 +845,9 @@ MonoBehaviour:
   attackRange: 10
   isEnemyInRangeAttack: 0
   rockFromGroundPrefab: {fileID: 4003173908549898897, guid: 2a3ca5c0673405f47be256af67c94515, type: 3}
-  rockFromGroundObject: {fileID: 0}
-  damageRockFromGround: 0
+  rockTotalSpawn: 15
+  rockAppearRange: 15
+  rockAppearInterval: 0.1
   playerTarget: {fileID: 0}
   rotationLerpSpeed: 10
   enemyMeshRenderer: {fileID: 0}
