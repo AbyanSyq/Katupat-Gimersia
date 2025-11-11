@@ -6,6 +6,7 @@ public class GiveDamageHandler : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {

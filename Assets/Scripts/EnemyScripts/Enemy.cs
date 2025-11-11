@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform detectionStartPoint;
     [SerializeField] private float attackRange = 2f;
     [SerializeField, ReadOnly] private bool isEnemyInRangeAttack = false;
+
+    public float AttackDamage => attackDamage;
     [Header("Attack Rock Appear")]
     [SerializeField] private RockFromGround rockFromGroundPrefab;
     [SerializeField,ReadOnly] private RockFromGround rockFromGroundObject;
@@ -189,7 +191,7 @@ public class Enemy : MonoBehaviour
 
                 break;
             case EnemyAnimationEventTriggerType.OnAttackRockAppear:
-                rockFromGroundObject.initRock(playerTarget.position, 10);
+                rockFromGroundObject.initRock(playerTarget.position, attackDamage);
                 break;
         }
     }

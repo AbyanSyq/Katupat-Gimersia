@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3993781957843581479}
   - component: {fileID: 1835134856233768214}
   - component: {fileID: 5055517274077116811}
+  - component: {fileID: 8794934027351547185}
   m_Layer: 7
   m_Name: golem_hitbox (3)
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8794934027351547185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711730381652469099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3254541171622641368
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +127,7 @@ GameObject:
   - component: {fileID: 14402342591415956}
   - component: {fileID: 6343444893171198154}
   - component: {fileID: 6778705900492105840}
+  - component: {fileID: 5790716650921333452}
   m_Layer: 7
   m_Name: golem_hitbox
   m_TagString: Untagged
@@ -195,6 +209,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5790716650921333452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254541171622641368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3904762577575916235
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +232,7 @@ GameObject:
   - component: {fileID: 7392992985067105460}
   - component: {fileID: 5401166974809585339}
   - component: {fileID: 3434035864039635506}
+  - component: {fileID: 4720589202835977579}
   m_Layer: 7
   m_Name: golem_hitbox
   m_TagString: Untagged
@@ -265,6 +292,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4720589202835977579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904762577575916235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4226529578104158728
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +315,7 @@ GameObject:
   - component: {fileID: 6853851926315981010}
   - component: {fileID: 1717804116858570519}
   - component: {fileID: 7606141541431266872}
+  - component: {fileID: 6459700956659148594}
   m_Layer: 7
   m_Name: golem_hitbox (2)
   m_TagString: Untagged
@@ -335,6 +375,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &6459700956659148594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226529578104158728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4282800473159927242
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +398,7 @@ GameObject:
   - component: {fileID: 8464139782656161883}
   - component: {fileID: 6184048542595962055}
   - component: {fileID: 5715212558458093595}
+  - component: {fileID: 2481748860079140721}
   m_Layer: 7
   m_Name: golem_hitbox (5)
   m_TagString: Untagged
@@ -405,6 +458,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2481748860079140721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282800473159927242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4532782654791804899
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +481,7 @@ GameObject:
   - component: {fileID: 2253529969168389433}
   - component: {fileID: 1420211735903104039}
   - component: {fileID: 3584149564780141608}
+  - component: {fileID: 1745767158163040333}
   m_Layer: 7
   m_Name: golem_hitbox (4)
   m_TagString: Untagged
@@ -475,6 +541,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1745767158163040333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4532782654791804899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4733906355164883413
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +564,7 @@ GameObject:
   - component: {fileID: 759747368222962637}
   - component: {fileID: 1073989022253516499}
   - component: {fileID: 9058598348136587571}
+  - component: {fileID: 636789593275068445}
   m_Layer: 7
   m_Name: golem_hitbox (4)
   m_TagString: Untagged
@@ -545,6 +624,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &636789593275068445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733906355164883413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4904096888467059345
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +647,7 @@ GameObject:
   - component: {fileID: 3590901093799557709}
   - component: {fileID: 8916492057154819671}
   - component: {fileID: 2599078489575518997}
+  - component: {fileID: 1153755957388247178}
   m_Layer: 7
   m_Name: golem_hitbox (1)
   m_TagString: Untagged
@@ -615,6 +707,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1153755957388247178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904096888467059345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5420691852208598869
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +897,7 @@ GameObject:
   - component: {fileID: 7135371901303296397}
   - component: {fileID: 448617265904174150}
   - component: {fileID: 5177922025071169130}
+  - component: {fileID: 4351140164223438290}
   m_Layer: 7
   m_Name: golem_hitbox (3)
   m_TagString: Untagged
@@ -852,6 +957,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4351140164223438290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6416892717356450264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8755386142189234676
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +980,7 @@ GameObject:
   - component: {fileID: 8811439802689378400}
   - component: {fileID: 5819052200702941011}
   - component: {fileID: 2510775243211218678}
+  - component: {fileID: 8934200417947937672}
   m_Layer: 7
   m_Name: golem_hitbox (1)
   m_TagString: Untagged
@@ -922,6 +1040,18 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8934200417947937672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755386142189234676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2268622110571245117
 PrefabInstance:
   m_ObjectHideFlags: 0
