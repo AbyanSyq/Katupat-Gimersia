@@ -378,15 +378,15 @@ MonoBehaviour:
   rotationVelocity: 0
   verticalVelocity: 0
   terminalVelocity: 53
-  disableAirControl: 1
-  airControlFactor: 0.5
-  airControlLerpSpeed: 8
   jumpHeight: 2.5
   gravity: -15
   jumpTimeout: 0
   fallTimeout: 0.15
   jumpTimeoutDelta: 0
   fallTimeoutDelta: 0
+  disableAirControl: 0
+  airControlFactor: 0.2
+  airControlLerpSpeed: 5
   grounded: 1
   groundedOffset: -0.14
   groundedRadius: 0.28
@@ -427,6 +427,7 @@ MonoBehaviour:
   chargeSpeed: 3
   fovResetSpeed: 40
   throwCooldown: 1.5
+  chargeLowestDuration: 0
   isCharging: 0
   chargeStartTime: 0
   currentThrowForce: 0

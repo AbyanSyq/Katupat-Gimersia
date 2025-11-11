@@ -38,14 +38,10 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float rotationVelocity;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float verticalVelocity;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float terminalVelocity = 53.0f;
-    // Stored horizontal velocity captured at the moment of jump (used to preserve momentum)
-    private Vector3 storedAirVelocity = Vector3.zero;
-    [FoldoutGroup("Movement Settings"), SerializeField] private bool disableAirControl = true;
-    [FoldoutGroup("Movement Settings"), SerializeField, Range(0f, 1f)] private float airControlFactor = 0.5f; // 0 = no steering, 1 = full steering
-    [FoldoutGroup("Movement Settings"), SerializeField, Range(0.1f, 20f)] private float airControlLerpSpeed = 8f; // responsiveness when blending stored velocity towards input
     #endregion
 
     #region Jump & Gravity
+    [Header("Jump & Gravity")]
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float jumpHeight = 1.2f;
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float gravity = -15.0f;
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float jumpTimeout = 0.5f;
@@ -53,6 +49,13 @@ public class PlayerController3D : MonoBehaviour
 
     [FoldoutGroup("Jump & Gravity"), SerializeField, ReadOnly] private float jumpTimeoutDelta;
     [FoldoutGroup("Jump & Gravity"), SerializeField, ReadOnly] private float fallTimeoutDelta;
+
+    [Header("Air Control")]
+    // Stored horizontal velocity captured at the moment of jump (used to preserve momentum)
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private bool disableAirControl = true;
+    [FoldoutGroup("Jump & Gravity"), SerializeField, Range(0f, 1f)] private float airControlFactor = 0.5f; // 0 = no steering, 1 = full steering
+    [FoldoutGroup("Jump & Gravity"), SerializeField, Range(0.1f, 20f)] private float airControlLerpSpeed = 8f; // responsiveness when blending stored velocity towards input
+    private Vector3 storedAirVelocity = Vector3.zero;
     #endregion
 
     #region Ground Check
@@ -136,6 +139,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField] public float chargeSpeed;
     [FoldoutGroup("Throw"), SerializeField] private float fovResetSpeed;
     [FoldoutGroup("Throw"), SerializeField] float throwCooldown;
+    [FoldoutGroup("Throw"), SerializeField] float chargeLowestDuration;
 
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
@@ -416,9 +420,9 @@ public class PlayerController3D : MonoBehaviour
         }
 
         float chargeDuration = Time.time - chargeStartTime;
-        if (chargeDuration < 0.5f)
+        if (chargeDuration < chargeLowestDuration)
         {
-            StartCoroutine(DelayedReleaseThrow(0.5f - chargeDuration));
+            StartCoroutine(DelayedReleaseThrow(chargeLowestDuration - chargeDuration));
         }
         else
         {
@@ -430,7 +434,7 @@ public class PlayerController3D : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         float chargeDuration = Time.time - chargeStartTime;
-        DoReleaseThrow(Mathf.Max(chargeDuration, 0.5f));
+        DoReleaseThrow(Mathf.Max(chargeDuration, chargeLowestDuration));
     }
 
     private void DoReleaseThrow(float chargeDuration)
@@ -528,7 +532,7 @@ public class PlayerController3D : MonoBehaviour
 
     void HandleSpearVisibility()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearReload"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearReload") || animator.GetCurrentAnimatorStateInfo(0).IsName("SpearIdle"))
             animator.SetBool("IsSpearVisible", true);
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearThrow"))
             animator.SetBool("IsSpearVisible", false);
