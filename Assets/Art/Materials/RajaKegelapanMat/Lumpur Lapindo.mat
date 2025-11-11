@@ -126,11 +126,11 @@ Material:
     - _SrcBlendAlpha: 1
     - _StrokeBlendingNoiseScale: 500
     - _StrokeBlendingNoiseStrength: 0.098
-    - _StrokeRandomness: 1
-    - _StrokeScale: 3
+    - _StrokeRandomness: 0.497
+    - _StrokeScale: 5
     - _Surface: 0
     - _UseBlendingNoise: 1
-    - _Variation: 0.301
+    - _Variation: 0.295
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

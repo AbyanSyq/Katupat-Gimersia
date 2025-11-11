@@ -27,13 +27,15 @@ Material:
   m_ValidKeywords:
   - AMBIENT
   - ANIME_SOFT
+  - BASE_CONTRAST
+  - BASE_SATURATION
   - DIFFUSE
   - EMISSIVE_MAP
   - FOG
+  - MATCAP
   - MATCAP_PERSPECTIVE
   - NORMAL_MAP
   - OUTLINE_PASS_DISABLED
-  - REFLECTION
   - RIM
   - SHADOWS_ENABLED
   - _DETAILBLEND_MULTIPLY
@@ -64,7 +66,7 @@ Material:
   disabledShaderPasses:
   - MOTIONVECTORS
   - SRPDEFAULTUNLIT
-  m_LockedProperties: 
+  m_LockedProperties: _ShadowColor
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -125,7 +127,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a963d58eeb8ba4dcba68a834b536f62a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -200,7 +202,7 @@ Material:
     - _CameraFadeStart: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 1
+    - _Contrast: 1.1
     - _Cull: 2
     - _Cutoff: 0.5
     - _Cutout: 0
@@ -216,7 +218,7 @@ Material:
     - _DetailVertexColors: 0
     - _Diffuse: 1
     - _DiffuseBrightness: 4.3
-    - _DiffuseContrast: 1.6
+    - _DiffuseContrast: 1
     - _DiffusePerPixel: 0
     - _DiffuseWrap: -0.2
     - _DstBlend: 0
@@ -253,7 +255,7 @@ Material:
     - _LightmapBrightness: 1
     - _LightmapUV: 0
     - _MatCapBlend: 0
-    - _MatCapBrightness: 1
+    - _MatCapBrightness: 1.8
     - _MatCapContrast: 1
     - _MatCapPerspective: 1
     - _MatCapStatic: 0
@@ -283,7 +285,7 @@ Material:
     - _Preset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflection: 1
+    - _Reflection: 0
     - _ReflectionAmount: 0.1
     - _ReflectionRim: 0
     - _ReflectionSpecular: 0
@@ -292,7 +294,7 @@ Material:
     - _RimBlend: 1
     - _RimContrast: 7.5
     - _RimInverse: 0
-    - _Saturation: 1
+    - _Saturation: 1.5
     - _ShadowOverlayAnimation: 0
     - _ShadowOverlayBrightness: 1
     - _ShadowOverlaySpeedU: 0.1
@@ -359,7 +361,7 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.35857958, g: 0.6217045, b: 0.9622642, a: 1}
     - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.2264151, g: 0.041651838, b: 0.041651838, a: 1}
+    - _ShadowColor: {r: 0.0754717, g: 0.0060519767, b: 0.0060519767, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
