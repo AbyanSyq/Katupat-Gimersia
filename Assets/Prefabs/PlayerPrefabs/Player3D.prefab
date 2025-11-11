@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8092706978960922111}
   - component: {fileID: 693636388108444792}
   - component: {fileID: 7047431119396913727}
-  - component: {fileID: 1315741628898076086}
+  - component: {fileID: 5415329435382175984}
   m_Layer: 3
   m_Name: Player3D
   m_TagString: Player
@@ -506,7 +506,7 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &1315741628898076086
+--- !u!114 &5415329435382175984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,10 +515,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7679298912095861667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f4ac1b9db90064d892dec4da86cced, type: 3}
+  m_Script: {fileID: 11500000, guid: 738a24c3cfd008b4db56bfa25e98ef96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 30
   currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
@@ -624,14 +624,13 @@ GameObject:
   - component: {fileID: 4706050723515499522}
   - component: {fileID: 4269679192244995459}
   - component: {fileID: 4455823357657021584}
-  - component: {fileID: 1020816028033249720}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4782813786613122703
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +640,7 @@ Transform:
   m_GameObject: {fileID: 8321384133180971200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.397, z: 0}
   m_LocalScale: {x: 0.75, y: 0.9, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,7 +661,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8321384133180971200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -713,7 +712,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -723,22 +722,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1020816028033249720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8321384133180971200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cdcc06fda7cb44888c58954d73c6cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthComponent: {fileID: 1315741628898076086}
-  damageMultiplaier: 1
-  rendererComponent: {fileID: 0}
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1740887934762328236
 PrefabInstance:
   m_ObjectHideFlags: 0
