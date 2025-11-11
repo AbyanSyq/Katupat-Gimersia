@@ -19,7 +19,8 @@ public class Spear : MonoBehaviour, IPoolObject
 
     public void OnCreatedInPool()
     {
-        spearModel.GetComponent<MeshRenderer>().enabled = false;
+        spearModel.SetActive(false);
+
     }
 
     public void OnGettingFromPool()
@@ -74,7 +75,7 @@ public class Spear : MonoBehaviour, IPoolObject
             // // Stick the spear into the enemy
             // rb.isKinematic = true;
             // transform.SetParent(collision.transform);
-            damageable.TakeDamage(10f);
+            damageable.TakeDamage(10f, collision.contacts[0].point);
             Despawn();
         }
         else if (((1 << collision.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
@@ -85,25 +86,25 @@ public class Spear : MonoBehaviour, IPoolObject
 
         //Debug.Log("Spear collided with " + collision.gameObject.name);
     }
-    void OnTriggerEnter(Collider collider)
-    {
+    //void OnTriggerEnter(Collider collider)
+    //{
 
-        if (collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
-        {
-            // // Stick the spear into the enemy
-            // rb.isKinematic = true;
-            // transform.SetParent(collision.transform);
-            damageable.TakeDamage(10f);
-            Despawn();
-        }
-        else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
-        {
-            CreateDummyObject();
-            Despawn();
-        }
+    //    if (collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
+    //    {
+    //        // // Stick the spear into the enemy
+    //        // rb.isKinematic = true;
+    //        // transform.SetParent(collision.transform);
+    //        damageable.TakeDamage(10f);
+    //        Despawn();
+    //    }
+    //    else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
+    //    {
+    //        CreateDummyObject();
+    //        Despawn();
+    //    }
 
-        //Debug.Log("Spear collided with " + collider.gameObject.name);
-    }
+    //    //Debug.Log("Spear collided with " + collider.gameObject.name);
+    //}
 
     void Despawn()
     {
@@ -122,7 +123,7 @@ public class Spear : MonoBehaviour, IPoolObject
 
         PoolManager.Instance.TakeToPool(0, this);
 
-        spearModel.GetComponent<MeshRenderer>().enabled = false;
+        spearModel.SetActive(false);
     }
 
     void CreateDummyObject()
@@ -154,6 +155,6 @@ public class Spear : MonoBehaviour, IPoolObject
         for (int i = 0; i < frame; i++)
             yield return new WaitForEndOfFrame();
             
-        spearModel.GetComponent<MeshRenderer>().enabled = true;
+        spearModel.SetActive(true);
     }
 }

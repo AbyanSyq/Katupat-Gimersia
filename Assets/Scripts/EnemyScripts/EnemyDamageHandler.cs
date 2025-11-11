@@ -13,7 +13,7 @@ public class EnemyDamageHandler : MonoBehaviour
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(enemyComponent.AttackDamage);
+            damageable.TakeDamage(enemyComponent.AttackDamage, other.ClosestPoint(transform.position));
         }
     }
 }
