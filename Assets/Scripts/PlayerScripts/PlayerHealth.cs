@@ -63,16 +63,18 @@ public class PlayerHealth : Health, IDamageable
     public void TakeDamage(float dmg, Vector3 dmgPos)
     {
         ReduceHealth(dmg);
+
+        // Apply knockback from damage position
+        var controller = GetComponent<PlayerController3D>();
+        if (controller != null)
+        {
+            controller.ApplyKnockback(dmgPos);
+        }
     }
     
     void OnPlayerHealthChanged(float currentHealth, float maxHealth)
     {
         // handle health change
         Debug.Log("Player health changed: " + currentHealth + "/" + maxHealth);
-    }
-
-    public override void ReduceHealth(float amount)
-    {
-        base.ReduceHealth(amount);
     }
 }

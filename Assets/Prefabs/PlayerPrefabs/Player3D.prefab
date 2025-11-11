@@ -250,6 +250,8 @@ MonoBehaviour:
   disableAirControl: 0
   airControlFactor: 0.2
   airControlLerpSpeed: 5
+  knockbackForce: 15
+  knockbackHeight: 10
   grounded: 1
   groundedOffset: -0.14
   groundedRadius: 0.28
