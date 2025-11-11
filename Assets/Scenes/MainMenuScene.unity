@@ -424,6 +424,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8033764673036530055, guid: 765eac49b6aac744d9fbb1caf16e910a, type: 3}
+      propertyPath: targetScene.m_SceneName
+      value: MainMenuScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033764673036530055, guid: 765eac49b6aac744d9fbb1caf16e910a, type: 3}
+      propertyPath: targetScene.m_SceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: c9b2e8b38c00ba94380cdde8cac8c74a, type: 3}
     - target: {fileID: 8595217431037657406, guid: 765eac49b6aac744d9fbb1caf16e910a, type: 3}
       propertyPath: m_Name
       value: SceneTransitionManager

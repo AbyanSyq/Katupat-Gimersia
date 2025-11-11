@@ -79,6 +79,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         playerInputAction.Enable();
     }
+    public void StartGame()
+    {
+        LoadScene(SceneType.STAGE1);
+    }
 
     public void LoadScene(SceneType sceneType)
     {
@@ -99,6 +103,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 currentSceneConfig.scene.SceneName,
                 currentSceneConfig.transitionEffect
             );
+            UIManager.Instance.ChangeUI(currentSceneConfig.initialUI);
         }
         else
         {

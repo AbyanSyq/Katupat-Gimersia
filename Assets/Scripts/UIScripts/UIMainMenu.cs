@@ -17,15 +17,15 @@ public class UIMainMenu : UIBase
     {
         startButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.ChangeUI(UIType.GAMEPLAY);
+            GameManager.Instance.StartGame();
         });
         optionsButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
+            UIManager.Instance.ChangeUI(UIType.SETTINGS);
         });
         exitButton.onClick.AddListener(() =>
         {
-            Application.Quit();
+            GameManager.Instance.ExitGame();
         });
     }
 }

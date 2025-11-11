@@ -163,7 +163,7 @@ MonoBehaviour:
     prefab: {fileID: 844548820002510792, guid: 43b662e89fbbf394e8024ee76ba7e281, type: 3}
     pauseGame: 0
     enablePlayerInput: 1
-    cursorVisibility: 1
+    cursorVisibility: 0
   - name: PAUSEMENU
     type: 2
     layer: 1
