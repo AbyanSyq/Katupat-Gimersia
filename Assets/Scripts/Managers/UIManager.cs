@@ -19,7 +19,8 @@ public class UIEntry
     public UIManager.UILayer layer = UIManager.UILayer.MAIN;
     public UIBase prefab;
     public bool pauseGame = false;
-    public bool enableInput = true;
+    public bool enablePlayerInput = true;
+    public bool cursorVisibility = true;
 }
 public enum UIType
 {
@@ -90,7 +91,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         base.Awake();
         InitUI();
         
-        inputActions = GameplayManager.Instance.playerInputAction;
+        inputActions = GameManager.Instance.playerInputAction;
         DontDestroyOnLoad(gameObject);
     }
     void Start()
@@ -162,8 +163,9 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
 
         var config = uiConfigs[toUI];
-        GameplayManager.Instance.PauseGame(config.pauseGame);
-        GameplayManager.Instance.SetInput(config.enableInput);
+        GameManager.Instance.PauseGame(config.pauseGame);
+        GameManager.Instance.SetCursorVisibility(config.cursorVisibility);
+        if(GameplayManager.Instance != null) GameplayManager.Instance.SetInput(config.enablePlayerInput);
         
         if (!ui.isActive || forceShow)
             ui.Show();
@@ -183,38 +185,21 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         if (currentUI == UIType.GAMEPLAY)
         {
-            SetCursorVisibility(true);
             ChangeUI(UIType.PAUSEMENU);
         }
-        // else if(currentUI == UIType.PAUSEMENU)
-        // {
-        //     ChangeUI(UIType.MAINMENU);
-        // }
+        else if (currentUI == UIType.PAUSEMENU)
+        {
+            ChangeUI(UIType.GAMEPLAY);
+        }
         else
         {
             ChangeUI(previousUI);
         }
     }
-    public void SetEscape(bool enable)
+    private void OnApplicationFocus(bool hasFocus)
     {
-        if (enable)
-            inputActions.UI.Escape.performed += ctx => OnEscape();
-        else
-            inputActions.UI.Escape.performed -= ctx => OnEscape();
-    }
-
-    public void SetCursorVisibility(bool visible)
-    {
-        Cursor.visible = visible;
-        if (visible)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
+        GameManager.Instance.SetCursorVisibility(uiConfigs[currentUI].cursorVisibility);
+	}
 }
 
 
