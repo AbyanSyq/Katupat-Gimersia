@@ -416,6 +416,25 @@ public class PlayerController3D : MonoBehaviour
         }
 
         float chargeDuration = Time.time - chargeStartTime;
+        if (chargeDuration < 0.5f)
+        {
+            StartCoroutine(DelayedReleaseThrow(0.5f - chargeDuration));
+        }
+        else
+        {
+            DoReleaseThrow(chargeDuration);
+        }
+    }
+
+    private IEnumerator DelayedReleaseThrow(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        float chargeDuration = Time.time - chargeStartTime;
+        DoReleaseThrow(Mathf.Max(chargeDuration, 0.5f));
+    }
+
+    private void DoReleaseThrow(float chargeDuration)
+    {
         currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
         currentThrowForce = Mathf.Clamp(currentThrowForce, minThrowForce, maxThrowForce);
 
@@ -511,6 +530,8 @@ public class PlayerController3D : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearReload"))
             animator.SetBool("IsSpearVisible", true);
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearThrow"))
+            animator.SetBool("IsSpearVisible", false);
     }
 
     void HandleSpearCooldown(){
