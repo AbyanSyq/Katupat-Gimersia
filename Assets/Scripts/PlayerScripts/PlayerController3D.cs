@@ -142,6 +142,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField] float chargeLowestDuration;
 
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] bool isReloading;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForceNormalized;
@@ -410,8 +411,10 @@ public class PlayerController3D : MonoBehaviour
 
     public void ReleaseThrow()
     {
-        if (!isCharging) return;
+        if (!isCharging || throwCooldown > 0f) return;
         isCharging = false;
+        isReloading = true;
+        throwCooldown = initialThrowCooldown;
 
         if (chargeShakeCoroutine != null)
         {
@@ -443,6 +446,7 @@ public class PlayerController3D : MonoBehaviour
         currentThrowForce = Mathf.Clamp(currentThrowForce, minThrowForce, maxThrowForce);
 
         throwCooldown = initialThrowCooldown;
+        isReloading = true;
 
         animator.SetTrigger("ThrowSpear");
         animator.SetBool("IsChargingSpear", false);
@@ -534,12 +538,14 @@ public class PlayerController3D : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearReload") || animator.GetCurrentAnimatorStateInfo(0).IsName("SpearIdle"))
             animator.SetBool("IsSpearVisible", true);
+
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearThrow"))
             animator.SetBool("IsSpearVisible", false);
     }
 
     void HandleSpearCooldown(){
         throwCooldown -= Time.deltaTime;
+        if (throwCooldown < 0f) isReloading = false;
     }
 
     #endregion
