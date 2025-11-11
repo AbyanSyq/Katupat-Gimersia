@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 8963073175230724163}
   - component: {fileID: 558992381761917297}
   - component: {fileID: 385008743043540203}
-  - component: {fileID: 998343618788960214}
   - component: {fileID: 7232661822001448073}
-  - component: {fileID: 7880597936554416082}
+  - component: {fileID: 6187895411019388772}
   m_Layer: 5
   m_Name: UIExit
   m_TagString: Untagged
@@ -64,27 +63,7 @@ MonoBehaviour:
   playOnEnable: 0
   disableAfterHide: 1
   animations:
-  - {fileID: 998343618788960214}
-  - {fileID: 7880597936554416082}
---- !u!114 &998343618788960214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666949904216747320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f62271fb949c8b4c811dc0d804b35c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISlideAnimation
-  runWhilePaused: 1
-  duration: 0.5
-  slideDirection: 3
-  offsetX: 1920
-  offsetY: 1080
-  ease: 9
-  originalPos: {x: 0, y: 0, z: 0}
+  - {fileID: 6187895411019388772}
 --- !u!225 &7232661822001448073
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -97,7 +76,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7880597936554416082
+--- !u!114 &6187895411019388772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,12 +85,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1666949904216747320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8f7e6f176d5fd44a0ed88c25354d29, type: 3}
+  m_Script: {fileID: 11500000, guid: f5ee59b9ff8a77247b7056635ebc920f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIFadeAnimation
+  m_EditorClassIdentifier: 
   runWhilePaused: 1
-  duration: 0.3
-  ease: 6
+  duration: 0.5
+  showScale: {x: 1, y: 1, z: 1}
+  hiddenScale: {x: 0, y: 0, z: 0}
+  showEase: 27
+  hideEase: 26
 --- !u!1 &2536046907391686015
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +777,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3577273631609468954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8420627870098491611
 GameObject:
   m_ObjectHideFlags: 0

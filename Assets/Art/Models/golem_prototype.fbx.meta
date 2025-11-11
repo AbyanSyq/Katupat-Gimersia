@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: golem_mat
+    second: {fileID: 2100000, guid: 7820b78e7be1530408b056446c85ab0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: monster_eye
     second: {fileID: 2100000, guid: 41ff247a3553a1443be61c02442f1fe9, type: 2}
   - first:
@@ -28,22 +33,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: golem_emission
-    second: {fileID: 2800000, guid: 386a2124364b9134db59eea12b42878f, type: 3}
+    second: {fileID: 2800000, guid: b2a8215b2aa337a4e96e5ddb86d972b3, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: golem_leaf_tex.001
-    second: {fileID: 2800000, guid: 4addc1c052c07ad4aad8f3cf4dd4099d, type: 3}
+    second: {fileID: 2800000, guid: 14fb29783291918439cd56972d47cf07, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: golem_normal
-    second: {fileID: 2800000, guid: 49b55f497c337ef43bf0c37cb96fd7a2, type: 3}
+    second: {fileID: 2800000, guid: 1771d53cdc591aa4bbccce8125a71233, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: golem_tex
-    second: {fileID: 2800000, guid: 85eff1c1392e8894e94c3710aacf9074, type: 3}
+    second: {fileID: 2800000, guid: 102a6b1ba6e01204b95c1dd37bb8cc1f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

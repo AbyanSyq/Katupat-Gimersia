@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     public float MaxHealth => maxHealth;
     private bool isDead = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         currentHealth = maxHealth;
         onHealthChanged.Invoke(currentHealth, maxHealth);

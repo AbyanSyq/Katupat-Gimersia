@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -69,6 +70,11 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Cinemachine Camera"), ReadOnly] private GameObject mainCamera;
     [FoldoutGroup("Cinemachine Camera"), Range(0f, 120f), ReadOnly] private float originalCameraFOV;
     [FoldoutGroup("Cinemachine Camera"), SerializeField] private CinemachineCamera cinemachineCameraComponent;
+    [FoldoutGroup("Cinemachine Camera"), SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
+    [FoldoutGroup("Camera Shake"), SerializeField] private float maxShakeIntensity = 1.5f;
+    [FoldoutGroup("Camera Shake"), SerializeField] private float shakeIncreaseSpeed = 0.8f;
+    [FoldoutGroup("Camera Shake"), SerializeField, ReadOnly] private Coroutine chargeShakeCoroutine;
+
     #endregion
 
     #region Input System
@@ -337,12 +343,22 @@ public class PlayerController3D : MonoBehaviour
         chargeStartTime = Time.time;
 
         animator.SetTrigger("ChargeSpear");
+
+        if (chargeShakeCoroutine != null)
+            StopCoroutine(chargeShakeCoroutine);
+        chargeShakeCoroutine = StartCoroutine(CameraShakeDuringCharge());
     }
 
     public void ReleaseThrow()
     {
         if (!isCharging) return;
         isCharging = false;
+
+        if (chargeShakeCoroutine != null)
+        {
+            StopCoroutine(chargeShakeCoroutine);
+            chargeShakeCoroutine = null;
+        }
 
         float chargeDuration = Time.time - chargeStartTime;
         currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
@@ -364,7 +380,7 @@ public class PlayerController3D : MonoBehaviour
         {
             currentThrowForce = 0f;
         }
-        
+
         currentThrowForceNormalized = Mathf.InverseLerp(minThrowForce, maxThrowForce, currentThrowForce);
         animator.SetFloat(animParameterIDThrowForce, currentThrowForceNormalized);
     }
@@ -406,5 +422,31 @@ public class PlayerController3D : MonoBehaviour
         if (spearRotator == null)
             spearRotator = spearInstance.AddComponent<Spear>();
     }
+
+    private IEnumerator CameraShakeDuringCharge()
+    {
+        float intensity = 0f;
+
+        while (isCharging)
+        {
+            // Hitung waktu charging relatif
+            float chargeDuration = Time.time - chargeStartTime;
+            float t = Mathf.Clamp01(chargeDuration / chargeSpeed);
+
+            // Naikkan intensitas getar seiring waktu
+            intensity = Mathf.Lerp(0f, maxShakeIntensity, Mathf.SmoothStep(0f, 1f, t));
+
+            // Kirim impulse kecil ke kamera (arah acak)
+            Vector3 randomDir = UnityEngine.Random.insideUnitSphere.normalized * 0.2f;
+            cinemachineImpulseSource.GenerateImpulse(randomDir * intensity);
+
+            // Kirim getaran tiap beberapa frame agar tidak terlalu sering
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        // Setelah charging selesai → hentikan shake
+        yield break;
+    }
+
     #endregion
 }

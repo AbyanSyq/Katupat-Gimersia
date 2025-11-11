@@ -90,7 +90,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         base.Awake();
         InitUI();
         
-        inputActions = new PlayerInputAction();
+        inputActions = GameplayManager.Instance.playerInputAction;
         DontDestroyOnLoad(gameObject);
     }
     void Start()
@@ -163,11 +163,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         var config = uiConfigs[toUI];
         GameplayManager.Instance.PauseGame(config.pauseGame);
-        GameplayManager.Instance.SetInput(!config.enableInput);
+        GameplayManager.Instance.SetInput(config.enableInput);
         
-        Cursor.lockState = CursorLockMode.None;
-
-
         if (!ui.isActive || forceShow)
             ui.Show();
     }
@@ -186,6 +183,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         if (currentUI == UIType.GAMEPLAY)
         {
+            SetCursorVisibility(true);
             ChangeUI(UIType.PAUSEMENU);
         }
         // else if(currentUI == UIType.PAUSEMENU)
@@ -203,6 +201,19 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             inputActions.UI.Escape.performed += ctx => OnEscape();
         else
             inputActions.UI.Escape.performed -= ctx => OnEscape();
+    }
+
+    public void SetCursorVisibility(bool visible)
+    {
+        Cursor.visible = visible;
+        if (visible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
 

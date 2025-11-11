@@ -5,17 +5,18 @@ using Unity.Behavior;
 
 public static partial class Events
 {
-    public static readonly GameEvent<float, float> OnEnemyHealthChanged;
-    public static readonly GameEvent<float> OnEnemyTakeDamaged;
+    public static readonly GameEvent<float, float> OnEnemyHealthChanged = new GameEvent<float, float>();
+    public static readonly GameEvent<float> OnEnemyTakeDamaged = new GameEvent<float>();
 }
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(EnemyHealth))]
 public class Enemy : MonoBehaviour
 {
     
     [Header("References")]
     [SerializeField] private Health healthComponent;
     [SerializeField] private BehaviorGraphAgent enemyBehaviorGraphAgent;
+    [SerializeField] private BlackboardVariable<bool> IsEnemyAttacking;
 
     [Header("Enemy Stats")]
     [SerializeField] private float maxHealth = 100f;
@@ -50,8 +51,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        if (healthComponent == null)
-            healthComponent = GetComponent<Health>();
+        enemyBehaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
+        enemyBehaviorGraphAgent.GetVariable("IsEnemyAttacking", out IsEnemyAttacking);
 
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
         enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
@@ -157,6 +158,7 @@ public class Enemy : MonoBehaviour
     private void RotateTowardsPlayer()
     {
         if (playerTarget == null) return;
+        if (IsEnemyAttacking == true) return;
 
         Vector3 direction = playerTarget.position - transform.position;
         direction.y = 0f;
@@ -193,5 +195,4 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion
-
 }
