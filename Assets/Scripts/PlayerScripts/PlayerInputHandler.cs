@@ -20,13 +20,12 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private PlayerController3D playerController;
     private void Awake()
     {
-        _inputActions = GameplayManager.Instance.playerInputAction; 
+        _inputActions = GameManager.Instance.playerInputAction; 
     }
 
     private void OnEnable()
     {
-
-        _inputActions.Enable();
+        _inputActions.Player.Enable();
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMove;
 
@@ -56,6 +55,18 @@ public class PlayerInputHandler : MonoBehaviour
 
         _inputActions.Disable();
 
+    }
+
+    public void SetInput(bool enable)
+    {
+        if (enable)
+        {
+            _inputActions.Player.Enable();
+        }
+        else
+        {
+            _inputActions.Player.Disable();
+        }
     }
 
 #region Input Action Callbacks
@@ -108,14 +119,5 @@ public class PlayerInputHandler : MonoBehaviour
     {
         SceneTransitionManager.Instance.LoadScene(SceneManager.GetActiveScene().name, TransitionEffect.Slide);
     }
-	private void OnApplicationFocus(bool hasFocus)
-	{
-		SetCursorState(cursorLocked);
-	}
-
-	private void SetCursorState(bool newState)
-	{
-		Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-	}
 }
 

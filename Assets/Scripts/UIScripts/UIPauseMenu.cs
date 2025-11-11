@@ -18,7 +18,6 @@ public class UIPauseMenu : UIBase
         {
             print("clicked pause");
             UIManager.Instance.ChangeUI(UIType.GAMEPLAY);
-            UIManager.Instance.SetCursorVisibility(false);
         });
         buttonSettings.onClick.AddListener(() =>
         {
@@ -34,6 +33,5 @@ public class UIPauseMenu : UIBase
     public void CloseButton()
     {
         UIManager.Instance.ChangeUI(UIType.GAMEPLAY);
-        UIManager.Instance.SetCursorVisibility(false);
     } 
 }

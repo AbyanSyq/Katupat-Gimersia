@@ -9,6 +9,9 @@ public static partial class Events
 }
 public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 {
+    [SerializeField, ReadOnly] private PlayerController3D playerController;
+    [SerializeField, ReadOnly] private PlayerInputHandler playerInputHandler;
+    public PlayerController3D PlayerController { get => playerController; }
     [Header("Player Log")]
     [SerializeField] private int playerAttackHittedCount;//when the spear hit the enemy
     [SerializeField] private int playerAttackHittedCombo;//when the spear hit the enemy
@@ -16,11 +19,11 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 
     [Header("Game State")]
     [SerializeField] private bool isGamePaused = false;
-    public PlayerInputAction playerInputAction { get; private set; }
     protected override void Awake()
     {
         base.Awake();
-        playerInputAction = new PlayerInputAction();
+        playerController = FindFirstObjectByType<PlayerController3D>();
+        playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
     }
 
     void OnEnable()
@@ -46,31 +49,6 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     }
     public void SetInput(bool enable)
     {
-        if (enable)
-        {
-            playerInputAction.Enable();
-        }
-        else
-        {
-            playerInputAction.Disable();
-        }
+        playerInputHandler.SetInput(enable);
     }
-    public void PauseGame(bool pause)
-    {
-        Time.timeScale = pause ? 0f : 1f;
-    }
-    public void ResumeGame(bool pause)
-    {
-        Time.timeScale = pause ? 0f : 1f;
-    }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-    
-    public void MainMenu()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }   
-
 }
