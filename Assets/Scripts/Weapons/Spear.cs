@@ -6,7 +6,9 @@ public class Spear : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject tailObject;
-    [SerializeField] GameObject spearDummyModel;
+
+    [Header("Inputs")]
+    [SerializeField] LayerMask spearObstructorLayer;
 
     private Rigidbody rb;
     [SerializeField] float timeToLive = 5f;
@@ -63,11 +65,13 @@ public class Spear : MonoBehaviour
             damageable.TakeDamage(10f);
             Despawn();
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("SpearObstructor"))
+        else if (((1 << collision.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
             CreateDummyObject();
             Despawn();
         }
+
+        //Debug.Log("Spear collided with " + collision.gameObject.name);
     }
 
     void Despawn()
@@ -82,7 +86,6 @@ public class Spear : MonoBehaviour
         {
             // Remove the reference to the tail object so the trail will stop following the spear
             trailObj.spearTailObjReference = null;
-            // Do not StopTrail() here — allow the trail to live out its own timeToLive and return to its pool.
             trailObj = null;
         }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Reflection;
-using TMPro;
 using System.Diagnostics.Tracing;
 
 public class UIGameplay : UIBase
