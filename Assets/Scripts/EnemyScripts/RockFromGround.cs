@@ -8,9 +8,9 @@ public class RockFromGround : MonoBehaviour
     [SerializeField] private float damageRange = 2f;
     [SerializeField] private LayerMask damageLayer;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private float yOffset = 0.6f;
     [Space]
-    [SerializeField] private AnimationController DamageArea;
-    [SerializeField] private AnimationController RockVisual;
+    [SerializeField] private ParticleSystem RockVisual;
     [ContextMenu("Test Attack")]
     public void TestAttack()
     {
@@ -19,7 +19,7 @@ public class RockFromGround : MonoBehaviour
     public void initRock(Vector3 targetPosition, float damage)
     {
         gameObject.SetActive(true);
-        transform.position = new Vector3(targetPosition.x, 0, targetPosition.z);
+        transform.position = new Vector3(targetPosition.x, yOffset, targetPosition.z);
         this.damage = damage;
 
         StartCoroutine(StartAttackSequence());
@@ -30,18 +30,16 @@ public class RockFromGround : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         StartAttack();
         yield return new WaitForSeconds(3f);
-        RockVisual.Hide();
+        // RockVisual.Hide();
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
     }
     public void StartPreAttack()
     {
-        DamageArea.Show();
+        RockVisual.Play();
     }
     public void StartAttack()
     {
-        DamageArea.Hide();
-        RockVisual.Show();
         GiveDamage();
     }
     public void GiveDamage()

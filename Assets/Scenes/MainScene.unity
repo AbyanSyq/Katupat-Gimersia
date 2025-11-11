@@ -167,18 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
-      propertyPath: attackRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_Name
       value: EnemyGolem
       objectReference: {fileID: 0}
-    - target: {fileID: 8825839709223182352, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 87c469d10e7ad396c88df1be256ac1bd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

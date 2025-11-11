@@ -293,7 +293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &257361335694244918
 Transform:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8849785772501872285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fa4a7fe5d812c243aaff0cba9a30ac6, type: 3}
   m_Name: 
@@ -328,5 +328,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damage: 10
-  DamageArea: {fileID: 8110387819452365123}
-  RockVisual: {fileID: 5886239878211001683}
+  RockVisual: {fileID: 0}

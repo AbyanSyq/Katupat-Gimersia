@@ -283,7 +283,7 @@ MonoBehaviour:
   detectionStartPoint: {fileID: 3758689751291253972}
   attackRange: 10
   isEnemyInRangeAttack: 0
-  rockFromGroundPrefab: {fileID: 8398552435233017940, guid: afeaf0572e5eac7409b8cf49088b6853, type: 3}
+  rockFromGroundPrefab: {fileID: 4003173908549898897, guid: 2a3ca5c0673405f47be256af67c94515, type: 3}
   rockFromGroundObject: {fileID: 0}
   damageRockFromGround: 0
   playerTarget: {fileID: 0}
