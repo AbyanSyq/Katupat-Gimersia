@@ -395,8 +395,8 @@ MonoBehaviour:
     m_Bits: 64
   cinemachineCameraTarget: {fileID: 6796305601557293915}
   rotationSpeed: 1
-  topClamp: 70
-  bottomClamp: -30
+  topClamp: 60
+  bottomClamp: -120
   cameraAngleOverride: 0
   lockCameraPosition: 0
   cinemachineCameraComponent: {fileID: 0}
@@ -429,6 +429,7 @@ MonoBehaviour:
   throwCooldown: 1.5
   chargeLowestDuration: 0.5
   isCharging: 0
+  isReloading: 0
   chargeStartTime: 0
   currentThrowForce: 0
   currentThrowForceNormalized: 0
