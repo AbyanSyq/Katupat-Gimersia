@@ -1,7 +1,7 @@
 ﻿<Solution>
   <Project Path="BroAudio.csproj" />
-  <Project Path="BroAudioEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="BroAudioEditor.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="OmniShade.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
