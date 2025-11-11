@@ -38,6 +38,11 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float rotationVelocity;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float verticalVelocity;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float terminalVelocity = 53.0f;
+    // Stored horizontal velocity captured at the moment of jump (used to preserve momentum)
+    private Vector3 storedAirVelocity = Vector3.zero;
+    [FoldoutGroup("Movement Settings"), SerializeField] private bool disableAirControl = true;
+    [FoldoutGroup("Movement Settings"), SerializeField, Range(0f, 1f)] private float airControlFactor = 0.5f; // 0 = no steering, 1 = full steering
+    [FoldoutGroup("Movement Settings"), SerializeField, Range(0.1f, 20f)] private float airControlLerpSpeed = 8f; // responsiveness when blending stored velocity towards input
     #endregion
 
     #region Jump & Gravity
@@ -167,6 +172,8 @@ public class PlayerController3D : MonoBehaviour
     private void Update()
     {
         hasAnimator = TryGetComponent(out animator);
+        
+        JumpAndGravity();
         GroundedCheck();
         Move();
         HandleSpearCharge();
@@ -198,11 +205,52 @@ public class PlayerController3D : MonoBehaviour
     #region Movement
     private void Move()
     {
+        // If we're in the air handle stored velocity + optional steering
+        if (!grounded)
+        {
+            if (disableAirControl)
+            {
+                // No air control: keep original stored horizontal velocity
+                controller.Move(storedAirVelocity * Time.deltaTime +
+                                new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+
+                // Update animator to reflect no horizontal control (optional)
+                if (hasAnimator)
+                {
+                    animator.SetFloat(animParameterIDSpeed, 0f);
+                    animator.SetFloat(animParameterIDMotionSpeed, 0f);
+                }
+
+                return;
+            }
+
+            // Air control enabled: steer the stored horizontal velocity towards input direction
+            float camYawLocal = mainCamera.transform.eulerAngles.y;
+            Vector3 inputDirLocal = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
+            Vector3 desiredHorizLocal = Quaternion.Euler(0.0f, camYawLocal, 0.0f) * inputDirLocal * moveSpeed * input.move.magnitude;
+
+            // Blend storedAirVelocity towards desired horizontal velocity based on airControlFactor and responsiveness
+            float blend = Mathf.Clamp01(airControlFactor) * airControlLerpSpeed * Time.deltaTime;
+            storedAirVelocity = Vector3.Lerp(storedAirVelocity, desiredHorizLocal, blend);
+
+            controller.Move(storedAirVelocity * Time.deltaTime +
+                            new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+
+            if (hasAnimator)
+            {
+                animator.SetFloat(animParameterIDSpeed, storedAirVelocity.magnitude);
+                animator.SetFloat(animParameterIDMotionSpeed, input.move.magnitude);
+            }
+
+            return;
+        }
+
         // ✅ Always use moveSpeed, no sprint
         float targetSpeed = moveSpeed;
         if (input.move == Vector2.zero) targetSpeed = 0.0f;
+        float groundedMultiplier = grounded ? 1f : 0.01f;
 
-        float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude * groundedMultiplier;
         float speedOffset = 0.1f;
         float inputMagnitude = input.move.magnitude;
 
@@ -448,5 +496,71 @@ public class PlayerController3D : MonoBehaviour
         yield break;
     }
 
+    #endregion
+
+    #region Jump and Gravity
+    private void JumpAndGravity()
+    {
+        if (grounded)
+        {
+            fallTimeoutDelta = fallTimeout;
+
+            if (hasAnimator)
+            {
+                animator.SetBool(animParameterIDJump, false);
+                animator.SetBool(animParameterIDFreeFall, false);
+            }
+
+            // Clear stored air velocity when grounded so movement input resumes normally
+            storedAirVelocity = Vector3.zero;
+
+            if (verticalVelocity < 0.0f)
+            {
+                verticalVelocity = -2f;
+            }
+
+            if (input.jump && jumpTimeoutDelta <= 0.0f)
+            {
+                // Capture current horizontal velocity so the jump inherits movement momentum
+                storedAirVelocity = new Vector3(controller.velocity.x, 0f, controller.velocity.z);
+
+                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+                if (hasAnimator)
+                {
+                    animator.SetBool(animParameterIDJump, true);
+                }
+            }
+
+            if (jumpTimeoutDelta >= 0.0f)
+            {
+                jumpTimeoutDelta -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            jumpTimeoutDelta = jumpTimeout;
+
+            if (fallTimeoutDelta >= 0.0f)
+            {
+                fallTimeoutDelta -= Time.deltaTime;
+            }
+            else
+            {
+                // update animator if using character
+                if (hasAnimator)
+                {
+                    animator.SetBool(animParameterIDFreeFall, true);
+                }
+            }
+
+            input.jump = false;
+        }
+
+        if (verticalVelocity < terminalVelocity)
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+    }
     #endregion
 }
