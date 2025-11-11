@@ -1,11 +1,13 @@
 using UnityEngine;
 using Redcode.Pools;
+using System.Collections;
 
 
-public class Spear : MonoBehaviour
+public class Spear : MonoBehaviour, IPoolObject
 {
     [Header("References")]
     [SerializeField] GameObject tailObject;
+    [SerializeField] GameObject spearModel;
 
     [Header("Inputs")]
     [SerializeField] LayerMask spearObstructorLayer;
@@ -14,6 +16,16 @@ public class Spear : MonoBehaviour
     [SerializeField] float timeToLive = 5f;
 
     SpearTrail trailObj;
+
+    public void OnCreatedInPool()
+    {
+        spearModel.GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    public void OnGettingFromPool()
+    {
+        StartCoroutine(DelayEnableMeshRenderer(3));
+    }
 
     void Awake()
     {
@@ -90,6 +102,8 @@ public class Spear : MonoBehaviour
         }
 
         PoolManager.Instance.TakeToPool(0, this);
+
+        spearModel.GetComponent<MeshRenderer>().enabled = false;
     }
 
     void CreateDummyObject()
@@ -114,5 +128,13 @@ public class Spear : MonoBehaviour
                 trail.enabled = true;
             }
         }
+    }
+
+    IEnumerator DelayEnableMeshRenderer(int frame)
+    {
+        for (int i = 0; i < frame; i++)
+            yield return new WaitForEndOfFrame();
+            
+        spearModel.GetComponent<MeshRenderer>().enabled = true;
     }
 }

@@ -135,11 +135,14 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField] public float maxThrowForce;
     [FoldoutGroup("Throw"), SerializeField] public float chargeSpeed;
     [FoldoutGroup("Throw"), SerializeField] private float fovResetSpeed;
+    [FoldoutGroup("Throw"), SerializeField] float throwCooldown;
 
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private bool isCharging;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float chargeStartTime;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForceNormalized;
+    [FoldoutGroup("Throw"), SerializeField, ReadOnly] float initialThrowCooldown;
+
     #endregion
 
     #region Unity Lifecycle
@@ -167,6 +170,8 @@ public class PlayerController3D : MonoBehaviour
 
         jumpTimeoutDelta = jumpTimeout;
         fallTimeoutDelta = fallTimeout;
+        initialThrowCooldown = throwCooldown;
+        throwCooldown = 0f;
     }
 
     private void Update()
@@ -177,6 +182,8 @@ public class PlayerController3D : MonoBehaviour
         GroundedCheck();
         Move();
         HandleSpearCharge();
+        HandleSpearVisibility();
+        HandleSpearCooldown();
     }
 
     private void LateUpdate()
@@ -386,11 +393,11 @@ public class PlayerController3D : MonoBehaviour
     #region Attack (Throw Spear)
     public void StartCharging()
     {
-        if (isCharging) return;
+        if (isCharging || throwCooldown > 0f) return;
         isCharging = true;
         chargeStartTime = Time.time;
 
-        animator.SetTrigger("ChargeSpear");
+        animator.SetBool("IsChargingSpear", true);
 
         if (chargeShakeCoroutine != null)
             StopCoroutine(chargeShakeCoroutine);
@@ -412,7 +419,11 @@ public class PlayerController3D : MonoBehaviour
         currentThrowForce = Mathf.Lerp(minThrowForce, maxThrowForce, chargeDuration / chargeSpeed);
         currentThrowForce = Mathf.Clamp(currentThrowForce, minThrowForce, maxThrowForce);
 
+        throwCooldown = initialThrowCooldown;
+
         animator.SetTrigger("ThrowSpear");
+        animator.SetBool("IsChargingSpear", false);
+        animator.SetBool("IsSpearVisible", false);
 
         ThrowSpear();
     }
@@ -496,8 +507,18 @@ public class PlayerController3D : MonoBehaviour
         yield break;
     }
 
-    #endregion
+    void HandleSpearVisibility()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("SpearReload"))
+            animator.SetBool("IsSpearVisible", true);
+    }
 
+    void HandleSpearCooldown(){
+        throwCooldown -= Time.deltaTime;
+    }
+
+    #endregion
+    
     #region Jump and Gravity
     private void JumpAndGravity()
     {

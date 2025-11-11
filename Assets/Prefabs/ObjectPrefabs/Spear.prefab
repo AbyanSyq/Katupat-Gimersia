@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 335610259194186140}
   - component: {fileID: 5075477275397566258}
   m_Layer: 0
-  m_Name: Spear
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tailObject: {fileID: 1694511126095563873}
+  spearModel: {fileID: 1819904308605629354}
   spearObstructorLayer:
     serializedVersion: 2
     m_Bits: 256

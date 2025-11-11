@@ -378,6 +378,9 @@ MonoBehaviour:
   rotationVelocity: 0
   verticalVelocity: 0
   terminalVelocity: 53
+  disableAirControl: 1
+  airControlFactor: 0.5
+  airControlLerpSpeed: 8
   jumpHeight: 2.5
   gravity: -15
   jumpTimeout: 0
@@ -423,10 +426,12 @@ MonoBehaviour:
   maxThrowForce: 30
   chargeSpeed: 3
   fovResetSpeed: 40
+  throwCooldown: 1.5
   isCharging: 0
   chargeStartTime: 0
   currentThrowForce: 0
   currentThrowForceNormalized: 0
+  initialThrowCooldown: 0
 --- !u!114 &3566239037623672089
 MonoBehaviour:
   m_ObjectHideFlags: 0
