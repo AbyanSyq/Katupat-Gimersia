@@ -51,6 +51,9 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.started -= OnJump;
         _inputActions.Player.Jump.canceled -= OnJump;
 
+        _inputActions.Player.Throw.started += OnThrowStarted;
+        _inputActions.Player.Throw.canceled += OnThrowReleased;
+
         _inputActions.Disable();
 
     }

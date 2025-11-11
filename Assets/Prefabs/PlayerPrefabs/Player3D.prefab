@@ -378,7 +378,7 @@ MonoBehaviour:
   rotationVelocity: 0
   verticalVelocity: 0
   terminalVelocity: 53
-  jumpHeight: 1.2
+  jumpHeight: 2.5
   gravity: -15
   jumpTimeout: 0
   fallTimeout: 0.15
@@ -389,7 +389,7 @@ MonoBehaviour:
   groundedRadius: 0.28
   groundLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   cinemachineCameraTarget: {fileID: 6796305601557293915}
   rotationSpeed: 1
   topClamp: 70
