@@ -427,7 +427,7 @@ MonoBehaviour:
   chargeSpeed: 3
   fovResetSpeed: 40
   throwCooldown: 1.5
-  chargeLowestDuration: 0
+  chargeLowestDuration: 0.5
   isCharging: 0
   chargeStartTime: 0
   currentThrowForce: 0
