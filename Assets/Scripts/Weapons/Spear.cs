@@ -85,6 +85,25 @@ public class Spear : MonoBehaviour, IPoolObject
 
         //Debug.Log("Spear collided with " + collision.gameObject.name);
     }
+    void OnTriggerEnter(Collider collider)
+    {
+
+        if (collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            // // Stick the spear into the enemy
+            // rb.isKinematic = true;
+            // transform.SetParent(collision.transform);
+            damageable.TakeDamage(10f);
+            Despawn();
+        }
+        else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
+        {
+            CreateDummyObject();
+            Despawn();
+        }
+
+        //Debug.Log("Spear collided with " + collider.gameObject.name);
+    }
 
     void Despawn()
     {
