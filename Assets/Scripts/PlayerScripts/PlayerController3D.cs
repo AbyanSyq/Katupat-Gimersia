@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Globalization;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -56,6 +57,15 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Jump & Gravity"), SerializeField, Range(0f, 1f)] private float airControlFactor = 0.5f; // 0 = no steering, 1 = full steering
     [FoldoutGroup("Jump & Gravity"), SerializeField, Range(0.1f, 20f)] private float airControlLerpSpeed = 8f; // responsiveness when blending stored velocity towards input
     private Vector3 storedAirVelocity = Vector3.zero;
+
+    [Header("Knockback")]
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private float knockbackForce = 15f; // horizontal force magnitude
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private float knockbackHeight = 10f; // vertical velocity magnitude
+    private bool isKnocked = false;
+    bool originalAirControl;
+    // landing/knockback tracking
+    private bool prevGrounded = true;
+    private bool knockbackInProgress = false;
     #endregion
 
     #region Ground Check
@@ -177,10 +187,15 @@ public class PlayerController3D : MonoBehaviour
         fallTimeoutDelta = fallTimeout;
         initialThrowCooldown = throwCooldown;
         throwCooldown = 0f;
+        originalAirControl = disableAirControl;
+        prevGrounded = grounded;
     }
 
     private void Update()
     {
+        // preserve previous grounded state for landing detection
+        prevGrounded = grounded;
+
         hasAnimator = TryGetComponent(out animator);
         
         JumpAndGravity();
@@ -189,6 +204,16 @@ public class PlayerController3D : MonoBehaviour
         HandleSpearCharge();
         HandleSpearVisibility();
         HandleSpearCooldown();
+
+        // If knockback was active, detect landing to end it (player was previously not grounded and now is)
+        if (knockbackInProgress && grounded && !prevGrounded)
+        {
+            knockbackInProgress = false;
+            isKnocked = false;
+            disableAirControl = originalAirControl;
+            storedAirVelocity = Vector3.zero;
+            Debug.Log("Knockback ended on landing");
+        }
     }
 
     private void LateUpdate()
@@ -398,7 +423,7 @@ public class PlayerController3D : MonoBehaviour
     #region Attack (Throw Spear)
     public void StartCharging()
     {
-        if (isCharging || throwCooldown > 0f) return;
+        if (isCharging || throwCooldown > 0f || isKnocked) return;
         isCharging = true;
         chargeStartTime = Time.time;
 
@@ -550,7 +575,53 @@ public class PlayerController3D : MonoBehaviour
 
     #endregion
     
+    #region Knockback
+    /// <summary>
+    /// Apply knockback to the player from a damage position.
+    /// Launches player away horizontally and upward with no air control.
+    /// </summary>
+    public void ApplyKnockback(Vector3 damagePosition)
+    {
+        isKnocked = true;
+        knockbackInProgress = true;
+
+        // Calculate direction away from damage source
+        Vector3 knockbackDir = (transform.position - damagePosition).normalized;
+        knockbackDir.y = 0f; // Flatten to horizontal
+
+        // if no horizontal direction, push backward
+        if (knockbackDir == Vector3.zero)
+        {
+            knockbackDir = -transform.forward;
+        }
+        knockbackDir = knockbackDir.normalized;
+
+        // Store horizontal knockback velocity
+        storedAirVelocity = knockbackDir * knockbackForce;
+
+        // Apply vertical knockback
+        verticalVelocity = knockbackHeight;
+
+        // Temp disable air control during knockback
+        originalAirControl = disableAirControl;
+        disableAirControl = true;
+
+        if (hasAnimator)
+        {
+            animator.SetBool(animParameterIDJump, true);
+        }
+
+        Debug.Log($"Player knocked back from {damagePosition}. isKnocked = true");
+
+        // Apply an immediate small movement so the player is moved off the ground this frame
+        // and the airborne logic takes effect on the next Update cycle.
+        controller.Move(storedAirVelocity * Time.deltaTime + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+    }
+
+    #endregion
+    
     #region Jump and Gravity
+
     private void JumpAndGravity()
     {
         if (grounded)
@@ -563,10 +634,13 @@ public class PlayerController3D : MonoBehaviour
                 animator.SetBool(animParameterIDFreeFall, false);
             }
 
-            // Clear stored air velocity when grounded so movement input resumes normally
-            storedAirVelocity = Vector3.zero;
+            // For normal landings (not knockback), clear stored horizontal velocity so movement input resumes normally.
+            if (!knockbackInProgress)
+            {
+                storedAirVelocity = Vector3.zero;
+            }
 
-            if (verticalVelocity < 0.0f)
+            if (verticalVelocity < 0.0f && !knockbackInProgress)
             {
                 verticalVelocity = -2f;
             }

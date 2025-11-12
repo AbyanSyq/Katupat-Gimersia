@@ -24483,7 +24483,7 @@ MonoBehaviour:
   damageRange: 2
   damageLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   damage: 10
   yOffset: 0.6
   RockVisual: {fileID: 6487827867167229100}

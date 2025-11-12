@@ -84,7 +84,7 @@ public class RockFromGround : MonoBehaviour, IPoolObject
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.TryGetComponent<IDamageable>(out var target))
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, transform.position);
         }
     }
 

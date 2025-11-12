@@ -29,7 +29,8 @@ public enum UIType
     PAUSEMENU,
     SETTINGS,
     ABOUT,
-    EXIT
+    EXIT,
+    GAMEOVER
 }
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {
