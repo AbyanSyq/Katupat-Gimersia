@@ -111,6 +111,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         inputActions.UI.Disable();
         inputActions.UI.Escape.performed -= ctx => OnEscape();
     }
+    void OnDestroy()
+    {
+        inputActions.UI.Disable();
+        inputActions.UI.Escape.performed -= ctx => OnEscape();
+    }
     public IEnumerator LateShowUI()
     {
         yield return null;
