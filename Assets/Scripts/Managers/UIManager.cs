@@ -91,8 +91,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         base.Awake();
         InitUI();
-        
-        inputActions = GameManager.Instance.playerInputAction;
+
+        inputActions = new PlayerInputAction();
     }
     void Start()
     {

@@ -20,7 +20,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private PlayerController3D playerController;
     private void Awake()
     {
-        _inputActions = GameManager.Instance.playerInputAction; 
+        _inputActions = new PlayerInputAction();
     }
 
     private void OnEnable()

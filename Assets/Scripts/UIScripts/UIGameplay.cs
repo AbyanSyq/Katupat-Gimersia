@@ -17,10 +17,6 @@ public class UIGameplay : UIBase
 
     public Image[] playerHealthImages = new Image[3];
 
-    public void PauseHandler()
-    {
-        UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
-    }
 
     void OnEnable()
     {

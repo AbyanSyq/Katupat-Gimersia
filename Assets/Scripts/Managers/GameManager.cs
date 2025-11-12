@@ -23,7 +23,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool isGamePaused = false;
     public SceneConfig[] sceneConfigs;
     public SceneConfig currentSceneConfig;
-    public PlayerInputAction playerInputAction { get; private set; }
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -74,12 +73,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-
-        playerInputAction = new PlayerInputAction();
-    }
-    void OnEnable()
-    {
-        playerInputAction.Enable();
     }
     public void StartGame()
     {
