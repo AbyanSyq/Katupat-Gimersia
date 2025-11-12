@@ -725,8 +725,8 @@ MonoBehaviour:
   damagebarFillRight: {fileID: 4467570930735893078}
   damagebarFillLeft: {fileID: 3786871768482820998}
   healthText: {fileID: 5815986369084464568}
-  comboText: {fileID: 0}
-  totalHitText: {fileID: 0}
+  comboText: {fileID: 1265066945169527242}
+  totalHitText: {fileID: 9037979959915744844}
   damageDelay: 0.7
   damageDuration: 0.5
   playerHealthImages:
