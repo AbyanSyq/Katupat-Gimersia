@@ -28,7 +28,8 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Movement
-    [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeed = 2.0f;
+    [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeed = 8.0f;
+    [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeedWhenCharge = 2.0f;
     [FoldoutGroup("Movement Settings"), SerializeField, Range(0.0f, 0.3f)] private float rotationSmoothTime = 0.12f;
     [FoldoutGroup("Movement Settings"), SerializeField] private float speedChangeRate = 10.0f;
 
@@ -282,8 +283,7 @@ public class PlayerController3D : MonoBehaviour
             return;
         }
 
-        // ✅ Always use moveSpeed, no sprint
-        float targetSpeed = moveSpeed;
+        float targetSpeed = isCharging ? moveSpeedWhenCharge : moveSpeed;
         if (input.move == Vector2.zero) targetSpeed = 0.0f;
         float groundedMultiplier = grounded ? 1f : 0.01f;
 

@@ -137,6 +137,7 @@ public class Enemy : MonoBehaviour
         foreach (var col in enemyColliders) col.isTrigger = false;
 
         Events.OnEnemyDied?.Publish();
+        this.enabled = false;
     }
 
     #endregion
@@ -169,8 +170,10 @@ public class Enemy : MonoBehaviour
 
     private void RotateTowardsPlayer()
     {
+        if (isDie) return;
         if (playerTarget == null) return;
         if (IsEnemyAttacking == true) return;
+        
 
         Vector3 direction = playerTarget.position - transform.position;
         direction.y = 0f;
