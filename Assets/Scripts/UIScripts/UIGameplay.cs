@@ -4,11 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-<<<<<<< Updated upstream
-using System.Reflection;
-=======
-
->>>>>>> Stashed changes
 public class UIGameplay : UIBase
 {
     [Header("References")]
