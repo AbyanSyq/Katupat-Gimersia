@@ -198,7 +198,7 @@ Material:
     - _DetailUV: 0
     - _DetailVertexColors: 0
     - _Diffuse: 1
-    - _DiffuseBrightness: 2.8
+    - _DiffuseBrightness: 0.4
     - _DiffuseContrast: 1
     - _DiffusePerPixel: 0
     - _DiffuseWrap: 0
@@ -325,11 +325,11 @@ Material:
     - _AnimeColor2: {r: 1.35, g: 1.35, b: 1.35, a: 1}
     - _AnimeColor3: {r: 2, g: 2, b: 2, a: 1}
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Color: {r: 0.81886786, g: 0.004635034, b: 0.004635034, a: 1}
+    - _Color: {r: 1, g: 0.8047408, b: 0, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Emissive: {r: 0.013705918, g: 0.026516816, b: 0.20754719, a: 0}
-    - _HeightColorsColor: {r: 0.4943396, g: 0.04010676, b: 0.04010676, a: 1}
+    - _Emissive: {r: 0.2679245, g: 0.116774626, b: 0.12004101, a: 0}
+    - _HeightColorsColor: {r: 0.6301887, g: 0.5082543, b: 0.008323214, a: 1}
     - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Layer3Color: {r: 1, g: 1, b: 1, a: 1}
