@@ -104,9 +104,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &8794934027351547185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,9 +192,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 3254541171622641368}
 --- !u!64 &6778705900492105840
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -301,9 +301,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &4720589202835977579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,9 +388,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &6459700956659148594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,9 +475,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &2481748860079140721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,9 +562,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &1745767158163040333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,9 +649,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &636789593275068445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,9 +736,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &1153755957388247178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,9 +1013,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &4351140164223438290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,9 +1100,9 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    ID: 1073741843
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
 --- !u!114 &8934200417947937672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,9 +1124,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 3819904793412821109}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint (1)
@@ -1176,6 +1188,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+--- !u!1 &2615606558160985395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+  m_PrefabInstance: {fileID: 667424120839024803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7190520080018137119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
@@ -1190,9 +1207,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 3819904793412821109}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
@@ -1272,9 +1301,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 3964065947451794280}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
@@ -1338,9 +1379,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 5556588469935449061}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
@@ -1404,9 +1457,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 6337296460296910736}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
@@ -1893,9 +1958,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 8933363964561130472}
     m_Modifications:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.ID
+      value: 1073741846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: healthComponent
       value: 
       objectReference: {fileID: 3848893665312160355}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+      propertyPath: Damage_Sound.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 2615606558160985395}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
