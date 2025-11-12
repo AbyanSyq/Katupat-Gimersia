@@ -198,7 +198,7 @@ public class PlayerController3D : MonoBehaviour
         prevGrounded = grounded;
 
         hasAnimator = TryGetComponent(out animator);
-        
+
         JumpAndGravity();
         GroundedCheck();
         Move();
@@ -435,6 +435,32 @@ public class PlayerController3D : MonoBehaviour
         chargeShakeCoroutine = StartCoroutine(CameraShakeDuringCharge());
     }
 
+    public void CancelThrow()
+    {
+        if (!isCharging || throwCooldown > 0f) return;
+
+        isCharging = false;
+
+        if (chargeShakeCoroutine != null)
+        {
+            StopCoroutine(chargeShakeCoroutine);
+            chargeShakeCoroutine = null;
+        }
+
+        animator.SetBool("IsChargingSpear", false);
+        animator.ResetTrigger("ThrowSpear");
+
+        currentThrowForce = 0f;
+        currentThrowForceNormalized = 0f;
+        animator.SetFloat(animParameterIDThrowForce, 0f);
+        Events.OnPlayerChargeForceChanged.Publish(0f);
+
+        cinemachineCameraComponent.Lens.FieldOfView = originalCameraFOV;
+
+        // Debug.Log("Throw canceled.");
+    }
+
+
     public void ReleaseThrow()
     {
         if (!isCharging || throwCooldown > 0f) return;
@@ -570,13 +596,14 @@ public class PlayerController3D : MonoBehaviour
             animator.SetBool("IsSpearVisible", false);
     }
 
-    void HandleSpearCooldown(){
+    void HandleSpearCooldown()
+    {
         throwCooldown -= Time.deltaTime;
         if (throwCooldown < 0f) isReloading = false;
     }
 
     #endregion
-    
+
     #region Knockback
     /// <summary>
     /// Apply knockback to the player from a damage position.
@@ -621,7 +648,7 @@ public class PlayerController3D : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Jump and Gravity
 
     private void JumpAndGravity()
