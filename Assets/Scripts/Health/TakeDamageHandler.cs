@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Ami.BroAudio;
 
 public class TakeDamageHandler : MonoBehaviour, IDamageable
 {
@@ -7,6 +8,8 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
     public float damageMultiplaier = 1f;
     public Renderer rendererComponent;
     public Color flashColor = Color.red;
+    [SerializeField] private SoundID Damage_Sound; 
+
     public virtual void TakeDamage(float amount, Vector3 dmgImpactPos)
     {
         if (healthComponent != null)
@@ -14,6 +17,8 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
             Debug.Log($"Taking Damage: {amount * damageMultiplaier}");
             healthComponent.ReduceHealth(amount * damageMultiplaier);
             Flash();
+            PlayDamageSound();
+            
         }
     }
     public void Flash()
@@ -24,5 +29,10 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
         rendererComponent.material.DOColor(flashColor, 0.05f)
                 .SetLoops(2, LoopType.Yoyo)
                 .SetEase(Ease.InOutQuad);
+    }
+        private void PlayDamageSound()
+    {
+        if (Damage_Sound.IsValid())
+            BroAudio.Play(Damage_Sound);
     }
 }

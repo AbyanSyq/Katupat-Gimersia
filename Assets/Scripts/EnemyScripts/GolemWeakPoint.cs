@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using Ami.BroAudio;
+
 
 public class GolemWeakPoint : TakeDamageHandler
 {
@@ -7,6 +9,8 @@ public class GolemWeakPoint : TakeDamageHandler
     [SerializeField] private GameObject modelToHideOnDeath;
     [SerializeField] private Collider colliderToDisableOnDeath;
     [SerializeField, ReadOnly] private bool isAlreadyTakeDamage = false;
+   
+
     public override void TakeDamage(float amount, Vector3 dmgImpactPos)
     {
         if (isAlreadyTakeDamage) return;

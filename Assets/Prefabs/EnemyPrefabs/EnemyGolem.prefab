@@ -103,6 +103,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &8794934027351547185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +191,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!64 &6778705900492105840
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -292,6 +300,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &4720589202835977579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +387,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &6459700956659148594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +474,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &2481748860079140721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +561,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &1745767158163040333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +648,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &636789593275068445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +735,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &1153755957388247178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,9 +886,25 @@ MonoBehaviour:
   enemyMaterial: {fileID: 0}
   enemyAnimator: {fileID: 0}
   isDie: 0
-  rockSlam:
+  Golem_Attack_Slam:
+    ID: 1073741838
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Attack_Sweep:
+    ID: 1073741840
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Attack_Grow:
+    ID: 1073741839
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Attack_Ultimate:
     ID: 0
     _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Roar:
+    ID: 1073741841
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
     <DebugObject>k__BackingField: {fileID: 5420691852208598869}
 --- !u!114 &3848893665312160355
 MonoBehaviour:
@@ -964,6 +1012,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &4351140164223438290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,6 +1099,10 @@ MonoBehaviour:
   damageMultiplaier: 0.1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!114 &8934200417947937672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,6 +1815,10 @@ MonoBehaviour:
   damageMultiplaier: 1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 0}
 --- !u!4 &2342842571685838566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -86793304703124760, guid: e4359f53bbbf61547a916d5331fc17d6, type: 3}
