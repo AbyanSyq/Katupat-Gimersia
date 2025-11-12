@@ -3,16 +3,13 @@ using UnityEngine.Events;
 
 public class PlayerHealth : Health, IDamageable
 {
-    private void OnDestroy()
-    {
-        if (onDeath != null)
-            onDeath.RemoveListener(OnPlayerDeath);
-    }
 
-    private void OnPlayerDeath()
+    [ContextMenu("Die Now")]
+    protected override void Die()
     {
-        Debug.Log("Player has died.");
-    }
+        base.Awake();
+        UIManager.Instance.ChangeUI(UIType.GAMEOVER);
+    }    
 
     public void TakeDamage(float dmg, Vector3 dmgPos)
     {

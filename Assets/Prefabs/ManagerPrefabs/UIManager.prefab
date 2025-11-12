@@ -192,3 +192,10 @@ MonoBehaviour:
     pauseGame: 1
     enablePlayerInput: 1
     cursorVisibility: 1
+  - name: GAMEOVER
+    type: 6
+    layer: 1
+    prefab: {fileID: 4509839754750153884, guid: 0f33f06406a5741458b2f64ff97ce59c, type: 3}
+    pauseGame: 1
+    enablePlayerInput: 0
+    cursorVisibility: 1
