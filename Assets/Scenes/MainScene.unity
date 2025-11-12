@@ -1152,34 +1152,6 @@ PrefabInstance:
       propertyPath: soundDataList.Array.data[2].soundData.<DebugObject>k__BackingField
       value: 
       objectReference: {fileID: 124177968}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].name
-      value: WIN
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].type
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].layer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].prefab
-      value: 
-      objectReference: {fileID: 4509839754750153884, guid: 27562c535813a9e4b8c596f736bba996, type: 3}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].pauseGame
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[7].cursorVisibility
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8671769049835794230, guid: 9fee089acd6c39240881fd440168c326, type: 3}
       propertyPath: m_Name
       value: Managers

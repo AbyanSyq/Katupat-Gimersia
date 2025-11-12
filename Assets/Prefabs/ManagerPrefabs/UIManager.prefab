@@ -216,7 +216,7 @@ MonoBehaviour:
   - name: WIN
     type: 7
     layer: 1
-    prefab: {fileID: 4509839754750153884, guid: 27562c535813a9e4b8c596f736bba996, type: 3}
+    prefab: {fileID: 7319782018791073589, guid: 27562c535813a9e4b8c596f736bba996, type: 3}
     pauseGame: 1
     enablePlayerInput: 0
     cursorVisibility: 1
