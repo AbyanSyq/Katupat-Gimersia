@@ -823,30 +823,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[0].initialUI
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[1].initialUI
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[0].scene.m_SceneName
-      value: MainMenuScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[1].scene.m_SceneName
-      value: MainScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[0].scene.m_SceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: c9b2e8b38c00ba94380cdde8cac8c74a, type: 3}
-    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
-      propertyPath: sceneConfigs.Array.data[1].scene.m_SceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: a7db86b8ba553054f8643b16650956d1, type: 3}
     - target: {fileID: 6095433965828435581, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

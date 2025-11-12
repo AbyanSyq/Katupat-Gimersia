@@ -77,10 +77,12 @@ public class Spear : MonoBehaviour, IPoolObject
             // rb.isKinematic = true;
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, collision.contacts[0].point);
+            Events.OnPlayerAttackHitted?.Publish();
             Despawn();
         }
         else if (((1 << collision.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
+            Events.OnPlayerAttackMissed.Publish();
             CreateDummyObject();
             Despawn();
         }
@@ -96,10 +98,12 @@ public class Spear : MonoBehaviour, IPoolObject
             // rb.isKinematic = true;
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, Vector3.zero);
+            Events.OnPlayerAttackHitted?.Publish();
             Despawn();
         }
         else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
+            Events.OnPlayerAttackMissed.Publish();
             CreateDummyObject();
             Despawn();
         }
