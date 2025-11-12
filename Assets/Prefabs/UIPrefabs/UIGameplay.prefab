@@ -663,6 +663,7 @@ GameObject:
   - component: {fileID: 1160553026720407461}
   - component: {fileID: 6416863346746538404}
   - component: {fileID: 844548820002510792}
+  - component: {fileID: 4604391056948122997}
   m_Layer: 5
   m_Name: UIGameplay
   m_TagString: Untagged
@@ -727,12 +728,35 @@ MonoBehaviour:
   healthText: {fileID: 5815986369084464568}
   comboText: {fileID: 9037979959915744844}
   totalHitText: {fileID: 1265066945169527242}
-  damageDelay: 0.7
-  damageDuration: 0.5
   playerHealthImages:
   - {fileID: 2283632562477203491}
   - {fileID: 5502467782947911091}
   - {fileID: 4047667313967072887}
+  anim: {fileID: 0}
+  damageDelay: 0.7
+  damageDuration: 0.5
+--- !u!95 &4604391056948122997
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213382748406323021}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3362359089437540720
 GameObject:
   m_ObjectHideFlags: 0

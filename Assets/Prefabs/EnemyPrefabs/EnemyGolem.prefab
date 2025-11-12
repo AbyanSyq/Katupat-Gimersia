@@ -840,7 +840,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 10
+  attackDamage: 1
   detectionStartPoint: {fileID: 3758689751291253972}
   attackRange: 10
   isEnemyInRangeAttack: 0
@@ -852,6 +852,8 @@ MonoBehaviour:
   rotationLerpSpeed: 10
   enemyMeshRenderer: {fileID: 0}
   enemyMaterial: {fileID: 0}
+  enemyAnimator: {fileID: 0}
+  isDie: 0
 --- !u!114 &3848893665312160355
 MonoBehaviour:
   m_ObjectHideFlags: 0

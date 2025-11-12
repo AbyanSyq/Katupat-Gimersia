@@ -9,43 +9,112 @@ using System.Diagnostics.Tracing;
 
 public class UIGameplay : UIBase
 {
+    [Header("References")]
     public Image healthbarFillRight, healthbarFillLeft, damagebarFillRight, damagebarFillLeft;
-
     public TextMeshProUGUI healthText, comboText, totalHitText;
-
-    public float damageDelay, damageDuration;
-
     public Image[] playerHealthImages = new Image[3];
+    [SerializeField] Animator anim;
 
+    [Header("Inputs")]
+        public float damageDelay, damageDuration;
 
     void OnEnable()
     {
-        Events.OnEnemyHealthChanged.Add(UpdateHealthBar);
-        Events.OnPlayerAtkHitCounted.Add(UpdateHitCounter);
-        Events.OnPlayerAtkHitComboCounted.Add(UpdateComboCounter);
-        // Events.OnPlayerAttackHitted.Add(UpdateCounter);
-        // Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
-        // Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
-        // Events.OnPlayerHealthChanged.Add(UpdatePlayerHealth);
+        Events.OnEnemyHealthChanged.Add(OnEnemyHealthChanged);
+        Events.OnPlayerAtkTotalHitCounted.Add(OnPlayerAtkTotalHitCounted);
+        Events.OnPlayerAtkComboCounted.Add(OnPlayerAtkComboCounted);
+        Events.OnPlayerAttackHitted.Add(OnPlayerAttackHitted);
+        Events.OnPlayerAttackMissed.Add(OnPlayerAttackMissed);
+        Events.OnPlayerHealthChanged.Add(OnPlayerHealthChanged);
     }
 
     void OnDisable()
     {
-        Events.OnEnemyHealthChanged.Remove(UpdateHealthBar);
-        Events.OnPlayerAtkHitCounted.Remove(UpdateHitCounter);
-        Events.OnPlayerAtkHitComboCounted.Remove(UpdateComboCounter);
-        // Events.OnPlayerAttackHittedCount.Remove(UpdateCounter);
-        // Events.OnPlayerAttackHittedCombo.Remove(UpdateBestCombo);
-        // Events.OnPlayerHealthChanged.Remove(UpdatePlayerHealth);
+        Events.OnEnemyHealthChanged.Remove(OnEnemyHealthChanged);
+        Events.OnPlayerAtkTotalHitCounted.Remove(OnPlayerAtkTotalHitCounted);
+        Events.OnPlayerAtkComboCounted.Remove(OnPlayerAtkComboCounted);
+        Events.OnPlayerAttackHitted.Remove(OnPlayerAttackHitted);
+        Events.OnPlayerAttackMissed.Remove(OnPlayerAttackMissed);
+        Events.OnPlayerHealthChanged.Remove(OnPlayerHealthChanged);
     }
 
-    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    #region OnEvents
+    public void OnEnemyHealthChanged(float currentHealth, float maxHealth)
     {
         float fillAmount = currentHealth / maxHealth;
         healthbarFillRight.fillAmount = fillAmount;
         healthbarFillLeft.fillAmount = fillAmount;
         healthText.text = $"{currentHealth}";
         StartCoroutine(UpdateDamageBarCoroutine(fillAmount, damageDelay, damageDuration));
+    }
+
+    public void OnPlayerAtkTotalHitCounted(int hitCount)
+    {
+        totalHitText.text = $"{hitCount}";
+    }
+
+    public void OnPlayerAtkComboCounted(int combo)
+    {
+        comboText.text = $"{combo}";
+    }
+
+    void OnPlayerAttackHitted()
+    {
+        anim.SetTrigger("Hit");
+    }
+
+    void OnPlayerAttackMissed()
+    {
+        anim.SetTrigger("Miss");
+    }
+
+    public void OnPlayerHealthChanged(float currentHealth, float maxHealth)
+    {
+        float healthPercentage = currentHealth / maxHealth;
+        int healthBars;
+        if (healthPercentage >= 0.8f) healthBars = 3;
+        else if (healthPercentage >= 0.4f) healthBars = 2;
+        else if (healthPercentage >= 0f) healthBars = 1;
+        else healthBars = 0;
+
+        switch (healthBars)
+        {
+            case 3:
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = true;
+                break;
+            case 2:
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = true;
+                playerHealthImages[2].enabled = false;
+                break;
+            case 1:
+                playerHealthImages[0].enabled = true;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = false;
+                break;
+            case 0:
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = false;
+                break;
+            default:
+                Debug.Log("Current health is not within range of 0-3");
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = false;
+                break;
+        }
+    }
+    #endregion
+
+    void Awake()
+    {
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     public IEnumerator UpdateDamageBarCoroutine(float targetFillAmount, float delay, float duration)
@@ -70,53 +139,22 @@ public class UIGameplay : UIBase
         damagebarFillLeft.fillAmount = targetFillAmount;
     }
 
-    public void UpdateHitCounter(int hitCount)
-    {
-        totalHitText.text = $"{hitCount}";
-    }
-
-    public void UpdateComboCounter(int bestCombo)
-    {
-        comboText.text = $"{bestCombo}";
-    }
-
-    public void UpdatePlayerHealth(float currentHealth, float maxHealth)
-    {
-        switch (currentHealth)
-        {
-            case 3f:
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = true;
-                break;
-            case 2f:
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = true;
-                playerHealthImages[2].enabled = false;
-                break;
-            case 1f:
-                playerHealthImages[0].enabled = true;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = false;
-                break;
-        }
-    }
 
     [ContextMenu("Test Health Change")]
     public void testHealthChange()
     {
-        UpdateHealthBar(500f, 1000f);
+        OnEnemyHealthChanged(500f, 1000f);
     }
 
     [ContextMenu("Test Health Change2")]
     public void testmaxHealthChange()
     {
-        UpdateHealthBar(1000f, 1000f);
+        OnEnemyHealthChanged(1000f, 1000f);
     }
 
     [ContextMenu("Test hit")]
     public void testHit()
     {
-        UpdateHitCounter(Random.Range(0, 100));
+        OnPlayerAtkTotalHitCounted(Random.Range(0, 100));
     }
 }

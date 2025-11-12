@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public static partial class Events
 {
     public static readonly GameEvent OnGameplayStarted = new GameEvent();
-    public static readonly GameEvent<int> OnPlayerAtkHitCounted = new GameEvent<int>();
-    public static readonly GameEvent<int> OnPlayerAtkHitComboCounted = new GameEvent<int>();
+    public static readonly GameEvent<int> OnPlayerAtkTotalHitCounted = new GameEvent<int>();
+    public static readonly GameEvent<int> OnPlayerAtkComboCounted = new GameEvent<int>();
 }
 public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 {
@@ -14,8 +14,8 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     [SerializeField, ReadOnly] private PlayerInputHandler playerInputHandler;
     public PlayerController3D PlayerController { get => playerController; }
     [Header("Player Log")]
-    [SerializeField] private int playerAtkHitCount;//when the spear hit the enemy
-    [SerializeField] private int playerAtkHitComboCount;//when the spear hit the enemy
+    [SerializeField] private int playerAtkTotalHitCount;//when the spear hit the enemy
+    [SerializeField] private int playerAtkComboCount;//when the spear hit the enemy
     [SerializeField] private int playerAtkMissedCount;//when the spear missed the enemy
 
     [Header("Game State")]
@@ -40,16 +40,18 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     }
     private void OnPlayerAttackHitted()
     {
-        playerAtkHitCount++;
-        playerAtkHitComboCount++;
+        playerAtkTotalHitCount++;
+        playerAtkComboCount++;
         
-        Events.OnPlayerAtkHitCounted.Publish(playerAtkHitCount);
-        Events.OnPlayerAtkHitComboCounted.Publish(playerAtkHitComboCount);
+        Events.OnPlayerAtkTotalHitCounted.Publish(playerAtkTotalHitCount);
+        Events.OnPlayerAtkComboCounted.Publish(playerAtkComboCount);
     }
     public void OnPlayerAttackMissed()
     {
         playerAtkMissedCount++;
-        playerAtkHitComboCount = 0;
+        playerAtkComboCount = 0;
+
+        Events.OnPlayerAtkComboCounted.Publish(playerAtkComboCount);
     }
     public void SetInput(bool enable)
     {
@@ -58,8 +60,8 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 
     
     #region Get Counters Functions
-    public int GetCurrentHitCount(){ return playerAtkHitCount; }
-    public int GetCurrentHitComboCount(){ return playerAtkHitComboCount; }
+    public int GetCurrentTotalHitCount(){ return playerAtkTotalHitCount; }
+    public int GetCurrentComboCount(){ return playerAtkComboCount; }
     public int GetCurrentMissCount() { return playerAtkMissedCount; }
     #endregion
 }
