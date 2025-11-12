@@ -1720,6 +1720,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126501641168907142, guid: 1d018fc1dc507c141846f7d0b33028ea, type: 3}
   m_PrefabInstance: {fileID: 1803110045}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1349995091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+  m_PrefabInstance: {fileID: 1915622089}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1380147789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2126501641168907142, guid: 1d018fc1dc507c141846f7d0b33028ea, type: 3}
@@ -2869,6 +2874,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Roar.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1349995091}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Grow.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1349995091}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Slam.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1349995091}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Sweep.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1349995091}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Ultimate.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1349995091}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_Name
       value: EnemyGolem

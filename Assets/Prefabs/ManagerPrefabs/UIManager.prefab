@@ -181,7 +181,7 @@ MonoBehaviour:
   - name: ABOUT
     type: 4
     layer: 1
-    prefab: {fileID: 7947608938932903442, guid: 2bcb6e5b49c18354f8bd90f5b522176f, type: 3}
+    prefab: {fileID: -821810499245645024, guid: ccbc20366ac6b9e4ca052b2024f2098b, type: 3}
     pauseGame: 1
     enablePlayerInput: 1
     cursorVisibility: 1

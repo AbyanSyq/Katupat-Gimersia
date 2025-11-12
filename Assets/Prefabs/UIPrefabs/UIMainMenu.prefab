@@ -193,7 +193,8 @@ GameObject:
   - component: {fileID: 7556587680500258827}
   - component: {fileID: 84740786272681487}
   - component: {fileID: 7674408749305810603}
-  - component: {fileID: 2953052148661455161}
+  - component: {fileID: 284754911005153706}
+  - component: {fileID: 7307978869147466185}
   m_Layer: 5
   m_Name: UIMainMenu
   m_TagString: Untagged
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIMainMenu
   animationController: {fileID: 7674408749305810603}
-  firstSelected: {fileID: 7480909531277140283}
+  firstSelected: {fileID: 0}
   isActive: 0
   startButton: {fileID: 7480909531277140283}
   optionsButton: {fileID: 5202274754887487656}
@@ -263,8 +264,20 @@ MonoBehaviour:
   playOnEnable: 0
   disableAfterHide: 1
   animations:
-  - {fileID: 2953052148661455161}
---- !u!114 &2953052148661455161
+  - {fileID: 7307978869147466185}
+--- !u!225 &284754911005153706
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003063247745309319}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7307978869147466185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,16 +286,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8003063247745309319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f62271fb949c8b4c811dc0d804b35c7, type: 3}
+  m_Script: {fileID: 11500000, guid: ac8f7e6f176d5fd44a0ed88c25354d29, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISlideAnimation
+  m_EditorClassIdentifier: 
   runWhilePaused: 1
   duration: 0.5
-  slideDirection: 0
-  offsetX: 1920
-  offsetY: 1080
-  ease: 9
-  originalPos: {x: 0, y: 0, z: 0}
+  ease: 6
 --- !u!1001 &715471302221492381
 PrefabInstance:
   m_ObjectHideFlags: 0
