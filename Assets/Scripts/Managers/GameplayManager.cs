@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public static partial class Events
 {
+    public static readonly GameEvent OnGameplayStarted = new GameEvent();
     public static readonly GameEvent<int> OnPlayerAtkHitCounted = new GameEvent<int>();
     public static readonly GameEvent<int> OnPlayerAtkHitComboCounted = new GameEvent<int>();
 }
