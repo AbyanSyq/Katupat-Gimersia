@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7602501475268490850}
   - component: {fileID: 8535025268208817302}
   - component: {fileID: 2982403512238351001}
+  - component: {fileID: 6442939774050174713}
   m_Layer: 5
   m_Name: UIGroup
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &6442939774050174713
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020369868467148307}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8770394655020971654
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,8 +159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff518860b9d0ff448a5a1c431609d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  currentUI: 0
-  previousUI: 0
+  currentUI: 1
+  previousUI: 1
+  canvasGroup: {fileID: 6442939774050174713}
   parent: {fileID: 8045828541637843849}
   uiEntries:
   - name: MAINMENU
@@ -196,6 +210,13 @@ MonoBehaviour:
     type: 6
     layer: 1
     prefab: {fileID: 4509839754750153884, guid: 0f33f06406a5741458b2f64ff97ce59c, type: 3}
+    pauseGame: 1
+    enablePlayerInput: 0
+    cursorVisibility: 1
+  - name: WIN
+    type: 7
+    layer: 1
+    prefab: {fileID: 4509839754750153884, guid: 27562c535813a9e4b8c596f736bba996, type: 3}
     pauseGame: 1
     enablePlayerInput: 0
     cursorVisibility: 1

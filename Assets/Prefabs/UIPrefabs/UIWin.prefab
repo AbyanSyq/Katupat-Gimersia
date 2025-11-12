@@ -316,7 +316,6 @@ GameObject:
   - component: {fileID: 4436422078396032766}
   - component: {fileID: 8990855251987661004}
   - component: {fileID: 7402649842604649968}
-  - component: {fileID: 4509839754750153884}
   - component: {fileID: 7319782018791073589}
   m_Layer: 5
   m_Name: UIWin
@@ -385,23 +384,6 @@ MonoBehaviour:
   duration: 0.5
   showTrigger: Show
   hideTrigger: Hide
---- !u!114 &4509839754750153884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5383999485585166021}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29f5d35f7fb1c674f979b30bf37bd464, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationController: {fileID: 0}
-  firstSelected: {fileID: 0}
-  isActive: 0
-  restartButton: {fileID: 0}
-  exitButton: {fileID: 8886537536639240198}
 --- !u!114 &7319782018791073589
 MonoBehaviour:
   m_ObjectHideFlags: 0

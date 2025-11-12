@@ -48,6 +48,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     public UIType PreviousUI { get => previousUI; }
 
     [Header("Atribut[Need To Set]")]
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Transform parent;
     [SerializeField] public List<UIEntry> uiEntries;
 #if UNITY_EDITOR
@@ -124,6 +125,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         yield return null;
 
         ShowUI(currentUI, true);
+        canvasGroup.alpha = 1f;
     }
     public void InitUI()
     {
@@ -182,9 +184,16 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         if (uiInstances.TryGetValue(currentUI, out var instance))
         {
             if (uiConfigs[toUI].layer == UILayer.MAIN)
+            {
+                Debug.Log("Hiding main menu");
                 instance.Hide();
+            }
             if (uiConfigs[toUI].layer == UILayer.POPUP && uiConfigs[currentUI].layer == UILayer.POPUP)
+            {
+                
+                Debug.Log("Hiding popup : " + instance.gameObject.name);
                 instance.Hide();
+            }
         }
     }
     public void OnEscape()
@@ -198,6 +207,15 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             ChangeUI(UIType.PAUSEMENU);
         }
         else if (currentUI == UIType.PAUSEMENU)
+        {
+            ChangeUI(UIType.GAMEPLAY);
+        }
+        else if (currentUI == UIType.SETTINGS && GameManager.Instance.CurrentSceneType == SceneType.MAINMENU)
+        {
+            ChangeUI(UIType.MAINMENU);
+
+        }
+        else if (currentUI == UIType.SETTINGS && GameManager.Instance.CurrentSceneType != SceneType.MAINMENU)
         {
             ChangeUI(UIType.GAMEPLAY);
         }

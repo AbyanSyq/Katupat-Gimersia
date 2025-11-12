@@ -145,25 +145,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
-      propertyPath: currentUI
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
-      propertyPath: previousUI
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
-      propertyPath: uiEntries.Array.data[1].enableInput
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8770394655020971654, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
       propertyPath: m_Name
       value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8770394655020971654, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

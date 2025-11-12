@@ -79,12 +79,15 @@ public class AnimationController : MonoBehaviour, IDisableHandler
 
     private IEnumerator HideCoroutine()
     {
+        Debug.Log("Hide Coroutine started :" + gameObject.name);
         foreach (var anim in animations)
             anim.TriggerHide();
-
         if (disableAfterHide)
         {
-            yield return new WaitForSeconds(Duration);
+            Debug.Log("Hide Coroutine isDisableAfterHide :" + gameObject.name);
+            // Use unscaled wait so hide completes even when Time.timeScale == 0 (game paused)
+            yield return new WaitForSecondsRealtime(Duration);
+            Debug.Log("Hide Coroutine finished :" + gameObject.name);
             gameObject.SetActive(false);
         }
 
