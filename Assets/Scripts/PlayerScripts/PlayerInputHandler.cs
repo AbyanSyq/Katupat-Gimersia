@@ -37,6 +37,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         _inputActions.Player.Throw.started += OnThrowStarted;
         _inputActions.Player.Throw.canceled += OnThrowReleased;
+
+        _inputActions.Player.CancelThrow.started += OnCancelThrow;
     }
 
     private void OnDisable()
@@ -50,8 +52,10 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Jump.started -= OnJump;
         _inputActions.Player.Jump.canceled -= OnJump;
 
-        _inputActions.Player.Throw.started += OnThrowStarted;
-        _inputActions.Player.Throw.canceled += OnThrowReleased;
+        _inputActions.Player.Throw.started -= OnThrowStarted;
+        _inputActions.Player.Throw.canceled -= OnThrowReleased;
+
+        _inputActions.Player.CancelThrow.started -= OnCancelThrow;
 
         _inputActions.Disable();
 
@@ -92,6 +96,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnThrowReleased(InputAction.CallbackContext context)
     {
         playerController.ReleaseThrow();
+    }
+    private void OnCancelThrow(InputAction.CallbackContext context)
+    {
+        playerController.CancelThrow();
     }
 
     private void OnRestartScene(InputAction.CallbackContext context)

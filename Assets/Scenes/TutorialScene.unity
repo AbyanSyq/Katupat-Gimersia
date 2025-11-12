@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5415329435382175984, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: impulseIntensity
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5469046006121982882, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.936996
