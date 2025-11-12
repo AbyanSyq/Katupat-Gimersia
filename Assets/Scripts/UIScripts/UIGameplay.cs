@@ -15,6 +15,8 @@ public class UIGameplay : UIBase
 
     public float damageDelay, damageDuration;
 
+    public Image[] playerHealthImages = new Image[3];
+
     public void PauseHandler()
     {
         UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
@@ -25,6 +27,7 @@ public class UIGameplay : UIBase
         Events.OnEnemyHealthChanged.Add(UpdateHealthBar);
         Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
         Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
+        Events.OnPlayerHealthChanged.Add(UpdatePlayerHealth);
     }
 
     void OnDisable()
@@ -75,6 +78,27 @@ public class UIGameplay : UIBase
         bestHitText.text = $"{bestCombo}";
     }
 
+    public void UpdatePlayerHealth(float currentHealth, float maxHealth)
+    {
+        switch (currentHealth)
+        {
+            case 3f:
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = true;
+                break;
+            case 2f:
+                playerHealthImages[0].enabled = false;
+                playerHealthImages[1].enabled = true;
+                playerHealthImages[2].enabled = false;
+                break;
+            case 1f:
+                playerHealthImages[0].enabled = true;
+                playerHealthImages[1].enabled = false;
+                playerHealthImages[2].enabled = false;
+                break;
+        }
+    }
 
     [ContextMenu("Test Health Change")]
     public void testHealthChange()
