@@ -13,6 +13,7 @@ public class UIGameplay : UIBase
     public Image healthbarFillRight, healthbarFillLeft, damagebarFillRight, damagebarFillLeft;
     public TextMeshProUGUI healthText, comboText, totalHitText;
     public Image[] playerHealthImages = new Image[3];
+    public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
 
     [Header("Inputs")]
