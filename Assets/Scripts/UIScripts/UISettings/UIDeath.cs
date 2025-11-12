@@ -21,7 +21,7 @@ public class UIDeath : UIBase
         });
         exitButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.ExitGame();
+            GameManager.Instance.ReturnToMainMenu();
         });
     }
 }
