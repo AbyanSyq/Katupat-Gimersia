@@ -233,7 +233,6 @@ MonoBehaviour:
   isFirstPerson: 0
   currentState: 0
   moveSpeed: 8
-  moveSpeedWhenCharge: 2
   rotationSmoothTime: 0.12
   speedChangeRate: 10
   speed: 0
@@ -519,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738a24c3cfd008b4db56bfa25e98ef96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 30
   currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
