@@ -168,7 +168,67 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: rockSlam.ID
+      value: 1073741838
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Roar.ID
+      value: 1073741841
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Grow.ID
+      value: 1073741839
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Slam.ID
+      value: 1073741838
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Sweep.ID
+      value: 1073741840
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: rockSlam._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Roar._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Grow._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Slam._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Sweep._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: rockSlam.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1767306045}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Roar.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1767306045}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Grow.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1767306045}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Slam.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1767306045}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Sweep.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1767306045}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Attack_Ultimate.<DebugObject>k__BackingField
       value: 
       objectReference: {fileID: 1767306045}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
