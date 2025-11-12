@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
         onHealthChanged.Invoke(currentHealth, maxHealth);
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         isDead = true;
         onDeath.Invoke();

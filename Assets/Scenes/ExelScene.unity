@@ -284,7 +284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1137894446139118189, guid: 4c0323604f666f34d87e890b4cfa9b62, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.3
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 1137894446139118189, guid: 4c0323604f666f34d87e890b4cfa9b62, type: 3}
       propertyPath: m_LocalRotation.w
@@ -392,6 +392,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2243707326328650425, guid: ec5bc5e325ff24543b8967603efd1424, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5116406888197680444, guid: ec5bc5e325ff24543b8967603efd1424, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -406,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366999544158466997, guid: ec5bc5e325ff24543b8967603efd1424, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.3
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 8366999544158466997, guid: ec5bc5e325ff24543b8967603efd1424, type: 3}
       propertyPath: m_LocalRotation.w
@@ -768,10 +772,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3366728964570015335, guid: 9fee089acd6c39240881fd440168c326, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288238269549489880, guid: 9fee089acd6c39240881fd440168c326, type: 3}
-      propertyPath: uiEntries.Array.data[2].enableInput
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8671769049835794230, guid: 9fee089acd6c39240881fd440168c326, type: 3}
