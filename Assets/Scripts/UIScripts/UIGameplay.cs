@@ -23,7 +23,7 @@ public class UIGameplay : UIBase
     void OnEnable()
     {
         Events.OnEnemyHealthChanged.Add(UpdateHealthBar);
-        Events.OnPlayerAttackHitted.Add(UpdateCounter);
+        // Events.OnPlayerAttackHitted.Add(UpdateCounter);
         // Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
         // Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
     }
