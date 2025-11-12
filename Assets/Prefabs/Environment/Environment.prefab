@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 4972937625875322815}
   - component: {fileID: 6039900855425804724}
   - component: {fileID: 2506301410994268984}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Tanah (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16274,7 +16274,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6503
+  m_VersionIndex: 6509
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
