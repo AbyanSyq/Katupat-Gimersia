@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 168534659}
   - component: {fileID: 168534658}
   - component: {fileID: 168534657}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Jeruji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,6 +1239,10 @@ PrefabInstance:
     - target: {fileID: 3181540967673968725, guid: f572112313bb56e4d8b62a40cc4e0dff, type: 3}
       propertyPath: m_VersionIndex
       value: 7938
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769080364968833282, guid: f572112313bb56e4d8b62a40cc4e0dff, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
