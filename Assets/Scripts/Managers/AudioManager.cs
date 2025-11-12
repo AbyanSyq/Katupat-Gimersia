@@ -16,8 +16,7 @@ public enum Sound
     BGMShift,
     BGMMainMenu,
     ButtonClick,
-    ButtonHover,
-    OilSlizzing
+    ButtonHover
 }
 
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
