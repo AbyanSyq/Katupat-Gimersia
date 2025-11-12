@@ -28,6 +28,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     private void Start()
     {
         DontDestroyOnLoad(this);
+        PlaySound(Sound.BGM).AsBGM();
     }
 
     // ------------------- 🔊 Helpers -------------------
@@ -74,6 +75,46 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         return PlaySoundWithFade(GetSoundID(sound), fadeDuration);
     }
 
+    
+
+    // ------------------- 🔊 UnPause -------------------
+    
+    public void UnPauseSound(SoundID soundID)
+    {
+        BroAudio.UnPause(soundID);
+    }
+    public void UnPauseSoundWithFade(SoundID soundID, float fadeDuration)
+    {
+        BroAudio.UnPause(soundID, fadeDuration);
+    }
+
+    public void UnPauseAllSounds()
+    {
+        foreach (Sound sound in Enum.GetValues(typeof(Sound)))
+        {
+            UnPauseSound(GetSoundID(sound));
+        }
+    }
+
+    // ------------------- 🔊 Pause -------------------
+    public void PauseSound(SoundID soundID)
+    {
+        BroAudio.Pause(soundID);
+    }
+    public void PauseSoundWithFade(SoundID soundID, float fadeDuration)
+    {
+        BroAudio.Pause(soundID, fadeDuration);
+    }
+
+    public void PauseAllSounds()
+    {
+        foreach (Sound sound in Enum.GetValues(typeof(Sound)))
+        {
+            PauseSound(GetSoundID(sound));
+        }
+    }
+    
+
     // ------------------- 🔊 Stop -------------------
     public void StopSound(SoundID soundID)
     {
@@ -94,6 +135,14 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         StopSoundWithFade(GetSoundID(sound), fadeDuration);
     }
+
+    // ------------------- 🔊 Set Volume -------------------
+    public void SetVolume(Sound sound, float amount)
+    {
+        BroAudio.SetVolume(GetSoundID(sound), amount);
+    }
+
+    // ------------------- 🔊 OnValidate -------------------
 
 #if UNITY_EDITOR
     private void OnValidate()

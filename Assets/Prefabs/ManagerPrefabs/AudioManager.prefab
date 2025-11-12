@@ -47,14 +47,14 @@ MonoBehaviour:
   soundDataList:
   - name: BGM
     soundData:
-      ID: 0
-      _sourceAsset: {fileID: 0}
-      <DebugObject>k__BackingField: {fileID: 0}
+      ID: 268435457
+      _sourceAsset: {fileID: 11400000, guid: 6ae8d9cb032bc1c40a8f7d4bd78c9337, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: BGMShift
     soundData:
       ID: 0
       _sourceAsset: {fileID: 0}
-      <DebugObject>k__BackingField: {fileID: 0}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: BGMMainMenu
     soundData:
       ID: 0
@@ -62,14 +62,14 @@ MonoBehaviour:
       <DebugObject>k__BackingField: {fileID: 0}
   - name: ButtonClick
     soundData:
-      ID: 0
-      _sourceAsset: {fileID: 0}
-      <DebugObject>k__BackingField: {fileID: 0}
+      ID: 1073741837
+      _sourceAsset: {fileID: 11400000, guid: 6ae8d9cb032bc1c40a8f7d4bd78c9337, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: ButtonHover
     soundData:
-      ID: 0
-      _sourceAsset: {fileID: 0}
-      <DebugObject>k__BackingField: {fileID: 0}
+      ID: 536870912
+      _sourceAsset: {fileID: 11400000, guid: 6ae8d9cb032bc1c40a8f7d4bd78c9337, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: OilSlizzing
     soundData:
       ID: 0

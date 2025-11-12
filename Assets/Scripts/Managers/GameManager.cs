@@ -125,12 +125,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         isGamePaused = pause;
         Time.timeScale = pause ? 0f : 1f;
+        AudioManager.Instance.SetVolume(Sound.BGM, pause ? 0.2f : 1f);
     }
 
-    public void ResumeGame(bool pause)
-    {
-        Time.timeScale = pause ? 0f : 1f;
-    }
+    // public void ResumeGame(bool pause)
+    // {
+    //     isGamePaused = !pause;
+    //     Time.timeScale = pause ? 0f : 1f;
+
+    // }
 
     public void ExitGame()
     {
