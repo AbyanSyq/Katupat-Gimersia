@@ -332,14 +332,20 @@ MonoBehaviour:
   animParameterFreeFallName: FreeFall
   animParameterMotionSpeedName: MotionSpeed
   animParameterThrowForceName: ThrowForce
+  animParameterInspectName: InspectSpear
+  animParameterCancelInspectName: CancelInspectSpear
   animParameterIDSpeed: 0
   animParameterIDJump: 0
   animParameterIDGrounded: 0
   animParameterIDFreeFall: 0
   animParameterIDMotionSpeed: 0
   animParameterIDThrowForce: 0
+  animParameterIDInspect: 0
+  animParameterIDCancelInspect: 0
   animator: {fileID: 0}
+  animatorSpear: {fileID: 5665444571752894566}
   hasAnimator: 0
+  isInspecting: 0
   spearPrefab: {fileID: 6315962959185064129, guid: a8fb949ec1774844a8d820618d2d94dd, type: 3}
   throwPoint: {fileID: 9010195202936670476}
   minThrowForce: 10
@@ -1179,6 +1185,10 @@ PrefabInstance:
       value: spear_inspect_fix
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: bef8b3af9374d0c4393b33935885d208, type: 2}
@@ -1194,6 +1204,11 @@ PrefabInstance:
 --- !u!4 &1765304430233831964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
+  m_PrefabInstance: {fileID: 2302789097451662839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5665444571752894566 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
   m_PrefabInstance: {fileID: 2302789097451662839}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5416102245385704485
@@ -1259,6 +1274,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 445d281dffe3b324ba7fcf27e5483472, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 445d281dffe3b324ba7fcf27e5483472, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3900315234542134327, guid: 445d281dffe3b324ba7fcf27e5483472, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System.Globalization;
+using System.Data.Common;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -121,6 +121,7 @@ public class PlayerController3D : MonoBehaviour
     {
         ONLAND,
         ONFOODSTEP,
+        ONINSPECTCOMPLETE
     }
 
     [Space]
@@ -130,6 +131,8 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField] private string animParameterFreeFallName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterMotionSpeedName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterThrowForceName;
+    [FoldoutGroup("Animation"), SerializeField] private string animParameterInspectName;
+    [FoldoutGroup("Animation"), SerializeField] private string animParameterCancelInspectName;
 
     [Space]
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDSpeed;
@@ -138,10 +141,15 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDFreeFall;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDMotionSpeed;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDThrowForce;
+    [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDInspect;
+    [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDCancelInspect;
+
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private Animator animator;
+    [FoldoutGroup("Animation"), SerializeField] private Animator animatorSpear;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private bool hasAnimator;
 
     [Header("Throwing Spear")]
+    [FoldoutGroup("Throw"), SerializeField] bool isInspecting = false;
     [FoldoutGroup("Throw"), SerializeField] GameObject spearPrefab;
     [FoldoutGroup("Throw"), SerializeField] Transform throwPoint;
     [Header("Throwing Spear")]
@@ -396,11 +404,24 @@ public class PlayerController3D : MonoBehaviour
         animParameterIDFreeFall = Animator.StringToHash(animParameterFreeFallName);
         animParameterIDMotionSpeed = Animator.StringToHash(animParameterMotionSpeedName);
         animParameterIDThrowForce = Animator.StringToHash(animParameterThrowForceName);
+        animParameterIDInspect = Animator.StringToHash(animParameterInspectName);
+        animParameterIDCancelInspect = Animator.StringToHash(animParameterCancelInspectName);
     }
 
     public void OnAnimationEventTrigger(AnimationEventTriggerType type)
     {
-        Debug.Log("Animation Event Triggered: " + type.ToString());
+        switch (type)
+        {
+            case AnimationEventTriggerType.ONFOODSTEP:
+                break;
+            case AnimationEventTriggerType.ONLAND:
+                break;
+            case AnimationEventTriggerType.ONINSPECTCOMPLETE:
+                isInspecting = false;
+                break;
+            default:
+                break;
+        }
     }
 
     public void PlayAnimation(string animationID)
@@ -424,6 +445,7 @@ public class PlayerController3D : MonoBehaviour
     #region Attack (Throw Spear)
     public void StartCharging()
     {
+        if (isInspecting) CancelInspectSpear();
         if (isCharging || throwCooldown > 0f || isKnocked) return;
         isCharging = true;
         chargeStartTime = Time.time;
@@ -433,6 +455,26 @@ public class PlayerController3D : MonoBehaviour
         if (chargeShakeCoroutine != null)
             StopCoroutine(chargeShakeCoroutine);
         chargeShakeCoroutine = StartCoroutine(CameraShakeDuringCharge());
+    }
+    public void InspectSpear()
+    {
+        if (isInspecting) return;
+        if (isCharging) return;
+        if (animatorSpear.gameObject.activeSelf == false) return;
+        isInspecting = true;
+        animator.ResetTrigger(animParameterIDCancelInspect);
+        animator.SetTrigger(animParameterIDInspect);
+        animatorSpear.SetTrigger("InspectSpear");
+
+        // CancelThrow();
+    }
+    
+    public void CancelInspectSpear()
+    {
+        isInspecting = false;
+        
+        animatorSpear.SetTrigger("CancelInspectSpear");
+        animator.SetTrigger(animParameterIDCancelInspect);
     }
 
     public void CancelThrow()

@@ -38,6 +38,8 @@ public class PlayerInputHandler : MonoBehaviour
         _inputActions.Player.Throw.started += OnThrowStarted;
         _inputActions.Player.Throw.canceled += OnThrowReleased;
 
+        _inputActions.Player.Interact.started += OnInspectSpear;
+
         _inputActions.Player.CancelThrow.started += OnCancelThrow;
     }
 
@@ -54,6 +56,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         _inputActions.Player.Throw.started -= OnThrowStarted;
         _inputActions.Player.Throw.canceled -= OnThrowReleased;
+
+        _inputActions.Player.Interact.started -= OnInspectSpear;
 
         _inputActions.Player.CancelThrow.started -= OnCancelThrow;
 
@@ -100,6 +104,11 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnCancelThrow(InputAction.CallbackContext context)
     {
         playerController.CancelThrow();
+    }
+
+    private void OnInspectSpear(InputAction.CallbackContext context)
+    {
+        playerController.InspectSpear();
     }
 
     private void OnRestartScene(InputAction.CallbackContext context)
