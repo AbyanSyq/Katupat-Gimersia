@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Reflection;
-using System.Diagnostics.Tracing;
-
 public class UIGameplay : UIBase
 {
     [Header("References")]
@@ -16,10 +14,15 @@ public class UIGameplay : UIBase
     public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
     [SerializeField] private Slider playerChargeForceSlider;
-    [SerializeField] private AnimationController bossInformationAnim;
+    [SerializeField] GameObject bossHealthBar;
 
     [Header("Inputs")]
     public float damageDelay, damageDuration;
+
+    [Header("Shake")]
+    [SerializeField] float bossHealthBarShakeDuration;
+    [SerializeField] float bossHealhBarShakeStrength;
+    [SerializeField, ReadOnly] float lastBossHealth;
 
     void OnEnable()
     {
@@ -52,8 +55,16 @@ public class UIGameplay : UIBase
         float fillAmount = currentHealth / maxHealth;
         healthbarFillRight.fillAmount = fillAmount;
         healthbarFillLeft.fillAmount = fillAmount;
+
         healthText.text = $"{currentHealth}";
+
         StartCoroutine(UpdateDamageBarCoroutine(fillAmount, damageDelay, damageDuration));
+    
+        if(lastBossHealth - currentHealth <= 5f)
+            bossHealthBar.transform.DOShakePosition(bossHealthBarShakeDuration, bossHealhBarShakeStrength * 0.5f);
+        else
+            bossHealthBar.transform.DOShakePosition(bossHealthBarShakeDuration, bossHealhBarShakeStrength);
+        lastBossHealth = currentHealth;
     }
 
     public void OnPlayerAtkTotalHitCounted(int hitCount)
@@ -125,7 +136,7 @@ public class UIGameplay : UIBase
     {
         comboText.text = "0";
         totalHitText.text = "0";
-
+        
         if (anim == null)
         {
             anim = GetComponent<Animator>();

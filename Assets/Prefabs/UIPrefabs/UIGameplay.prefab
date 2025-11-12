@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2266527031205723221}
   - component: {fileID: 1113942790178977433}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: ChargeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -981,11 +981,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 85f0449cc8a227648ad20a24b62a7394, type: 3}
   - {fileID: 21300000, guid: f16b69259893bc749acc8e88c5497b4a, type: 3}
   - {fileID: 21300000, guid: 30fca85ce878d9843bd4a0551b4f221e, type: 3}
-  anim: {fileID: 0}
+  anim: {fileID: 4604391056948122997}
   playerChargeForceSlider: {fileID: 1113942790178977433}
-  bossInformationAnim: {fileID: 3467712495035648896}
+  bossHealthBar: {fileID: 4723011642521614806}
   damageDelay: 0.7
   damageDuration: 0.5
+  bossHealthBarShakeDuration: 0.3
+  bossHealhBarShakeStrength: 30
+  lastBossHealth: 0
 --- !u!95 &4604391056948122997
 Animator:
   serializedVersion: 7
@@ -996,7 +999,7 @@ Animator:
   m_GameObject: {fileID: 3213382748406323021}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43407ff397bb6b142ac99c7dd220041c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2872,6 +2875,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 156.51196, y: -147.01321}
-  m_SizeDelta: {x: 195.8316, y: 139.634}
+  m_AnchoredPosition: {x: 218.74475, y: -211.41312}
+  m_SizeDelta: {x: 320.2972, y: 268.4338}
   m_Pivot: {x: 0.5, y: 0.5}
