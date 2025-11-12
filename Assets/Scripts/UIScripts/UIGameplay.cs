@@ -15,11 +15,8 @@ public class UIGameplay : UIBase
     public Image[] playerHealthImages = new Image[3];
     [SerializeField] Animator anim;
 
-<<<<<<< Updated upstream
-=======
     [Header("Inputs")]
-    public float damageDelay, damageDuration;
->>>>>>> Stashed changes
+        public float damageDelay, damageDuration;
 
     void OnEnable()
     {
