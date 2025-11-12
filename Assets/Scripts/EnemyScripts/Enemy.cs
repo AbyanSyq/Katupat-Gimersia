@@ -57,13 +57,21 @@ public class Enemy : MonoBehaviour
     public bool IsDie => isDie;
 
     [Header("Audio")]
-    [SerializeField] private SoundID rockSlam;
+    [SerializeField] private SoundID Golem_Attack_Slam;
+    [SerializeField] private SoundID Golem_Attack_Sweep;
+    [SerializeField] private SoundID Golem_Attack_Grow;
+    [SerializeField] private SoundID Golem_Attack_Ultimate;
+    [SerializeField] private SoundID Golem_Roar;
 
     public enum EnemyAnimationEventTriggerType
     {
         OnAttackGroundSlam,
         OnAttackRockAppear,
-        OnPlaySlamSound
+        OnPlaySlamSound,
+        OnPlaySweepSound,
+        OnPlayGrowSound,
+        OnPlayUltimateSound,
+        OnPlayRoarSound
     }
 
     #region Unity Methods
@@ -239,7 +247,19 @@ public class Enemy : MonoBehaviour
                     SpawnRocks();
                 break;
             case EnemyAnimationEventTriggerType.OnPlaySlamSound:
-                BroAudio.Play(rockSlam);
+                BroAudio.Play(Golem_Attack_Slam);
+                break;
+            case EnemyAnimationEventTriggerType.OnPlaySweepSound:
+                BroAudio.Play(Golem_Attack_Sweep);
+                break;
+            case EnemyAnimationEventTriggerType.OnPlayGrowSound:
+                BroAudio.Play(Golem_Attack_Grow);
+                break;
+            case EnemyAnimationEventTriggerType.OnPlayUltimateSound:
+                BroAudio.Play(Golem_Attack_Ultimate);
+                break;
+            case EnemyAnimationEventTriggerType.OnPlayRoarSound:
+                BroAudio.Play(Golem_Roar);
                 break;
         }
     }
