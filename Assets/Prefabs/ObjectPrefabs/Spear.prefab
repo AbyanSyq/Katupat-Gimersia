@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36651efca9b28db4280aa135530e468d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spearDamage: 20
   tailObject: {fileID: 1694511126095563873}
   spearModel: {fileID: 4681899524225778387}
   spearObstructorLayer:

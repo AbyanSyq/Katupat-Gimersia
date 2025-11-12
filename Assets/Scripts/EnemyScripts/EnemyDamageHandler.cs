@@ -9,6 +9,7 @@ public class EnemyDamageHandler : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        if(enemyComponent.IsDie) return;
         if(other.tag != "Player") return;
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null)

@@ -9,6 +9,7 @@ public static partial class Events
 {
     public static readonly GameEvent<float, float> OnEnemyHealthChanged = new GameEvent<float, float>();
     public static readonly GameEvent<float> OnEnemyTakeDamaged = new GameEvent<float>();
+    public static readonly GameEvent OnEnemyDied = new GameEvent();
 }
 
 [RequireComponent(typeof(EnemyHealth))]
@@ -49,6 +50,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Renderer enemyMeshRenderer;
     [SerializeField, ReadOnly] private Material enemyMaterial;
 
+    [Header("Animation ")]
+    [SerializeField, ReadOnly] private Animator enemyAnimator;
+    [SerializeField, ReadOnly] private bool isDie;
+    public bool IsDie => isDie;
+
     public enum EnemyAnimationEventTriggerType
     {
         OnAttackGroundSlam,
@@ -64,6 +70,8 @@ public class Enemy : MonoBehaviour
 
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
         enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
+
+        enemyAnimator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -110,28 +118,25 @@ public class Enemy : MonoBehaviour
     {
         Events.OnEnemyHealthChanged?.Publish(currentHealth, maxHealth);
         Events.OnEnemyTakeDamaged?.Publish(currentHealth);
-
-        if (enemyMaterial == null) return;
-
-        Flash(Color.red);
     }
-
-    private void Flash(Color color)
-    {
-        enemyMaterial.DOKill(true); 
-        enemyMaterial.color = Color.white;
-
-        enemyMaterial.DOColor(color, 0.05f)
-            .SetLoops(2, LoopType.Yoyo)
-            .SetEase(Ease.InOutQuad).OnComplete(() =>
-            {
-                enemyMaterial.color = Color.white;
-            });
-    }
-
     private void Die()
     {
-        Debug.Log("Enemy Died");
+        if (isDie) return;
+        isDie = true;
+
+        enemyAnimator.SetTrigger("Die");
+        
+        if (enemyBehaviorGraphAgent != null)
+        {
+            enemyBehaviorGraphAgent.enabled = false;
+        }
+
+        EnemyDamageHandler[] enemyDamageHandlers = GetComponentsInChildren<EnemyDamageHandler>();
+        Collider[] enemyColliders = GetComponentsInChildren<Collider>();
+        foreach (var handler in enemyDamageHandlers) handler.enabled = false;
+        foreach (var col in enemyColliders) col.isTrigger = false;
+
+        Events.OnEnemyDied?.Publish();
     }
 
     #endregion
