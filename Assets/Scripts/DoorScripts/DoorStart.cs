@@ -1,34 +1,27 @@
 using DG.Tweening;
 using UnityEngine;
 
-
 public class DoorStart : MonoBehaviour
 {
+    [Header("Door Settings")]
+    [SerializeField] private LayerMask playerLayer;
 
-    [SerializeField] private Vector3 openPosition;
-    [SerializeField] private Vector3 closedPosition;
-    [SerializeField] private float openSpeed = 2f;
-    [SerializeField] private Ease easeType = Ease.InOutSine;
-    void Awake()
-    {
-        transform.localPosition = closedPosition;
-    }
+    private bool isOpened = false;
 
-    void OnEnable()
+    private void OnCollisionEnter(Collision collision)
     {
-        Events.OnEnemyDied.Add(OnDoorOpen);
-    }
+        if (((1 << collision.gameObject.layer) & playerLayer) != 0)
+        {
+            GameManager.Instance.StartGame();
 
-    void OnDisable()
-    {
-        Events.OnEnemyDied.Remove(OnDoorOpen);
+        }
     }
-    private void OnDoorOpen()
+    private void OnTriggerEnter(Collider other)
     {
-        transform.DOLocalMove(openPosition, openSpeed).SetEase(easeType);
-    }
-    private void OnDoorClose()
-    {
-        transform.DOLocalMove(closedPosition, openSpeed).SetEase(easeType);
+        if (((1 << other.gameObject.layer) & playerLayer) != 0)
+        {
+            GameManager.Instance.StartGame();
+
+        }
     }
 }

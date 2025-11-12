@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768436bc38130be429401c271df8e9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: 0
   sceneConfigs:
   - name: MAINMENU
     sceneType: 0
@@ -58,6 +59,13 @@ MonoBehaviour:
     scene:
       m_SceneAsset: {fileID: 102900000, guid: a7db86b8ba553054f8643b16650956d1, type: 3}
       m_SceneName: MainScene
+    transitionEffect: 0
+  - name: TUTORIAL
+    sceneType: 2
+    initialUI: 1
+    scene:
+      m_SceneAsset: {fileID: 102900000, guid: 7163c555d5a850147b54ca53f713b796, type: 3}
+      m_SceneName: TutorialScene
     transitionEffect: 0
   currentSceneConfig:
     name: 

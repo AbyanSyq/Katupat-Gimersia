@@ -10,7 +10,7 @@ public class DoorWin : MonoBehaviour
     [SerializeField] private Ease easeType = Ease.InOutSine;
     void Awake()
     {
-        transform.localPosition = closedPosition;
+        closedPosition = transform.localPosition;
     }
 
     void OnEnable()

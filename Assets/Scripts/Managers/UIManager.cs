@@ -188,6 +188,10 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
     public void OnEscape()
     {
+        if (currentUI == UIType.GAMEOVER)
+        {
+            return;
+        }
         if (currentUI == UIType.GAMEPLAY)
         {
             ChangeUI(UIType.PAUSEMENU);

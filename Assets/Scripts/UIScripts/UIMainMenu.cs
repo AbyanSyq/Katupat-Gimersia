@@ -17,7 +17,7 @@ public class UIMainMenu : UIBase
     {
         startButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.StartGame();
+            GameManager.Instance.StartTutorial();
         });
         optionsButton.onClick.AddListener(() =>
         {

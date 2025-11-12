@@ -29,7 +29,7 @@ public class EnemyHealth : Health
     }
     public override void ReduceHealth(float amount)
     {
-        base.ReduceHealth(amount + (amount * GameplayManager.Instance.GetCurrentComboCount()));
+        base.ReduceHealth(amount );
 
 
     }

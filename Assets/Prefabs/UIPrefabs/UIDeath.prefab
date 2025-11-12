@@ -536,6 +536,8 @@ MonoBehaviour:
   animationController: {fileID: 0}
   firstSelected: {fileID: 0}
   isActive: 0
+  restartButton: {fileID: 3755170450504733535}
+  exitButton: {fileID: 8886537536639240198}
 --- !u!1 &5396110263678862401
 GameObject:
   m_ObjectHideFlags: 0
