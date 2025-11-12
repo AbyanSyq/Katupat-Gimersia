@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         rockPool = Pool.Create(rockFromGroundPrefab, rockTotalSpawn).NonLazy();
+        Events.OnEnemyHealthChanged?.Publish(healthComponent.CurrentHealth, healthComponent.MaxHealth);
     }
 
     private void OnEnable()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -119,8 +120,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (configToLoad.HasValue)
         {
             currentSceneConfig = configToLoad.Value;
-            SceneManager.LoadScene(currentSceneConfig.scene.SceneName);
+            StartCoroutine(LoadScene(currentSceneConfig));
         }
+    }
+    public IEnumerator LoadScene(SceneConfig sceneConfigy)
+    {
+        FindAnyObjectByType<LaunchPanel>()?.ShowLaunchPanel();
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene(currentSceneConfig.scene.SceneName);
     }
 
     // public void LoadScene(SceneType sceneType)

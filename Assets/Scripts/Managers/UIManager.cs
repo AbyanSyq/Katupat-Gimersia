@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using System.Linq;
+using DG.Tweening;
 
 public static partial class Events
 {
@@ -125,7 +126,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         yield return null;
 
         ShowUI(currentUI, true);
-        canvasGroup.alpha = 1f;
+        yield return new WaitForEndOfFrame();
+        canvasGroup.DOFade(1f, 0.2f);
     }
     public void InitUI()
     {

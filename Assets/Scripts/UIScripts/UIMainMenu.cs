@@ -30,7 +30,7 @@ public class UIMainMenu : UIBase
         });
         exitButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.ExitGame();
+            UIManager.Instance.ChangeUI(UIType.EXIT);
         });
     }
 }
