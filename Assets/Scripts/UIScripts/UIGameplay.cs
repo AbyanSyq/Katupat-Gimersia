@@ -13,6 +13,7 @@ public class UIGameplay : UIBase
     public Image[] playerHealthImages = new Image[3];
     public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
+    [SerializeField] AnimationController bossInformationAnim;
     [SerializeField] private Slider playerChargeForceSlider;
     [SerializeField] GameObject bossHealthBar;
 

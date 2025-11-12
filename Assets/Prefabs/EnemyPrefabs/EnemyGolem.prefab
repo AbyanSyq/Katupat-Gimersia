@@ -854,6 +854,10 @@ MonoBehaviour:
   enemyMaterial: {fileID: 0}
   enemyAnimator: {fileID: 0}
   isDie: 0
+  rockSlam:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
 --- !u!114 &3848893665312160355
 MonoBehaviour:
   m_ObjectHideFlags: 0
