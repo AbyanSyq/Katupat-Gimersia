@@ -632,7 +632,6 @@ public class PlayerController3D : MonoBehaviour
         verticalVelocity = knockbackHeight;
 
         // Temp disable air control during knockback
-        originalAirControl = disableAirControl;
         disableAirControl = true;
 
         if (hasAnimator)
