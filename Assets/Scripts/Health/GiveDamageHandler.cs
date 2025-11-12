@@ -10,7 +10,7 @@ public class GiveDamageHandler : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(damageAmount, collision.contacts[0].point);
+            damageable.TakeDamage(damageAmount, collision.transform.position);
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -18,7 +18,7 @@ public class GiveDamageHandler : MonoBehaviour
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(damageAmount, other.ClosestPoint(transform.position));
+            damageable.TakeDamage(damageAmount, other.transform.position);
         }
     }
 }

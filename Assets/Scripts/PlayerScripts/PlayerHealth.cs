@@ -3,6 +3,14 @@ using UnityEngine.Events;
 
 public class PlayerHealth : Health, IDamageable
 {
+    [Header("Health Change Cooldown")]
+    [SerializeField] float reduceHealthCooldown;
+    [SerializeField, ReadOnly] float lastHitTime;
+
+    void Start()
+    {
+        lastHitTime = 0f;
+    }
 
     [ContextMenu("Die Now")]
     protected override void Die()
@@ -13,7 +21,8 @@ public class PlayerHealth : Health, IDamageable
 
     public void TakeDamage(float dmg, Vector3 dmgPos)
     {
-        ReduceHealth(dmg);
+        if (Time.time - lastHitTime > reduceHealthCooldown)
+            ReduceHealth(dmg);
 
         Events.OnPlayerHealthChanged.Publish(CurrentHealth, MaxHealth);
 

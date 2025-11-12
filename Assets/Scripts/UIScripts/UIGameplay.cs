@@ -17,7 +17,7 @@ public class UIGameplay : UIBase
     [SerializeField] Animator anim;
 
     [Header("Inputs")]
-        public float damageDelay, damageDuration;
+    public float damageDelay, damageDuration;
 
     void OnEnable()
     {
@@ -112,6 +112,9 @@ public class UIGameplay : UIBase
 
     void Awake()
     {
+        comboText.text = "0";
+        totalHitText.text = "0";
+
         if (anim == null)
         {
             anim = GetComponent<Animator>();
