@@ -11,7 +11,7 @@ public class UIGameplay : UIBase
 {
     public Image healthbarFillRight, healthbarFillLeft, damagebarFillRight, damagebarFillLeft;
 
-    public TextMeshProUGUI healthText, bestHitText, hitText;
+    public TextMeshProUGUI healthText, comboText, totalHitText;
 
     public float damageDelay, damageDuration;
 
@@ -25,6 +25,8 @@ public class UIGameplay : UIBase
     void OnEnable()
     {
         Events.OnEnemyHealthChanged.Add(UpdateHealthBar);
+        Events.OnPlayerAtkHitCounted.Add(UpdateHitCounter);
+        Events.OnPlayerAtkHitComboCounted.Add(UpdateComboCounter);
         // Events.OnPlayerAttackHitted.Add(UpdateCounter);
         // Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
         // Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
@@ -34,6 +36,8 @@ public class UIGameplay : UIBase
     void OnDisable()
     {
         Events.OnEnemyHealthChanged.Remove(UpdateHealthBar);
+        Events.OnPlayerAtkHitCounted.Remove(UpdateHitCounter);
+        Events.OnPlayerAtkHitComboCounted.Remove(UpdateComboCounter);
         // Events.OnPlayerAttackHittedCount.Remove(UpdateCounter);
         // Events.OnPlayerAttackHittedCombo.Remove(UpdateBestCombo);
         // Events.OnPlayerHealthChanged.Remove(UpdatePlayerHealth);
@@ -70,14 +74,14 @@ public class UIGameplay : UIBase
         damagebarFillLeft.fillAmount = targetFillAmount;
     }
 
-    public void UpdateCounter(int hitCount)
+    public void UpdateHitCounter(int hitCount)
     {
-        hitText.text = $"{hitCount}";
+        totalHitText.text = $"{hitCount}";
     }
 
-    public void UpdateBestCombo(int bestCombo)
+    public void UpdateComboCounter(int bestCombo)
     {
-        bestHitText.text = $"{bestCombo}";
+        comboText.text = $"{bestCombo}";
     }
 
     public void UpdatePlayerHealth(float currentHealth, float maxHealth)
@@ -117,6 +121,6 @@ public class UIGameplay : UIBase
     [ContextMenu("Test hit")]
     public void testHit()
     {
-        UpdateCounter(Random.Range(0, 100));
+        UpdateHitCounter(Random.Range(0, 100));
     }
 }

@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 6409142431037278642}
   - component: {fileID: 9037979959915744844}
   m_Layer: 0
-  m_Name: Hit
+  m_Name: HitCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,8 +725,8 @@ MonoBehaviour:
   damagebarFillRight: {fileID: 4467570930735893078}
   damagebarFillLeft: {fileID: 3786871768482820998}
   healthText: {fileID: 5815986369084464568}
-  bestHitText: {fileID: 1265066945169527242}
-  hitText: {fileID: 9037979959915744844}
+  comboText: {fileID: 0}
+  totalHitText: {fileID: 0}
   damageDelay: 0.7
   damageDuration: 0.5
   playerHealthImages:
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 8083235695431241465}
   - component: {fileID: 1265066945169527242}
   m_Layer: 5
-  m_Name: MaxCombo
+  m_Name: ComboCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
