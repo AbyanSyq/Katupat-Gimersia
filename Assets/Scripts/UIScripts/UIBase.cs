@@ -10,7 +10,10 @@ public class UIBase : MonoBehaviour
 
     void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(firstSelected.gameObject);
+        if(firstSelected != null)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSelected.gameObject);
+        }
     }
     
     public virtual void Show()
