@@ -15,6 +15,7 @@ public class UIGameplay : UIBase
     public Image[] playerHealthImages = new Image[3];
     public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
+    [SerializeField] private Slider playerChargeForceSlider;
 
     [Header("Inputs")]
     public float damageDelay, damageDuration;
@@ -27,6 +28,7 @@ public class UIGameplay : UIBase
         Events.OnPlayerAttackHitted.Add(OnPlayerAttackHitted);
         Events.OnPlayerAttackMissed.Add(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Add(OnPlayerHealthChanged);
+        Events.OnPlayerChargeForceChanged.Add(OnPlayerChargeForceChanged);
     }
 
     void OnDisable()
@@ -37,6 +39,7 @@ public class UIGameplay : UIBase
         Events.OnPlayerAttackHitted.Remove(OnPlayerAttackHitted);
         Events.OnPlayerAttackMissed.Remove(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Remove(OnPlayerHealthChanged);
+        Events.OnPlayerChargeForceChanged.Remove(OnPlayerChargeForceChanged);
     }
 
     #region OnEvents
@@ -67,6 +70,10 @@ public class UIGameplay : UIBase
     void OnPlayerAttackMissed()
     {
         anim.SetTrigger("Miss");
+    }
+    void OnPlayerChargeForceChanged(float normalizedCharge)
+    {
+        playerChargeForceSlider.value = normalizedCharge;
     }
 
     public void OnPlayerHealthChanged(float currentHealth, float maxHealth)

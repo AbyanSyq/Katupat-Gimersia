@@ -494,6 +494,7 @@ public class PlayerController3D : MonoBehaviour
         }
 
         currentThrowForceNormalized = Mathf.InverseLerp(minThrowForce, maxThrowForce, currentThrowForce);
+        Events.OnPlayerChargeForceChanged.Publish(currentThrowForceNormalized);
         animator.SetFloat(animParameterIDThrowForce, currentThrowForceNormalized);
     }
 
