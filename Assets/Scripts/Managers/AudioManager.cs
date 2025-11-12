@@ -26,7 +26,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
         PlaySound(Sound.BGM).AsBGM();
     }
 

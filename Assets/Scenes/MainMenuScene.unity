@@ -771,6 +771,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 277071908784109911, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+      propertyPath: soundDataList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 277071908784109911, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+      propertyPath: soundDataList.Array.data[0].soundData.ID
+      value: 268435458
+      objectReference: {fileID: 0}
+    - target: {fileID: 277071908784109911, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+      propertyPath: soundDataList.Array.data[5].soundData.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 541161117}
     - target: {fileID: 5993980722535095591, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -820,6 +832,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+--- !u!1 &541161117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5993980722535095591, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+  m_PrefabInstance: {fileID: 541161116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &635408708
 Mesh:
   m_ObjectHideFlags: 0
@@ -14399,6 +14416,7 @@ MonoBehaviour:
   openPosition: {x: -22.24, y: 7.97, z: -0.08}
   closedPosition: {x: 0, y: 0, z: 0}
   openSpeed: 2
+  openDelay: 3
   easeType: 4
 --- !u!23 &7396644097605756150
 MeshRenderer:
