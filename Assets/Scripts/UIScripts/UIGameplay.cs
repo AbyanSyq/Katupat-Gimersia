@@ -4,12 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+<<<<<<< Updated upstream
 using System.Reflection;
+=======
+
+>>>>>>> Stashed changes
 public class UIGameplay : UIBase
 {
     [Header("References")]
     public Image healthbarFillRight, healthbarFillLeft, damagebarFillRight, damagebarFillLeft;
     public TextMeshProUGUI healthText, comboText, totalHitText;
+    public TMP_Text hitInfoText;
     public Image[] playerHealthImages = new Image[3];
     public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
@@ -35,8 +40,7 @@ public class UIGameplay : UIBase
         Events.OnPlayerHealthChanged.Add(OnPlayerHealthChanged);
         Events.OnPlayerChargeForceChanged.Add(OnPlayerChargeForceChanged);
 
-
-        if (GameManager.Instance.CurrentSceneType == SceneType.STAGE1) bossInformationAnim.Show();
+        StartCoroutine(ShowBossInformationCoroutine());
     }
 
     void OnDisable()
@@ -48,6 +52,7 @@ public class UIGameplay : UIBase
         Events.OnPlayerAttackMissed.Remove(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Remove(OnPlayerHealthChanged);
         Events.OnPlayerChargeForceChanged.Remove(OnPlayerChargeForceChanged);
+
     }
 
     #region OnEvents
@@ -67,6 +72,11 @@ public class UIGameplay : UIBase
             bossHealthBar.transform.DOShakePosition(bossHealthBarShakeDuration, bossHealhBarShakeStrength);
         lastBossHealth = currentHealth;
     }
+    public IEnumerator ShowBossInformationCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (GameManager.Instance.CurrentSceneType == SceneType.STAGE1) bossInformationAnim.Show();
+    }
 
     public void OnPlayerAtkTotalHitCounted(int hitCount)
     {
@@ -81,16 +91,35 @@ public class UIGameplay : UIBase
     void OnPlayerAttackHitted()
     {
         anim.SetTrigger("Hit");
+
+        hitInfoText.transform.DOKill();
+        hitInfoText.color = Color.white;
+        hitInfoText.text = "Hit!";
+        hitInfoText.gameObject.SetActive(true);
+        hitInfoText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 0.5f, 10, 1f).OnComplete(() =>
+        {
+            hitInfoText.gameObject.SetActive(false);
+        });
     }
 
     void OnPlayerAttackMissed()
     {
         anim.SetTrigger("Miss");
+
+        hitInfoText.transform.DOKill();
+        hitInfoText.color = Color.red;
+        hitInfoText.text = "Miss!";
+        hitInfoText.gameObject.SetActive(true);
+        hitInfoText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 0.5f, 10, 1f).OnComplete(() =>
+        {
+            hitInfoText.gameObject.SetActive(false);
+        });
     }
     void OnPlayerChargeForceChanged(float normalizedCharge)
     {
         playerChargeForceSlider.value = normalizedCharge;
     }
+
 
     public void OnPlayerHealthChanged(float currentHealth, float maxHealth)
     {
