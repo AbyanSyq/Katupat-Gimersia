@@ -93,7 +93,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         InitUI();
         
         inputActions = GameManager.Instance.playerInputAction;
-        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {

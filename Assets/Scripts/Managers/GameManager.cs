@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum SceneType
 {
@@ -19,6 +20,7 @@ public struct SceneConfig
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    public bool isGamePaused = false;
     public SceneConfig[] sceneConfigs;
     public SceneConfig currentSceneConfig;
     public PlayerInputAction playerInputAction { get; private set; }
@@ -81,7 +83,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     public void StartGame()
     {
-        LoadScene(SceneType.STAGE1);
+        SceneManager.LoadScene("MainScene");
+    }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    public void RestartGame()
+    {
+        LoadScene(currentSceneConfig.sceneType);
     }
 
     public void LoadScene(SceneType sceneType)
@@ -103,7 +113,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 currentSceneConfig.scene.SceneName,
                 currentSceneConfig.transitionEffect
             );
-            UIManager.Instance.ChangeUI(currentSceneConfig.initialUI);
         }
         else
         {
@@ -114,6 +123,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void PauseGame(bool pause)
     {
+        isGamePaused = pause;
         Time.timeScale = pause ? 0f : 1f;
     }
 

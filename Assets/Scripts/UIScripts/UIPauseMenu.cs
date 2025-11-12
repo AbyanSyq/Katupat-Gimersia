@@ -27,7 +27,7 @@ public class UIPauseMenu : UIBase
         buttonMainMenu.onClick.AddListener(() =>
         {
             print("clicked main menu");
-            UIManager.Instance.ChangeUI(UIType.MAINMENU);
+            GameManager.Instance.ReturnToMainMenu();
         });
     }
     public void CloseButton()
