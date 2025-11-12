@@ -7,7 +7,7 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
     public float damageMultiplaier = 1f;
     public Renderer rendererComponent;
     public Color flashColor = Color.red;
-    public void TakeDamage(float amount, Vector3 dmgImpactPos)
+    public virtual void TakeDamage(float amount, Vector3 dmgImpactPos)
     {
         if (healthComponent != null)
         {
