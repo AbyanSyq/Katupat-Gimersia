@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public enum SceneType
 {
     MAINMENU,
-    STAGE1
+    STAGE1,
+    TUTORIAL
 }
 
 [Serializable]
@@ -74,19 +75,35 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
+
+    void Start()
+    {
+        foreach (var config in sceneConfigs)//set current scene config at start
+        {
+            if (config.sceneType == currentSceneConfig.sceneType)
+            {
+                currentSceneConfig = config;
+                break;
+            }
+        }
+
+    }
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene");
+        LoadScene(SceneType.STAGE1);
+    }
+    public void StartTutorial()
+    {
+        LoadScene(SceneType.TUTORIAL);
     }
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        LoadScene(SceneType.MAINMENU);
     }
     public void RestartGame()
     {
         LoadScene(currentSceneConfig.sceneType);
     }
-
     public void LoadScene(SceneType sceneType)
     {
         SceneConfig? configToLoad = null;
@@ -98,20 +115,38 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             }
         }
-
         if (configToLoad.HasValue)
         {
             currentSceneConfig = configToLoad.Value;
-            SceneTransitionManager.Instance.LoadScene(
-                currentSceneConfig.scene.SceneName,
-                currentSceneConfig.transitionEffect
-            );
-        }
-        else
-        {
-            Debug.LogError($"[GameManager] SceneConfig for {sceneType} not found.");
+            SceneManager.LoadScene(currentSceneConfig.scene.SceneName);
         }
     }
+
+    // public void LoadScene(SceneType sceneType)
+    // {
+    //     SceneConfig? configToLoad = null;
+    //     foreach (var config in sceneConfigs)
+    //     {
+    //         if (config.sceneType == sceneType)
+    //         {
+    //             configToLoad = config;
+    //             break;
+    //         }
+    //     }
+
+    //     if (configToLoad.HasValue)
+    //     {
+    //         currentSceneConfig = configToLoad.Value;
+    //         SceneTransitionManager.Instance.LoadScene(
+    //             currentSceneConfig.scene.SceneName,
+    //             currentSceneConfig.transitionEffect
+    //         );
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError($"[GameManager] SceneConfig for {sceneType} not found.");
+    //     }
+    // }
 
 
     public void PauseGame(bool pause)

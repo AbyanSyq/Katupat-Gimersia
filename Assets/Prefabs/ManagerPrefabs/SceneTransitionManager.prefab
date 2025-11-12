@@ -878,12 +878,13 @@ MonoBehaviour:
   progressBar: {fileID: 5551375667227177533}
   transitionsContainer: {fileID: 7071479244528834065}
   transitions:
-  - {fileID: 1800278676268672433}
   - {fileID: 3175372443086510130}
+  - {fileID: 1800278676268672433}
   - {fileID: 5748188618342583069}
   targetScene:
     m_SceneAsset: {fileID: 102900000, guid: 7338f8ce2361a14409b675b52140238d, type: 3}
     m_SceneName: TestTransitionScene
+  transitionEffect: 0
 --- !u!1 &9203007890873793084
 GameObject:
   m_ObjectHideFlags: 0
