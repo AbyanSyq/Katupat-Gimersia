@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 6409142431037278642}
   - component: {fileID: 9037979959915744844}
   m_Layer: 0
-  m_Name: HitCounter
+  m_Name: ComboCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,8 +725,8 @@ MonoBehaviour:
   damagebarFillRight: {fileID: 4467570930735893078}
   damagebarFillLeft: {fileID: 3786871768482820998}
   healthText: {fileID: 5815986369084464568}
-  comboText: {fileID: 1265066945169527242}
-  totalHitText: {fileID: 9037979959915744844}
+  comboText: {fileID: 9037979959915744844}
+  totalHitText: {fileID: 1265066945169527242}
   damageDelay: 0.7
   damageDuration: 0.5
   playerHealthImages:
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 8083235695431241465}
   - component: {fileID: 1265066945169527242}
   m_Layer: 5
-  m_Name: ComboCounter
+  m_Name: HitCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,7 +2142,7 @@ GameObject:
   - component: {fileID: 6703326331686820749}
   - component: {fileID: 5342425126390543610}
   m_Layer: 0
-  m_Name: HitText
+  m_Name: ComboText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2423,7 +2423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8438402567261477591}
   m_Layer: 5
-  m_Name: ComboText
+  m_Name: HitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
