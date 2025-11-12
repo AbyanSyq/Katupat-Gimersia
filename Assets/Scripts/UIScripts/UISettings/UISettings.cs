@@ -54,7 +54,7 @@ public class UISettings : UIBase
         });
         backButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.ChangeUI(UIType.PAUSEMENU);
+            UIManager.Instance.OnEscape();
         });
 
     }

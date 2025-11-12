@@ -335,6 +335,7 @@ public class PlayerController3D : MonoBehaviour
     #region Camera
     private void CameraRotation()
     {
+        if (GameManager.Instance.isGamePaused) return;
         if (lockCameraPosition) return;
 
         if (input.look.sqrMagnitude >= THRESHOLD)

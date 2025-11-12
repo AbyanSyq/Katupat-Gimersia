@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public static partial class Events
 {
-    public static readonly GameEvent<int> OnPlayerAttackHittedCount = new GameEvent<int>();
-    public static readonly GameEvent<int> OnPlayerAttackHittedCombo = new GameEvent<int>();
+    // public static readonly GameEvent<int> OnPlayerAttackHittedCount = new GameEvent<int>();
+    // public static readonly GameEvent<int> OnPlayerAttackHittedCombo = new GameEvent<int>();
 }
 public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 {
@@ -51,4 +51,10 @@ public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
     {
         playerInputHandler.SetInput(enable);
     }
+
+    #region Get Counters Functions
+    public int GetCurrentHitCount(){ return playerAttackHittedCount; }
+    public int GetCurrentMissCount() { return playerAttackMissedCount; }
+    public int GetPlayerHitComboCount(){ return playerAttackHittedCombo; }
+    #endregion
 }

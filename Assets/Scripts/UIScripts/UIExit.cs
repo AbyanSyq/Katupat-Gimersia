@@ -21,7 +21,7 @@ public class UIExit : UIBase
         noButton.onClick.AddListener(() =>
         {
             print("clicked no");
-            UIManager.Instance.ChangeUI(UIManager.Instance.PreviousUI);
+            UIManager.Instance.OnEscape();
         });
     }
     public void CloseButton()

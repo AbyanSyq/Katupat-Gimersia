@@ -25,16 +25,18 @@ public class UIGameplay : UIBase
     void OnEnable()
     {
         Events.OnEnemyHealthChanged.Add(UpdateHealthBar);
-        Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
-        Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
-        Events.OnPlayerHealthChanged.Add(UpdatePlayerHealth);
+        // Events.OnPlayerAttackHitted.Add(UpdateCounter);
+        // Events.OnPlayerAttackHittedCount.Add(UpdateCounter);
+        // Events.OnPlayerAttackHittedCombo.Add(UpdateBestCombo);
+        // Events.OnPlayerHealthChanged.Add(UpdatePlayerHealth);
     }
 
     void OnDisable()
     {
         Events.OnEnemyHealthChanged.Remove(UpdateHealthBar);
-        Events.OnPlayerAttackHittedCount.Remove(UpdateCounter);
-        Events.OnPlayerAttackHittedCombo.Remove(UpdateBestCombo);
+        // Events.OnPlayerAttackHittedCount.Remove(UpdateCounter);
+        // Events.OnPlayerAttackHittedCombo.Remove(UpdateBestCombo);
+        // Events.OnPlayerHealthChanged.Remove(UpdatePlayerHealth);
     }
 
     public void UpdateHealthBar(float currentHealth, float maxHealth)
