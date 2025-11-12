@@ -24,6 +24,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool isGamePaused = false;
     public SceneConfig[] sceneConfigs;
     public SceneConfig currentSceneConfig;
+    public SceneType CurrentSceneType => currentSceneConfig.sceneType;
 
 #if UNITY_EDITOR
     private void OnValidate()

@@ -16,6 +16,7 @@ public class UIGameplay : UIBase
     public Sprite[] bossIconSprites;
     [SerializeField] Animator anim;
     [SerializeField] private Slider playerChargeForceSlider;
+    [SerializeField] private AnimationController bossInformationAnim;
 
     [Header("Inputs")]
     public float damageDelay, damageDuration;
@@ -29,6 +30,9 @@ public class UIGameplay : UIBase
         Events.OnPlayerAttackMissed.Add(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Add(OnPlayerHealthChanged);
         Events.OnPlayerChargeForceChanged.Add(OnPlayerChargeForceChanged);
+
+
+        if (GameManager.Instance.CurrentSceneType == SceneType.STAGE1) bossInformationAnim.Show();
     }
 
     void OnDisable()

@@ -4,6 +4,7 @@ using DG.Tweening;
 using Unity.Behavior;
 using Redcode.Pools;
 using Unity.VisualScripting;
+using Ami.BroAudio;
 
 public static partial class Events
 {
@@ -55,10 +56,14 @@ public class Enemy : MonoBehaviour
     [SerializeField, ReadOnly] private bool isDie;
     public bool IsDie => isDie;
 
+    [Header("Audio")]
+    [SerializeField] private SoundID rockSlam;
+
     public enum EnemyAnimationEventTriggerType
     {
         OnAttackGroundSlam,
         OnAttackRockAppear,
+        OnPlaySlamSound
     }
 
     #region Unity Methods
@@ -232,6 +237,9 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyAnimationEventTriggerType.OnAttackRockAppear:
                     SpawnRocks();
+                break;
+            case EnemyAnimationEventTriggerType.OnPlaySlamSound:
+                BroAudio.Play(rockSlam);
                 break;
         }
     }

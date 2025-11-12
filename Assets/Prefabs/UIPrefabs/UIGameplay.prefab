@@ -301,6 +301,88 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &956038076150124031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797402379731727310}
+  - component: {fileID: 8909393330483150457}
+  - component: {fileID: 3467712495035648896}
+  - component: {fileID: 7670628899704043773}
+  m_Layer: 5
+  m_Name: BossInformation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &797402379731727310
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956038076150124031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 861587625028459966}
+  - {fileID: 2512001445673225608}
+  m_Father: {fileID: 1160553026720407461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -77}
+  m_SizeDelta: {x: 1400, y: 154}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8909393330483150457
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956038076150124031}
+  m_CullTransparentMesh: 1
+--- !u!114 &3467712495035648896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956038076150124031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c69283b81aa3b440bfffb9e78e0ab8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnEnable: 0
+  disableAfterHide: 1
+  animations:
+  - {fileID: 7670628899704043773}
+--- !u!114 &7670628899704043773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956038076150124031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29afeac865fd75540bf82640010cbde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runWhilePaused: 1
+  duration: 0.5
+  hideTarget: {fileID: 0}
+  hideTargetPosition: {x: 0, y: 100, z: 0}
+  ease: 6
+  originalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1070537557844864078
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,8 +929,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2322435060486342865}
-  - {fileID: 861587625028459966}
-  - {fileID: 2512001445673225608}
+  - {fileID: 797402379731727310}
   - {fileID: 8438402567261477591}
   - {fileID: 6703326331686820749}
   - {fileID: 4758986901740133330}
@@ -902,6 +983,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 30fca85ce878d9843bd4a0551b4f221e, type: 3}
   anim: {fileID: 0}
   playerChargeForceSlider: {fileID: 1113942790178977433}
+  bossInformationAnim: {fileID: 3467712495035648896}
   damageDelay: 0.7
   damageDuration: 0.5
 --- !u!95 &4604391056948122997
@@ -1592,7 +1674,7 @@ RectTransform:
   - {fileID: 5219115252108923357}
   - {fileID: 1861138047333708625}
   - {fileID: 3875069770788145438}
-  m_Father: {fileID: 1160553026720407461}
+  m_Father: {fileID: 797402379731727310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2422,18 +2504,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6339600226270675308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 470840479570452038}
   - {fileID: 8924282673933362381}
-  m_Father: {fileID: 1160553026720407461}
+  m_Father: {fileID: 797402379731727310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0000038146973, y: -52.196}
+  m_AnchoredPosition: {x: -0, y: -52.196}
   m_SizeDelta: {x: 376.1109, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6357638074252077626
