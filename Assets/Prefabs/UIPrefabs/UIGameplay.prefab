@@ -982,6 +982,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f16b69259893bc749acc8e88c5497b4a, type: 3}
   - {fileID: 21300000, guid: 30fca85ce878d9843bd4a0551b4f221e, type: 3}
   anim: {fileID: 4604391056948122997}
+  bossInformationAnim: {fileID: 3467712495035648896}
   playerChargeForceSlider: {fileID: 1113942790178977433}
   bossHealthBar: {fileID: 4723011642521614806}
   damageDelay: 0.7
