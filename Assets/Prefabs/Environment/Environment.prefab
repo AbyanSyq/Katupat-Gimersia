@@ -1131,6 +1131,7 @@ Transform:
   - {fileID: 82185272172243590}
   - {fileID: 8055874763078152168}
   - {fileID: 5785344952320705825}
+  - {fileID: 2585117485567708957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2196456187692922966
@@ -1655,6 +1656,77 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8691780276856062721, guid: 8f94afe322a214346b3f6dfd621a4400, type: 3}
+--- !u!1 &2862481336898181931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919791506858473}
+  - component: {fileID: 5604417231506321495}
+  - component: {fileID: 5421773065817876103}
+  m_Layer: 0
+  m_Name: EndgameVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919791506858473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862481336898181931}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.07, y: 21.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2585117485567708957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5604417231506321495
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862481336898181931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 54.28488, y: 45.768784, z: 26.996895}
+  m_Center: {x: -12.692471, y: -11.016166, z: -0.9886894}
+--- !u!114 &5421773065817876103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862481336898181931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 1
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 0d5dabf6d1b65534da74e773c47d904b, type: 2}
 --- !u!1 &2948958281032912000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1848,7 @@ GameObject:
   - component: {fileID: 281570447270613979}
   - component: {fileID: 1588293651875339162}
   - component: {fileID: 2017952107044568535}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: jeruji (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2780,7 +2852,7 @@ GameObject:
   - component: {fileID: 1151925483979574937}
   - component: {fileID: 2235200266633087294}
   - component: {fileID: 3278178962505941143}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: jeruji (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3297,6 +3369,81 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6255687079079774844, guid: 8f94afe322a214346b3f6dfd621a4400, type: 3}
+--- !u!1 &5190005622523065517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 789144179759705815}
+  - component: {fileID: 3677831056874023948}
+  - component: {fileID: 3338866489287252010}
+  m_Layer: 0
+  m_Name: ShortenFog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &789144179759705815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190005622523065517}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.6, y: 7.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2585117485567708957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3677831056874023948
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190005622523065517}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 75.28906, y: 40.206257, z: 29.36}
+  m_Center: {x: -12.480471, y: 1.0086498, z: 0}
+--- !u!114 &3338866489287252010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190005622523065517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff801e9ff64d207409915dbf3e092c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogStartDistAtEnding: 10
+  fogEndDistAtEnding: 25
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  originalMode: 0
+  originalDensity: 0
+  originalStartDistance: 0
+  originalEndDistance: 0
+  transitionDuration: 1
+  smooth: 1
 --- !u!1 &5426560385195376763
 GameObject:
   m_ObjectHideFlags: 0
@@ -16341,7 +16488,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7929
+  m_VersionIndex: 7944
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -18010,7 +18157,7 @@ GameObject:
   - component: {fileID: 9203799734452897209}
   - component: {fileID: 5535967622489717184}
   - component: {fileID: 7394862230347455721}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Jeruji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18121,6 +18268,7 @@ MonoBehaviour:
   openPosition: {x: -22.24, y: 7.97, z: -0.08}
   closedPosition: {x: 0, y: 0, z: 0}
   openSpeed: 2
+  openDelay: 3
   easeType: 4
 --- !u!1 &7831847568887221185
 GameObject:
@@ -18667,6 +18815,39 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7196802604745430461, guid: 417bb11227ca851edbe9d551564fd58a, type: 3}
+--- !u!1 &8558385871798762853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2585117485567708957}
+  m_Layer: 0
+  m_Name: EndgameObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2585117485567708957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558385871798762853}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -60.12569, y: -15.579985, z: 0.82287085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 789144179759705815}
+  - {fileID: 919791506858473}
+  m_Father: {fileID: 825803291027599435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8795693234223408947
 GameObject:
   m_ObjectHideFlags: 0

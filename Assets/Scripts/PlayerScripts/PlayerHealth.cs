@@ -18,7 +18,6 @@ public class PlayerHealth : Health, IDamageable
     [ContextMenu("Die Now")]
     protected override void Die()
     {
-        base.Awake();
         UIManager.Instance.ChangeUI(UIType.GAMEOVER);
     }    
 
