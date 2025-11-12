@@ -6,14 +6,9 @@ public class MoveFromAnimation : AnimationBase
     [SerializeField] private Transform hideTarget;
     [SerializeField] private Vector3 hideTargetPosition;
     [SerializeField] private Ease ease = Ease.OutQuad;
-    [SerializeField, ReadOnly] private Vector3 originalPos;
+    [SerializeField] private Vector3 originalPos;
 
     private Tween moveToTween;
-
-    private void Awake()
-    {
-        originalPos = transform.localPosition;
-    }
 
     protected override void PlayShow()
     {
@@ -22,6 +17,7 @@ public class MoveFromAnimation : AnimationBase
             : hideTargetPosition;
 
         moveToTween?.Kill();
+        Debug.Log("MoveFromAnimation PlayShow to " + originalPos);
 
         transform.localPosition = targetPos;
         moveToTween = transform.DOLocalMove(originalPos, duration)

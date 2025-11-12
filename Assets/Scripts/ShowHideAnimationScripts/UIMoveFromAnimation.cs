@@ -1,22 +1,24 @@
 using UnityEngine;
 using DG.Tweening;
-
 public class UIMoveToAnimation : AnimationBase
 {
     [SerializeField] private RectTransform hideTarget;
+    [SerializeField] private Vector3 hideTargetPosition;
+    [SerializeField] private Vector3 showTargetPosition;
     [SerializeField] private Ease ease = Ease.OutQuad;
 
-    private Vector3 originalPos;
     private Tween moveToTween;
 
-    private void Awake() => originalPos = transform.localPosition;
 
     protected override void PlayShow()
     {
-        if (hideTarget == null) return;
+        Vector3 targetPos = hideTarget != null
+            ? hideTarget.localPosition
+            : hideTargetPosition;
+
         moveToTween?.Kill();
-        transform.localPosition = hideTarget.localPosition;
-        moveToTween = transform.DOLocalMove(originalPos, duration).SetEase(ease).SetUpdate(runWhilePaused);
+        transform.localPosition = targetPos;
+        moveToTween = transform.DOLocalMove(showTargetPosition, duration).SetEase(ease).SetUpdate(runWhilePaused);
     }
 
     protected override void PlayHide()
