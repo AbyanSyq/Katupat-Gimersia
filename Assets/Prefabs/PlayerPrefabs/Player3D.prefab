@@ -316,7 +316,7 @@ MonoBehaviour:
   cinemachineCameraTarget: {fileID: 6796305601557293915}
   rotationSpeed: 1
   topClamp: 60
-  bottomClamp: -120
+  bottomClamp: -100
   cameraAngleOverride: 0
   lockCameraPosition: 0
   cinemachineCameraComponent: {fileID: 0}
@@ -1048,6 +1048,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8279911185473018575, guid: bd45158a7448e27479a40a08a7f1bd62, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279911185473018575, guid: bd45158a7448e27479a40a08a7f1bd62, type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279911185473018575, guid: bd45158a7448e27479a40a08a7f1bd62, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 895c06db93f9079baaedfb5f5fb81b1a, type: 2}
@@ -1184,6 +1192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spear_inspect_fix
       objectReference: {fileID: 0}
+    - target: {fileID: 1585553358455315056, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1195,6 +1207,10 @@ PrefabInstance:
     - target: {fileID: 6561186462027430437, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108351778939807329, guid: fd9c6cd48b1507a469f65fae8831fd42, type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
