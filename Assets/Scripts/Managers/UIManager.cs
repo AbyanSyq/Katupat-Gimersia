@@ -32,7 +32,8 @@ public enum UIType
     ABOUT,
     EXIT,
     GAMEOVER,
-    WIN
+    WIN,
+    QUIT
 }
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {

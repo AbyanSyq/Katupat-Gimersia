@@ -30,7 +30,7 @@ public class UIMainMenu : UIBase
         });
         exitButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.ChangeUI(UIType.EXIT);
+            UIManager.Instance.ChangeUI(UIType.QUIT);
         });
     }
 }

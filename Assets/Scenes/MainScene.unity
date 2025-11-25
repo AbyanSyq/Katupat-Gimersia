@@ -292,18 +292,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player3D
       objectReference: {fileID: 0}
-    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
-      propertyPath: SFX_SpearCancel.<DebugObject>k__BackingField
-      value: 
-      objectReference: {fileID: 227071125}
-    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
-      propertyPath: SFX_SpearRelease.<DebugObject>k__BackingField
-      value: 
-      objectReference: {fileID: 227071125}
-    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
-      propertyPath: SFX_SpearChargeLoop.<DebugObject>k__BackingField
-      value: 
-      objectReference: {fileID: 227071125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -427,11 +415,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &227071125 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7679298912095861667, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
-  m_PrefabInstance: {fileID: 56271103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &231043664
 PrefabInstance:
   m_ObjectHideFlags: 0
