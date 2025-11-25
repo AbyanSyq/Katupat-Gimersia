@@ -145,6 +145,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].name
+      value: QUIT
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].type
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 5357642957962150586, guid: cdbf10fd54506b148ba30e7430402768, type: 3}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].pauseGame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442202971561404052, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
+      propertyPath: uiEntries.Array.data[8].cursorVisibility
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8770394655020971654, guid: 9521027a9e4487b46a04c14c094c99c5, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -167,6 +195,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3366728964570015335}
     m_Modifications:
+    - target: {fileID: 277071908784109911, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
+      propertyPath: soundDataList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5993980722535095591, guid: cc6a49b9d3f44bc41b9a636dbcc999b9, type: 3}
       propertyPath: m_Name
       value: AudioManager

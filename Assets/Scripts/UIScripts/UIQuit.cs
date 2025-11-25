@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIExit : UIBase
+public class UIQuit : UIBase
 {
     [SerializeField] private Button yesButton;
     [SerializeField] private Button noButton;
@@ -15,7 +15,7 @@ public class UIExit : UIBase
     {
         yesButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.LoadScene(SceneType.MAINMENU);
+            GameManager.Instance.ExitGame();
         });
         noButton.onClick.AddListener(() =>
         {
