@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using Ami.BroAudio;
+using System.Collections;
 
 public class TakeDamageHandler : MonoBehaviour, IDamageable
 {
@@ -19,7 +20,6 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
             healthComponent.ReduceHealth(damageReduction);
             Flash();
             PlayDamageSound();
-            
         }
     }
     public void Flash()

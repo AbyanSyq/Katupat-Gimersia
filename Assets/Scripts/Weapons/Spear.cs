@@ -83,6 +83,7 @@ public class Spear : MonoBehaviour, IPoolObject
             CreateParticleObject();
             CreateHitFXObject();
             Despawn();
+            Debug.Log("Spear collided with " + collision.gameObject.name);
         }
         else if (((1 << collision.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
@@ -91,8 +92,6 @@ public class Spear : MonoBehaviour, IPoolObject
             CreateParticleObject();
             Despawn();
         }
-
-        //Debug.Log("Spear collided with " + collision.gameObject.name);
     }
     void OnTriggerEnter(Collider collider)
     {
@@ -104,9 +103,10 @@ public class Spear : MonoBehaviour, IPoolObject
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, Vector3.zero);
             Events.OnPlayerAttackHitted?.Publish();
+            Despawn();
             CreateParticleObject();
             CreateHitFXObject();
-            Despawn();
+            Debug.Log("Spear collided with " + collider.gameObject.name);    
         }
         else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
@@ -116,11 +116,11 @@ public class Spear : MonoBehaviour, IPoolObject
             Despawn();
         }
 
-       //Debug.Log("Spear collided with " + collider.gameObject.name);
     }
 
     void Despawn()
     {
+        Debug.Log("Spear Despawned");
         // Return to pool
         timeToLive = 5f;
         rb.linearVelocity = Vector3.zero;
