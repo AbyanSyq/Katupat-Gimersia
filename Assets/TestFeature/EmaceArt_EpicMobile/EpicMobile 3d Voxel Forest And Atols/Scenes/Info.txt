@@ -1,0 +1,12 @@
+Drag and drop two scenes into the hierarchy:
+Epic Woodland  and Epic and Woodland_PostProcess
+
+Install the Post-Processing Stack (or HDRP, URP)
+
+1. Open Unity (or Unity Hub)
+2. Create a project (or use existing one if you want)
+3. At the top, select Window > Package Manager
+4. Wait a minute as it takes some time for all the packages to load. Unity is transitioning their assets here as well so get used to this interface
+5. Scroll down the list on the left to Post Processing
+6. Click Install in bottom right
+7. Depending on your device, this will also take about a minute to import the Shaders and such
