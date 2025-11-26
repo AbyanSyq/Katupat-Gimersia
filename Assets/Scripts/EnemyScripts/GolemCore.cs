@@ -6,6 +6,7 @@ public class GolemCore : MonoBehaviour
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] Transform spawnPoint; // Titik awal garis (misal: tangan/dada golem)
     [SerializeField] Transform targetLineTransform; // Titik tujuan
+    [SerializeField] Ease easeType = Ease.OutBack;
 
     public void Update()
     {
@@ -19,6 +20,6 @@ public class GolemCore : MonoBehaviour
 
     public void Spawn(float duration)
     {
-        transform.DOLocalMove(new Vector3(0, 0, 0), duration).SetEase(Ease.OutBack);
+        transform.DOLocalMove(new Vector3(0, 0, 0), duration).SetEase(easeType);
     }
 }

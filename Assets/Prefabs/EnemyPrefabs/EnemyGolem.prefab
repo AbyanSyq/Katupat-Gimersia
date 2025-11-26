@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -189,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -331,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -374,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 4104240442468274197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.67, z: -14.51}
+  m_LocalPosition: {x: 0, y: -1.67, z: -12.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -449,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -536,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -623,6 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -710,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -797,6 +804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -983,11 +991,10 @@ MonoBehaviour:
   rockTotalSpawn: 15
   rockAppearRange: 15
   projectileSpawnPoint: {fileID: 5395365983584032153}
-  projectileSpeed: 15
   staggeredCoreSpawnPoint: {fileID: 7450415348694235971}
   staggeredCoreTargetPoint: {fileID: 4768864870952434252}
   staggeredCoreObject: {fileID: 6106161543645150529}
-  staggeredCoreDuration: 5
+  staggeredCoreDuration: 7
   hasSpawnEventTriggered: 0
   playerTarget: {fileID: 0}
   rotationLerpSpeed: 10
@@ -1026,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9621298e4c4c946b26b085bd0c7de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 100
   currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
@@ -1206,6 +1213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -1293,6 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 0.1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -1414,6 +1423,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 9028159410496433283}
     m_Modifications:
     - target: {fileID: 2477788436666312388, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477788436666312388, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
       propertyPath: m_Positions.Array.data[1].x
       value: 7.473355e-12
       objectReference: {fileID: 0}
@@ -1513,6 +1526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
@@ -1534,6 +1548,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 4408843008945474464}
   spawnPoint: {fileID: 7450415348694235971}
   targetLineTransform: {fileID: 5556588469935449061}
+  easeType: 27
 --- !u!1001 &2702212720690757420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2317,7 +2332,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: e4359f53bbbf61547a916d5331fc17d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -6587532201825540834, guid: e4359f53bbbf61547a916d5331fc17d6, type: 3}
@@ -2423,6 +2439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 3848893665312160355}
   damageMultiplaier: 1
+  damageReduction: 15
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:

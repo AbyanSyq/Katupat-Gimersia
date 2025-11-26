@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Ami.BroAudio;
+using DG.Tweening;
 
 
 public class GolemWeakPoint : TakeDamageHandler
@@ -19,9 +20,23 @@ public class GolemWeakPoint : TakeDamageHandler
 
         StartCoroutine(PlayVFX());
     }
+    public void disableWithVFX()
+    {
+        StartCoroutine(PlayVFX());
+    }
+    public void Init()
+    {
+        transform.localScale = Vector3.zero;
+        gameObject.SetActive(true);
+
+        transform.DOScale(Vector3.one, 0.5f).OnComplete(() => {
+            transform.localScale = Vector3.one;
+        }); 
+    }
     
     public IEnumerator PlayVFX()
     {
+        transform.DOKill();
         modelToHideOnDeath.SetActive(false);
         colliderToDisableOnDeath.enabled = false;
 

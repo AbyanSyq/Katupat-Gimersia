@@ -24488,6 +24488,10 @@ MonoBehaviour:
   yOffset: 0.6
   RockVisual: {fileID: 6487827867167229100}
   poolIndex: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  rayStartHeight: 50
 --- !u!1 &6199479938333512094
 GameObject:
   m_ObjectHideFlags: 0

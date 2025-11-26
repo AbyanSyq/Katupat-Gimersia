@@ -6,8 +6,12 @@ using Redcode.Pools;
 using Ami.BroAudio;
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 
-
+public static partial class Events
+{
+    public static readonly GameEvent<int> OnPhaseChange = new();
+}
 
 
 [RequireComponent(typeof(EnemyHealth))]
@@ -35,7 +39,8 @@ public class Enemy : MonoBehaviour
 
     // HAPUS threshold health list, ganti logic ke WeakPoint
     [Header("Golem Weak Point Settings")]
-    public List<GolemWeakPoint> weakPoints; 
+    [SerializeField] private List<GolemWeakPoint> weakPoints; 
+    public List<GolemWeakPoint> WeakPoints => weakPoints;
 
     [Header("Attack: Rock Skill")]
     [SerializeField] private int rockTotalSpawn = 10;
@@ -97,8 +102,10 @@ public class Enemy : MonoBehaviour
             {
                 currentPhase = value;
                 
-                if (enemyBehaviorGraphAgent != null)
+                if (enemyBehaviorGraphAgent != null){}
                     enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("Phase", currentPhase);
+
+                Events.OnPhaseChange?.Publish(currentPhase);
             }
         }
     }
@@ -178,6 +185,27 @@ public class Enemy : MonoBehaviour
     #region Logic: Weak Point & Phase Control (NEW SYSTEM)
 
     // Method ini DIPANGGIL oleh script GolemWeakPoint ketika hancur
+
+    public void DestroyAllWeakPoint()
+    {
+        foreach(var wp in weakPoints)
+        {
+            if (wp != null && wp.gameObject.activeSelf)
+            {
+                wp.disableWithVFX();
+            }
+        }
+    }
+    public void ReStoreAllWeakPoint()
+    {
+        foreach(var wp in weakPoints)
+        {
+            if (wp != null && wp.gameObject.activeSelf)
+            {
+                wp.Init();
+            }
+        }
+    }
     public void OnWeakPointDestroyed()
     {
         if (CheckAllWeakPointsDestroyed())
@@ -213,6 +241,8 @@ public class Enemy : MonoBehaviour
     {
         healthComponent.Revive();
         GoToNextPhase();
+        ReStoreAllWeakPoint();
+
 
         Debug.Log("Enemy Revived and moved to next phase.");
     }
@@ -246,8 +276,10 @@ public class Enemy : MonoBehaviour
 
         healthComponent.Stagger();
         
+        
         // Play Animasi Die (Stagger Awal)
         if(enemyAnimator != null) enemyAnimator.SetTrigger("Die");
+        DestroyAllWeakPoint();
     }
 
     private IEnumerator SpawnStaggeredCore()

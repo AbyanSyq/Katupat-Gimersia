@@ -6,6 +6,7 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
 {
     public Health healthComponent;
     public float damageMultiplaier = 1f;
+    public float damageReduction = 15f;
     public Renderer rendererComponent;
     public Color flashColor = Color.red;
     [SerializeField] private SoundID Damage_Sound; 
@@ -15,7 +16,7 @@ public class TakeDamageHandler : MonoBehaviour, IDamageable
         if (healthComponent != null)
         {
             Debug.Log($"Taking Damage: {amount * damageMultiplaier}");
-            healthComponent.ReduceHealth(amount * damageMultiplaier);
+            healthComponent.ReduceHealth(damageReduction);
             Flash();
             PlayDamageSound();
             

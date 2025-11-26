@@ -18,6 +18,8 @@ public class RockFromGround : MonoBehaviour, IPoolObject
     [SerializeField] private int poolIndex = 3; // index pool di PoolManager
 
     private Coroutine attackRoutine;
+    public LayerMask groundLayer; // Assign ini di Inspector (pilih layer Ground/Terrain)
+    public float rayStartHeight = 50f; // Seberapa tinggi ray dimulai dari atas
 
     // dipanggil 1x ketika prefab pertama kali dibuat oleh pool
     public void OnCreatedInPool()
@@ -38,9 +40,35 @@ public class RockFromGround : MonoBehaviour, IPoolObject
     /// <summary>
     /// Panggil untuk mengaktifkan serangan batu di posisi target.
     /// </summary>
+    // public void InitRock(Vector3 targetPosition, float damage)
+    // {
+    //     transform.position = new Vector3(targetPosition.x, yOffset, targetPosition.z);
+    //     this.damage = damage;
+
+    //     if (attackRoutine != null)
+    //         StopCoroutine(attackRoutine);
+
+    //     attackRoutine = StartCoroutine(StartAttackSequence());
+    // }
+
     public void InitRock(Vector3 targetPosition, float damage)
     {
-        transform.position = new Vector3(targetPosition.x, yOffset, targetPosition.z);
+        // 1. Tentukan posisi awal ray (X dan Z sama dengan target, Y dari atas)
+        Vector3 rayOrigin = new Vector3(targetPosition.x, rayStartHeight, targetPosition.z);
+        
+        float finalY = targetPosition.y; // Fallback jika raycast tidak kena apa-apa
+
+        // 2. Tembakkan Ray ke bawah (Vector3.down)
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, rayStartHeight * 2, groundLayer))
+        {
+            // Jika kena tanah, ambil posisi Y titik tabrakannya
+            finalY = hit.point.y;
+        }
+
+        // 3. Set posisi (tambahkan yOffset Anda jika ingin tetap ada offset dari permukaan tanah)
+        transform.position = new Vector3(targetPosition.x, finalY + yOffset, targetPosition.z);
+        
         this.damage = damage;
 
         if (attackRoutine != null)
