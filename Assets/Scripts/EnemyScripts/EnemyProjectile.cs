@@ -35,20 +35,20 @@ public class EnemyProjectile : MonoBehaviour, IPoolObject
     }
 
     // Logika ketika menabrak sesuatu
-    private void OnTriggerEnter(Collider other)
-    {
-        // Cek apakah object yang ditabrak ada di LayerMask yang ditentukan
-        if (((1 << other.gameObject.layer) & damageLayer) != 0)
-        {
-            Debug.Log($"Hit {other.name} with {damage} damage");
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     // Cek apakah object yang ditabrak ada di LayerMask yang ditentukan
+    //     if (((1 << other.gameObject.layer) & damageLayer) != 0)
+    //     {
+    //         Debug.Log($"Hit {other.name} with {damage} damage");
 
-            ReturnToPool();
-        }
-        else if (!other.isTrigger) 
-        {
-            ReturnToPool();
-        }
-    }
+    //         ReturnToPool();
+    //     }
+    //     else if (!other.isTrigger) 
+    //     {
+    //         ReturnToPool();
+    //     }
+    // }
 
     private void ReturnToPool()
     {

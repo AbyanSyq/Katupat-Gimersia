@@ -6940,6 +6940,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a3ca5c0673405f47be256af67c94515, type: 3}
+--- !u!1001 &2173822507493457106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2275783860423755807, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_Name
+      value: Spear_FullCharge FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828830521652970648, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2d835a5a22b44a41a7ffad78ec650f8, type: 3}
 --- !u!4 &2827590286256787844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7110276539000559444, guid: 2d9df7596a7b5f54a9a967fc06425127, type: 3}
@@ -7603,3 +7660,4 @@ SceneRoots:
   - {fileID: 6899839437458164883}
   - {fileID: 4290939573978983510}
   - {fileID: 8622244918905921574}
+  - {fileID: 2173822507493457106}

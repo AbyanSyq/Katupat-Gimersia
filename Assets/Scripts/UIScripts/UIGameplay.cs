@@ -138,7 +138,7 @@ public class UIGameplay : UIBase
         int healthBars;
         if (healthPercentage >= 0.8f) healthBars = 3;
         else if (healthPercentage >= 0.4f) healthBars = 2;
-        else if (healthPercentage >= 0f) healthBars = 1;
+        else if (healthPercentage > 0f) healthBars = 1;
         else healthBars = 0;
 
         if (healthBars == 1)

@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3848893665312160355, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4128977285562293606, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
@@ -215,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 5039238264693040408, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
-      objectReference: {fileID: 50693684}
+      objectReference: {fileID: 666420542}
     - target: {fileID: 5055517274077116811, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: damageReduction
       value: 0.5
@@ -236,6 +240,10 @@ PrefabInstance:
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
       objectReference: {fileID: 50693684}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Wake.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1201914716}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_Name
       value: EnemyGolem
@@ -1038,6 +1046,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &666420542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7381994267873183425, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+  m_PrefabInstance: {fileID: 50693682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016808230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1199,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1201914716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+  m_PrefabInstance: {fileID: 50693682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1316072730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1532,7 @@ PrefabInstance:
       objectReference: {fileID: 238275351}
     - target: {fileID: 3181540967673968725, guid: f572112313bb56e4d8b62a40cc4e0dff, type: 3}
       propertyPath: m_VersionIndex
-      value: 8157
+      value: 8160
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

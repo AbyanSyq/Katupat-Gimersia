@@ -26,6 +26,7 @@ public class GolemWeakPoint : TakeDamageHandler
     }
     public void Init()
     {
+        Debug.Log("init weak point");
         transform.localScale = Vector3.zero;
         gameObject.SetActive(true);
 

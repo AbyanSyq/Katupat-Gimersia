@@ -1018,6 +1018,10 @@ MonoBehaviour:
     ID: 1073741841
     _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
     <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Wake:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
   enemyAnimator: {fileID: 0}
   isDie: 0
   enemyMaterial: {fileID: 0}

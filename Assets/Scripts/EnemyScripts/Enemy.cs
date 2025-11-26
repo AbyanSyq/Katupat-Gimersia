@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
     {
         foreach(var wp in weakPoints)
         {
-            if (wp != null && wp.gameObject.activeSelf)
+            if (wp != null && !wp.gameObject.activeSelf)
             {
                 wp.Init();
             }
