@@ -303,7 +303,7 @@ MonoBehaviour:
   Damage_Sound:
     ID: 1073741843
     _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
-    <DebugObject>k__BackingField: {fileID: 1711730381652469099}
+    <DebugObject>k__BackingField: {fileID: 3904762577575916235}
 --- !u!114 &4720589202835977579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 8077810893013477270}
   - component: {fileID: 5324928209874898373}
   - component: {fileID: 3848893665312160355}
+  - component: {fileID: 5644431575199906446}
   m_Layer: 7
   m_Name: EnemyGolem
   m_TagString: Untagged
@@ -941,6 +942,59 @@ MonoBehaviour:
     m_Value: 0
   hitCount: 0
   hitCombo: 0
+--- !u!114 &5644431575199906446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420691852208598869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 3
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 1
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: 1, z: 0}
 --- !u!1 &6416892717356450264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,11 +1203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.658
+      value: 3.559
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.699
+      value: -1.617
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1315,7 +1369,7 @@ PrefabInstance:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
-      objectReference: {fileID: 2615606558160985395}
+      objectReference: {fileID: 7751893592342422548}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
@@ -1326,7 +1380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.055
+      value: 0.915
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1370,6 +1424,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
   m_PrefabInstance: {fileID: 5087916233392605572}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7751893592342422548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+  m_PrefabInstance: {fileID: 5087916233392605572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5439704384091990865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1393,22 +1452,22 @@ PrefabInstance:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
-      objectReference: {fileID: 2615606558160985395}
+      objectReference: {fileID: 7381994267873183425}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.61
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.93
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1448,6 +1507,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
   m_PrefabInstance: {fileID: 5439704384091990865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7381994267873183425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+  m_PrefabInstance: {fileID: 5439704384091990865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6783691344346229197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1471,22 +1535,22 @@ PrefabInstance:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
-      objectReference: {fileID: 2615606558160985395}
+      objectReference: {fileID: 8298772556330763357}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0054977
+      value: -0.636
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9441276
+      value: 2.669
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2205525
+      value: 0.886
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1524,6 +1588,11 @@ PrefabInstance:
 --- !u!4 &3796096948013791601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+  m_PrefabInstance: {fileID: 6783691344346229197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8298772556330763357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
   m_PrefabInstance: {fileID: 6783691344346229197}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6793916522842981390
@@ -1883,7 +1952,7 @@ MonoBehaviour:
   Damage_Sound:
     ID: 0
     _sourceAsset: {fileID: 0}
-    <DebugObject>k__BackingField: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 1838051760994128303}
 --- !u!4 &2342842571685838566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -86793304703124760, guid: e4359f53bbbf61547a916d5331fc17d6, type: 3}
@@ -1972,22 +2041,22 @@ PrefabInstance:
     - target: {fileID: 1050269800773029449, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: Damage_Sound.<DebugObject>k__BackingField
       value: 
-      objectReference: {fileID: 2615606558160985395}
+      objectReference: {fileID: 6365593510906879909}
     - target: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_Name
       value: GolemWeakPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.445
+      value: -0.353
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.448
+      value: 0.401
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.069
+      value: -0.173
       objectReference: {fileID: 0}
     - target: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2025,5 +2094,10 @@ PrefabInstance:
 --- !u!4 &2293029534623572617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7677213882765037756, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
+  m_PrefabInstance: {fileID: 8455661612406141493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6365593510906879909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3247001863693610384, guid: 54917e5370f086a42b3e5e338c538567, type: 3}
   m_PrefabInstance: {fileID: 8455661612406141493}
   m_PrefabAsset: {fileID: 0}

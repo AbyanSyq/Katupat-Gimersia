@@ -7,6 +7,21 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Golem_Body
+    second: {fileID: 2100000, guid: d98dac6ad995fad4eb3438472abe54e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Golem_Branch
+    second: {fileID: 2100000, guid: a9f6c407f6736c849aabb6cb952eebde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Golem_Leaf
+    second: {fileID: 2100000, guid: 0b3cfae987a06954986ba2632297698e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Peepul-Leaf.001
     second: {fileID: 2100000, guid: 53b205b8b4656a54998a1def6fcbc1f3, type: 2}
   - first:
@@ -29,6 +44,31 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: monster_wood
     second: {fileID: 2100000, guid: 649e7021e50800b4da64ee2420f8dc3f, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Golem_Body
+    second: {fileID: 2800000, guid: ef5e3027ad4055c4dbd9d103944eab61, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Golem_Branch
+    second: {fileID: 2800000, guid: 36c2c5082440e5f4597f6a44a01179a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Golem_Leaf
+    second: {fileID: 2800000, guid: 5eb5888a08374c84295aad354658bf1f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Golem_Lightning
+    second: {fileID: 2800000, guid: aafdbe01a0990a948b048fc9847f0808, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Golem_Normals
+    second: {fileID: 2800000, guid: d4970be7ca65a1042ba5dd7810fab48c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule

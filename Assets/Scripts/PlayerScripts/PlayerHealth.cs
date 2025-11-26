@@ -7,8 +7,6 @@ public class PlayerHealth : Health, IDamageable
     [Header("Health Change Cooldown")]
     [SerializeField] float reduceHealthCooldown;
     [SerializeField, ReadOnly] float lastHitTime;
-    [SerializeField] private CinemachineImpulseSource takeDamageImpulseSource;
-    [SerializeField] private float impulseIntensity = 0.1f;
 
     void Start()
     {
@@ -23,7 +21,6 @@ public class PlayerHealth : Health, IDamageable
 
     public void TakeDamage(float dmg, Vector3 dmgPos)
     {
-        takeDamageImpulseSource.GenerateImpulse(impulseIntensity);
         if (Time.time - lastHitTime > reduceHealthCooldown)
             ReduceHealth(dmg);
 
