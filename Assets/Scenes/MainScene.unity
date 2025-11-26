@@ -233,6 +233,34 @@ PrefabInstance:
       value: Player3D
       objectReference: {fileID: 0}
     - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: playerMove.ID
+      value: 1073741844
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearThrow.ID
+      value: 1073741845
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearCharge.ID
+      value: 1073741842
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: animParameterDeathName
+      value: IsDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: playerMove._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearThrow._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearCharge._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
       propertyPath: playerMove.<DebugObject>k__BackingField
       value: 
       objectReference: {fileID: 1999202474}
