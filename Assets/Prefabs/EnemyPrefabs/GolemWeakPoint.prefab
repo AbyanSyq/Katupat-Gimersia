@@ -72,6 +72,10 @@ MonoBehaviour:
   damageMultiplaier: 1
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  Damage_Sound:
+    ID: 0
+    _sourceAsset: {fileID: 0}
+    <DebugObject>k__BackingField: {fileID: 3247001863693610384}
   hitEffect: {fileID: 7535405480807327409}
   modelToHideOnDeath: {fileID: 1347066704116008175}
   colliderToDisableOnDeath: {fileID: 1900610706702003247}
