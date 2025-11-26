@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SoundID Golem_Attack_Grow;
     [SerializeField] private SoundID Golem_Attack_Ultimate;
     [SerializeField] private SoundID Golem_Roar;
+    [SerializeField] private SoundID Golem_Wake;
 
     [Header("Debug & Development")]
     [SerializeField, ReadOnly] private Animator enemyAnimator;
@@ -324,7 +325,7 @@ public class Enemy : MonoBehaviour
     public enum EnemyAnimationEventTriggerType
     {
         OnAttackGroundSlam, OnAttackRockAppear, OnShootProjectile, OnSpawnStaggeredCore, OnStaggerComplete,
-        OnPlaySlamSound, OnPlaySweepSound, OnPlayGrowSound, OnPlayUltimateSound, OnPlayRoarSound
+        OnPlaySlamSound, OnPlaySweepSound, OnPlayWakeSound, OnPlayGrowSound, OnPlayUltimateSound, OnPlayRoarSound
     }
     public void OnAnimationEventTrigger(EnemyAnimationEventTriggerType type)
     {
@@ -337,6 +338,7 @@ public class Enemy : MonoBehaviour
             case EnemyAnimationEventTriggerType.OnStaggerComplete: IsEnemyStaggered = false; break;
             case EnemyAnimationEventTriggerType.OnPlaySlamSound: BroAudio.Play(Golem_Attack_Slam); break;
             case EnemyAnimationEventTriggerType.OnPlaySweepSound: BroAudio.Play(Golem_Attack_Sweep); break;
+            case EnemyAnimationEventTriggerType.OnPlayWakeSound: BroAudio.Play(Golem_Wake); break;
             case EnemyAnimationEventTriggerType.OnPlayGrowSound: BroAudio.Play(Golem_Attack_Grow); break;
             case EnemyAnimationEventTriggerType.OnPlayUltimateSound: BroAudio.Play(Golem_Attack_Ultimate); break;
             case EnemyAnimationEventTriggerType.OnPlayRoarSound: BroAudio.Play(Golem_Roar); break;
