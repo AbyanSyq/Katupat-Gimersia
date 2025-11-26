@@ -80,7 +80,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -109,7 +109,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
   spearModel: {fileID: 4681899524225778387}
   spearObstructorLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 833
   timeToLive: 4
 --- !u!1001 &5492169562776502146
 PrefabInstance:

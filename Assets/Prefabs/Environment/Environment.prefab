@@ -4190,7 +4190,7 @@ GameObject:
   - component: {fileID: 2361178359556426211}
   - component: {fileID: 2906403888186869311}
   - component: {fileID: 416587445779478808}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16785,7 +16785,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8157
+  m_VersionIndex: 8163
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -29193,7 +29193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8773919644088717194, guid: 6198ba3894a79f546bb2f90272ca5f7c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
