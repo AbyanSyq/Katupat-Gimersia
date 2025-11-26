@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: MUSIC
   m_EditorClassIdentifier: 
   Entities:
-  - <Name>k__BackingField: BGM_CAVE
+  - <Name>k__BackingField: BGM_GAME
     <ID>k__BackingField: 268435458
     MulticlipsPlayMode: 0
     _group: {fileID: 0}
     Clips:
-    - AudioClip: {fileID: 8300000, guid: 30bf22d48a880d34ba23a6cba864d76e, type: 3}
-      Volume: 1.0831336
+    - AudioClip: {fileID: 8300000, guid: bdf148400f41bc041b7c388ecd20e9e9, type: 3}
+      Volume: 0.2596295
       Delay: 0
-      StartPosition: 11.959
+      StartPosition: 0
       EndPosition: 0
       FadeIn: 0
       FadeOut: 0
