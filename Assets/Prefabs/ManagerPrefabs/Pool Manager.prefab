@@ -133,7 +133,7 @@ MonoBehaviour:
     _container: {fileID: 5502977440907358013}
     _nonLazy: 0
   - _name: GolemProjectile
-    _component: {fileID: 6475379935931233908, guid: e547a2e15386b744d83ea2ec682c825f, type: 3}
+    _component: {fileID: 8601051694517411372, guid: e7da2edf8f338ad46b757c21197b118b, type: 3}
     _count: 0
     _container: {fileID: 4918217717765157965}
     _nonLazy: 0

@@ -22,7 +22,7 @@ MonoBehaviour:
       Volume: 1
       Delay: 0
       StartPosition: 0
-      EndPosition: 0
+      EndPosition: 0.16
       FadeIn: 0
       FadeOut: 0
       Weight: 0

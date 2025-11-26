@@ -7,6 +7,9 @@ using Ami.BroAudio;
 using DG.Tweening;
 using System.Collections;
 
+
+
+
 [RequireComponent(typeof(EnemyHealth))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BehaviorGraphAgent))]
@@ -40,7 +43,6 @@ public class Enemy : MonoBehaviour
 
     [Header("Attack: Projectile Skill")]
     [SerializeField] private Transform projectileSpawnPoint; 
-    [SerializeField] private float projectileSpeed = 15f; 
 
     [Header("Phase: Staggered")]
     [SerializeField] private Transform staggeredCoreSpawnPoint; 
@@ -267,7 +269,6 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(staggeredCoreDuration + 0.5f);
 
-        IsEnemyStaggered = false; 
         if (enemyAnimator != null) enemyAnimator.SetTrigger("Revive");
         Revive();
     }
@@ -322,7 +323,7 @@ public class Enemy : MonoBehaviour
     #region Animation Events
     public enum EnemyAnimationEventTriggerType
     {
-        OnAttackGroundSlam, OnAttackRockAppear, OnShootProjectile, OnSpawnStaggeredCore,
+        OnAttackGroundSlam, OnAttackRockAppear, OnShootProjectile, OnSpawnStaggeredCore, OnStaggerComplete,
         OnPlaySlamSound, OnPlaySweepSound, OnPlayGrowSound, OnPlayUltimateSound, OnPlayRoarSound
     }
     public void OnAnimationEventTrigger(EnemyAnimationEventTriggerType type)
@@ -333,6 +334,7 @@ public class Enemy : MonoBehaviour
             case EnemyAnimationEventTriggerType.OnAttackRockAppear: SpawnRocks(); break;
             case EnemyAnimationEventTriggerType.OnShootProjectile: ShootProjectile(); break;
             case EnemyAnimationEventTriggerType.OnSpawnStaggeredCore: StartCoroutine(SpawnStaggeredCore()); break;
+            case EnemyAnimationEventTriggerType.OnStaggerComplete: IsEnemyStaggered = false; break;
             case EnemyAnimationEventTriggerType.OnPlaySlamSound: BroAudio.Play(Golem_Attack_Slam); break;
             case EnemyAnimationEventTriggerType.OnPlaySweepSound: BroAudio.Play(Golem_Attack_Sweep); break;
             case EnemyAnimationEventTriggerType.OnPlayGrowSound: BroAudio.Play(Golem_Attack_Grow); break;
