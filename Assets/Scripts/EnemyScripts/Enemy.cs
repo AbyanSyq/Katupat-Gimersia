@@ -248,7 +248,7 @@ public class Enemy : MonoBehaviour
     {
         healthComponent.Revive();
         GoToNextPhase();
-        ReStoreAllWeakPoint();
+        // ReStoreAllWeakPoint();
 
 
         Debug.Log("Enemy Revived and moved to next phase.");
