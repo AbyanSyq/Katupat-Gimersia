@@ -330,16 +330,16 @@ MonoBehaviour:
   maxShakeIntensity: 0.1
   shakeIncreaseSpeed: 0.8
   spearThrow:
-    ID: 0
-    _sourceAsset: {fileID: 0}
+    ID: 1073741845
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
     <DebugObject>k__BackingField: {fileID: 7679298912095861667}
   spearCharge:
-    ID: 0
-    _sourceAsset: {fileID: 0}
+    ID: 1073741842
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
     <DebugObject>k__BackingField: {fileID: 7679298912095861667}
   playerMove:
-    ID: 0
-    _sourceAsset: {fileID: 0}
+    ID: 1073741844
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
     <DebugObject>k__BackingField: {fileID: 7679298912095861667}
   controller: {fileID: 0}
   input: {fileID: 0}
@@ -352,6 +352,7 @@ MonoBehaviour:
   animParameterThrowForceName: ThrowForce
   animParameterInspectName: InspectSpear
   animParameterCancelInspectName: CancelInspectSpear
+  animParameterDeathName: IsDeath
   animParameterIDSpeed: 0
   animParameterIDJump: 0
   animParameterIDGrounded: 0
@@ -360,6 +361,7 @@ MonoBehaviour:
   animParameterIDThrowForce: 0
   animParameterIDInspect: 0
   animParameterIDCancelInspect: 0
+  animParameterIDDeath: 0
   animator: {fileID: 0}
   animatorSpear: {fileID: 5665444571752894566}
   hasAnimator: 0
