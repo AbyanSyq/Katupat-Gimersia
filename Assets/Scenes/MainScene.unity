@@ -1120,6 +1120,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
+      propertyPath: currentSceneConfig.bgm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729297089666209819, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
       propertyPath: currentSceneConfig.initialUI
       value: 1
       objectReference: {fileID: 0}

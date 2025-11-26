@@ -86,6 +86,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             if (config.sceneType == currentSceneConfig.sceneType)
             {
                 currentSceneConfig = config;
+                AudioManager.Instance.PlayBGM(currentSceneConfig.bgm);
                 break;
             }
         }

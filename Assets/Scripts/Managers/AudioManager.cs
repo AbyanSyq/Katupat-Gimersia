@@ -34,9 +34,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         // 1. Initialize Volumes FIRST
         InitVolumes();
-
-        // 2. Then Play BGM
-        PlaySound(Sound.BGMMainMenu).AsBGM();
     }
 
     // --- NEW: Load saved data and apply to BroAudio ---

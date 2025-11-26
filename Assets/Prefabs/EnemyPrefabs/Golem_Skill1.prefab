@@ -24485,7 +24485,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damage: 10
-  yOffset: 0.6
+  yOffset: 0
   RockVisual: {fileID: 6487827867167229100}
   poolIndex: 3
   groundLayer:
