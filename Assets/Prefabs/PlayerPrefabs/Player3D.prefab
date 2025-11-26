@@ -370,7 +370,7 @@ MonoBehaviour:
   throwPoint: {fileID: 9010195202936670476}
   minThrowForce: 10
   maxThrowForce: 30
-  chargeSpeed: 3
+  chargeSpeed: 1.6
   fovResetSpeed: 40
   throwCooldown: 1.5
   chargeLowestDuration: 0.5

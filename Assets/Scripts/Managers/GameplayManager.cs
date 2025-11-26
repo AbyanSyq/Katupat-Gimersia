@@ -7,6 +7,7 @@ public static partial class Events
     public static readonly GameEvent OnGameplayStarted = new GameEvent();
     public static readonly GameEvent<int> OnPlayerAtkTotalHitCounted = new GameEvent<int>();
     public static readonly GameEvent<int> OnPlayerAtkComboCounted = new GameEvent<int>();
+    public static readonly GameEvent<float> OnThrowCooldownChanged = new GameEvent<float>();//percentage
 }
 public class GameplayManager : SingletonMonoBehaviour<GameplayManager>
 {

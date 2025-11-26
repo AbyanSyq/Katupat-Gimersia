@@ -8,13 +8,15 @@ public class UIGameplay : UIBase
 {
     [Header("References")]
     public Image healthbarFillRight, healthbarFillLeft, damagebarFillRight, damagebarFillLeft;
-    public TextMeshProUGUI healthText, comboText, totalHitText;
+    public RectTransform crossHairDot;
+    public RectTransform chargeBar;
     public TMP_Text hitInfoText;
-    public Image[] playerHealthImages = new Image[3];
+    public GameObject[] playerHealthImages = new GameObject[3];
     public Sprite[] bossIconSprites;
+
+    private bool isFullyCharged = false, isLowHealth = false;
     [SerializeField] Animator anim;
     [SerializeField] AnimationController bossInformationAnim;
-    [SerializeField] private Slider playerChargeForceSlider;
     [SerializeField] GameObject bossHealthBar;
 
     [Header("Inputs")]
@@ -28,12 +30,11 @@ public class UIGameplay : UIBase
     void OnEnable()
     {
         Events.OnEnemyHealthChanged.Add(OnEnemyHealthChanged);
-        Events.OnPlayerAtkTotalHitCounted.Add(OnPlayerAtkTotalHitCounted);
-        Events.OnPlayerAtkComboCounted.Add(OnPlayerAtkComboCounted);
         Events.OnPlayerAttackHitted.Add(OnPlayerAttackHitted);
         Events.OnPlayerAttackMissed.Add(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Add(OnPlayerHealthChanged);
         Events.OnPlayerChargeForceChanged.Add(OnPlayerChargeForceChanged);
+        Events.OnThrowCooldownChanged.Add(OnPlayerThrowCooldownChanged);
 
         StartCoroutine(ShowBossInformationCoroutine());
     }
@@ -41,27 +42,29 @@ public class UIGameplay : UIBase
     void OnDisable()
     {
         Events.OnEnemyHealthChanged.Remove(OnEnemyHealthChanged);
-        Events.OnPlayerAtkTotalHitCounted.Remove(OnPlayerAtkTotalHitCounted);
-        Events.OnPlayerAtkComboCounted.Remove(OnPlayerAtkComboCounted);
         Events.OnPlayerAttackHitted.Remove(OnPlayerAttackHitted);
         Events.OnPlayerAttackMissed.Remove(OnPlayerAttackMissed);
         Events.OnPlayerHealthChanged.Remove(OnPlayerHealthChanged);
         Events.OnPlayerChargeForceChanged.Remove(OnPlayerChargeForceChanged);
+        Events.OnThrowCooldownChanged.Remove(OnPlayerThrowCooldownChanged);
 
     }
 
     #region OnEvents
+    public void OnPlayerThrowCooldownChanged(float normalizedCooldown)
+    {
+        Image im = chargeBar.GetComponent<Image>(); 
+        im.fillAmount = 1 - normalizedCooldown;
+    }
     public void OnEnemyHealthChanged(float currentHealth, float maxHealth)
     {
         float fillAmount = currentHealth / maxHealth;
         healthbarFillRight.fillAmount = fillAmount;
         healthbarFillLeft.fillAmount = fillAmount;
 
-        healthText.text = $"{currentHealth}";
-
         StartCoroutine(UpdateDamageBarCoroutine(fillAmount, damageDelay, damageDuration));
-    
-        if(lastBossHealth - currentHealth <= 5f)
+
+        if (lastBossHealth - currentHealth <= 5f)
             bossHealthBar.transform.DOShakePosition(bossHealthBarShakeDuration, bossHealhBarShakeStrength * 0.5f);
         else
             bossHealthBar.transform.DOShakePosition(bossHealthBarShakeDuration, bossHealhBarShakeStrength);
@@ -71,16 +74,6 @@ public class UIGameplay : UIBase
     {
         yield return new WaitForSeconds(0.2f);
         if (GameManager.Instance.CurrentSceneType == SceneType.STAGE1) bossInformationAnim.Show();
-    }
-
-    public void OnPlayerAtkTotalHitCounted(int hitCount)
-    {
-        totalHitText.text = $"{hitCount}";
-    }
-
-    public void OnPlayerAtkComboCounted(int combo)
-    {
-        comboText.text = $"{combo}";
     }
 
     void OnPlayerAttackHitted()
@@ -112,7 +105,30 @@ public class UIGameplay : UIBase
     }
     void OnPlayerChargeForceChanged(float normalizedCharge)
     {
-        playerChargeForceSlider.value = normalizedCharge;
+
+        chargeBar.localScale = new Vector3(1 - normalizedCharge, 1 - normalizedCharge, 1);
+        if (normalizedCharge >= 1f)
+        {
+            if (!isFullyCharged) // <-- cuma trigger SEKALI
+            {
+                isFullyCharged = true;
+                StartCoroutine(ShowFullyChargedCoroutine());
+            }
+        }
+        else
+        {
+            // Reset agar bisa trigger lagi kalau charge turun lalu naik penuh kembali
+            isFullyCharged = false;
+        }
+
+        if (normalizedCharge >= 1f)
+        {
+            isFullyCharged = true;
+        }
+        else
+        {
+            isFullyCharged = false;
+        }
     }
 
 
@@ -125,43 +141,27 @@ public class UIGameplay : UIBase
         else if (healthPercentage >= 0f) healthBars = 1;
         else healthBars = 0;
 
-        switch (healthBars)
+        if (healthBars == 1)
         {
-            case 3:
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = true;
-                break;
-            case 2:
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = true;
-                playerHealthImages[2].enabled = false;
-                break;
-            case 1:
-                playerHealthImages[0].enabled = true;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = false;
-                break;
-            case 0:
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = false;
-                break;
-            default:
-                Debug.Log("Current health is not within range of 0-3");
-                playerHealthImages[0].enabled = false;
-                playerHealthImages[1].enabled = false;
-                playerHealthImages[2].enabled = false;
-                break;
+            isLowHealth = true;
+        }
+
+        if (isLowHealth)
+        {
+            LowHealthHandler();
+        }
+
+        StartCoroutine(HealthDamageCoroutine(playerHealthImages[Mathf.Clamp(healthBars, 0, 2)].transform.Find("Health").gameObject, playerHealthImages[Mathf.Clamp(healthBars, 0, 2)].transform.Find("Damage").gameObject));
+
+        if (healthBars > 0)
+        {
+            playerHealthImages[healthBars - 1].transform.Find("Icon").GetComponent<RectTransform>().DOScale(1.15f, 0.2f).SetEase(Ease.OutQuad).SetLoops(4, LoopType.Yoyo);
         }
     }
     #endregion
 
     void Awake()
     {
-        comboText.text = "0";
-        totalHitText.text = "0";
-        
         if (anim == null)
         {
             anim = GetComponent<Animator>();
@@ -190,6 +190,53 @@ public class UIGameplay : UIBase
         damagebarFillLeft.fillAmount = targetFillAmount;
     }
 
+    public IEnumerator ShowFullyChargedCoroutine()
+    {
+        // Show some visual effect for fully charged (e.g., scale up and down)
+        Tween scaleTween = crossHairDot.DOScale(3f, 0.05f).SetLoops(2, LoopType.Yoyo);
+        yield return scaleTween.WaitForCompletion();
+    }
+
+    public IEnumerator HealthDamageCoroutine(GameObject healthBarObj, GameObject damageBarObj)
+    {
+        Image healthImg = healthBarObj.GetComponent<Image>();
+        Image damageImg = damageBarObj.GetComponent<Image>();
+
+        // 1. HEALTH langsung hilang (scale down atau alpha 0)
+        healthImg.DOKill();
+        healthImg.DOFade(0f, 0.1f);  // Health hilang cepat
+
+        // 2. DAMAGE delay sedikit sebelum bergerak
+        yield return new WaitForSeconds(0.15f);
+
+        // 3. DAMAGE bergerak turun mengikuti health bar
+        Vector3 startPos = damageBarObj.transform.localPosition;
+        Vector3 targetPos = startPos + new Vector3(0, -15f, 0); // turun 15 pixel
+
+        damageBarObj.transform.DOKill();
+        damageBarObj.transform.DOLocalMove(targetPos, 0.25f).SetEase(Ease.OutQuad);
+
+        // 4. DAMAGE fade-out perlahan
+        damageImg.DOKill();
+        damageImg.DOFade(0f, 0.35f).SetEase(Ease.OutQuad);
+
+        // 5. Reset setelah selesai
+        yield return new WaitForSeconds(0.4f);
+
+        // Reset alpha & posisi agar siap damage berikutnya
+        healthImg.color = new Color(healthImg.color.r, healthImg.color.g, healthImg.color.b, 1f);
+        damageImg.color = new Color(damageImg.color.r, damageImg.color.g, damageImg.color.b, 1f);
+
+        damageBarObj.transform.localPosition = startPos;
+
+        healthBarObj.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void LowHealthHandler()
+    {
+        playerHealthImages[0].transform.Find("Icon").GetComponent<RectTransform>().DOScale(1.15f, 0.5f).SetEase(Ease.OutQuad).SetLoops(-1, LoopType.Yoyo);
+        playerHealthImages[0].transform.parent.GetComponent<Image>().DOColor(Color.red, 0.5f).SetLoops(-1, LoopType.Yoyo);
+    }
 
     [ContextMenu("Test Health Change")]
     public void testHealthChange()
@@ -201,11 +248,5 @@ public class UIGameplay : UIBase
     public void testmaxHealthChange()
     {
         OnEnemyHealthChanged(1000f, 1000f);
-    }
-
-    [ContextMenu("Test hit")]
-    public void testHit()
-    {
-        OnPlayerAtkTotalHitCounted(Random.Range(0, 100));
     }
 }
