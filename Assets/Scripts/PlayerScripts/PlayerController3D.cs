@@ -319,7 +319,7 @@ public class PlayerController3D : MonoBehaviour
         if (input.move == Vector2.zero) targetSpeed = 0.0f;
         float groundedMultiplier = grounded ? 1f : 0.01f;
 
-        
+
         float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude * groundedMultiplier;
         float speedOffset = 0.1f;
         float inputMagnitude = input.move.magnitude;
@@ -343,7 +343,7 @@ public class PlayerController3D : MonoBehaviour
 
         controller.Move(moveDirection.normalized * (speed * Time.deltaTime) +
                         new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
-    
+
         if (hasAnimator)
         {
             animator.SetFloat(animParameterIDSpeed, animationBlend);
@@ -510,7 +510,7 @@ public class PlayerController3D : MonoBehaviour
 
     #region Attack (Throw Spear)
     public void StartCharging()
-    {   
+    {
         if (isInspecting) CancelInspectSpear();
         if (isCharging || throwCooldown > 0f || isKnocked) return;
         isCharging = true;
@@ -534,11 +534,11 @@ public class PlayerController3D : MonoBehaviour
 
         // CancelThrow();
     }
-    
+
     public void CancelInspectSpear()
     {
         isInspecting = false;
-        
+
         animatorSpear.SetTrigger("CancelInspectSpear");
         animator.SetTrigger(animParameterIDCancelInspect);
     }
@@ -674,7 +674,7 @@ public class PlayerController3D : MonoBehaviour
     private IEnumerator CameraShakeDuringCharge()
     {
         float intensity = 0f;
-            
+
 
         while (isCharging)
         {
@@ -709,6 +709,7 @@ public class PlayerController3D : MonoBehaviour
     void HandleSpearCooldown()
     {
         throwCooldown -= Time.deltaTime;
+        Events.OnThrowCooldownChanged.Publish(Mathf.Clamp01(throwCooldown / initialThrowCooldown));
         if (throwCooldown < 0f) isReloading = false;
     }
 
@@ -827,8 +828,8 @@ public class PlayerController3D : MonoBehaviour
         }
     }
     #endregion
-   public void OnDeath()
+    public void OnDeath()
     {
-        animator.SetTrigger(animParameterIDDeath);
+        animator.SetBool(animParameterIDDeath, true);
     }
 }
