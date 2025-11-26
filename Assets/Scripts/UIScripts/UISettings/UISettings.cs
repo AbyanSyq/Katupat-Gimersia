@@ -15,6 +15,7 @@ public class UISettings : UIBase
     [SerializeField, ReadOnly] private UISettingsType settingsType;
 
     [Header("Buttons")]
+    private Button selectedButton;
     [SerializeField] private Button graphicsButton;
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button volumeButton;
@@ -32,8 +33,16 @@ public class UISettings : UIBase
     {
         SetUpButton();
     }
-
-    public void SetUpButton()
+    void OnEnable()
+    {
+        selectedButton = graphicsButton;
+        SwitchPanel(UISettingsType.GRAPHICS);
+    }
+    private void Update()
+    {
+        selectedButton.Select();
+    }
+    private void SetUpButton()
     {
         graphicsButton.onClick.AddListener(() =>
         {
@@ -55,37 +64,44 @@ public class UISettings : UIBase
         {
             UIManager.Instance.OnEscape();
         });
-
     }
 
-    public void SwitchPanel(UISettingsType type)
+    private void SwitchPanel(UISettingsType type)
     {
         settingsType = type;
         switch (type)
         {
+            case UISettingsType.MAIN:
+                selectedButton = graphicsButton;
+                mainPanel.Show();
+                graphicsPanel.Hide();
+                controlsPanel.Hide();
+                volumePanel.Hide();
+                aboutPanel.Hide();
+                break;
             case UISettingsType.GRAPHICS:
+                selectedButton = graphicsButton;
                 graphicsPanel.Show();
                 controlsPanel.Hide();
                 volumePanel.Hide();
-                //  aboutPanel.Hide();
                 break;
             case UISettingsType.CONTROLS:
+                selectedButton = controlsButton;
                 graphicsPanel.Hide();
                 controlsPanel.Show();
                 volumePanel.Hide();
-                // aboutPanel.Hide();
                 break;
             case UISettingsType.VOLUME:
+                selectedButton = volumeButton;
                 graphicsPanel.Hide();
                 controlsPanel.Hide();
                 volumePanel.Show();
-                // aboutPanel.Hide();
                 break;
             case UISettingsType.ABOUT:
+                selectedButton = aboutButton;
                 graphicsPanel.Hide();
                 controlsPanel.Hide();
                 volumePanel.Hide();
-                // aboutPanel.Show();
                 break;
         }
 

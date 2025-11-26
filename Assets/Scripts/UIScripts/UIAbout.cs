@@ -8,7 +8,7 @@ public class UIAbout : UIBase
     {
         backButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.OnEscape();
+            UIManager.Instance.ChangeUI(UIManager.Instance.PreviousUI);
         });
     }
 }

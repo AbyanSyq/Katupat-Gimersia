@@ -19,7 +19,7 @@ public class UIQuit : UIBase
         });
         noButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.OnEscape();
+            UIManager.Instance.ChangeUI(UIType.MAINMENU);
         });
     }
     public void CloseButton()

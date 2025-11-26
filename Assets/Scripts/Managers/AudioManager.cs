@@ -21,9 +21,25 @@ public enum Sound
 
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
+    public string MasterKey => masterKey;
+    public string MusicKey => musicKey;
+    public string SFXKey => sFXKey;
+    private const string masterKey = "BroAudio_MasterVol";
+    private const string musicKey = "BroAudio_MusicVol";
+    private const string sFXKey = "BroAudio_SFXVol";
+
     [Header("Sound Database")]
     public SoundList[] soundDataList;  // switched to array (syncs with enum count)
 
+    protected override void Awake()
+    {
+        base.Awake();
+        float savedMaster = PlayerPrefs.GetFloat(MasterKey, 1.0f);
+        float savedMusic = PlayerPrefs.GetFloat(MusicKey, 1.0f);
+        float savedSFX = PlayerPrefs.GetFloat(SFXKey, 1.0f);
+
+        ApplyVolumes(savedMaster, savedMusic, savedSFX);
+    }
     private void Start()
     {
         PlaySound(Sound.BGM).AsBGM();
@@ -139,6 +155,20 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         BroAudio.SetVolume(GetSoundID(sound), amount);
     }
+    public void SetVolume(BroAudioType audioType, float amount)
+    {
+        BroAudio.SetVolume(audioType, amount);
+    }
+    
+
+        private void ApplyVolumes(float master, float music, float sfx)
+    {
+
+        SetVolume(BroAudioType.All, master);
+        SetVolume(BroAudioType.Music, music);
+        SetVolume(BroAudioType.SFX, sfx);
+    }
+    
 
     // ------------------- 🔊 OnValidate -------------------
 

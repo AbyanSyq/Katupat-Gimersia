@@ -201,7 +201,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
     public void OnEscape()
     {
-        if (currentUI == UIType.GAMEOVER)
+        if (currentUI == UIType.GAMEOVER || currentUI == UIType.MAINMENU)
         {
             return;
         }
