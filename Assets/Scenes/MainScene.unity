@@ -167,9 +167,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4768864870952434252, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039238264693040408, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: damageReduction
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_Name
       value: EnemyGolem
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464428279218961959, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887261401612972704, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028159410496433283, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028159410496433283, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028159410496433283, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
