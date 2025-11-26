@@ -48,7 +48,6 @@ public class EnemyHealth : Health
 
     public override void ReduceHealth(float amount)
     {
-        if(enemyComponent.IsEnemyStaggered) return;
         base.ReduceHealth(amount );
 
         enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("Health", currentHealth);

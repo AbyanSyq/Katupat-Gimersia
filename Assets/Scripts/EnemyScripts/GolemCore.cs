@@ -22,4 +22,12 @@ public class GolemCore : MonoBehaviour
     {
         transform.DOLocalMove(new Vector3(0, 0, 0), duration).SetEase(easeType);
     }
+    public void Despawn(float duration)
+    {
+        transform.DOLocalMove(spawnPoint.localPosition, duration).SetEase(easeType).OnComplete(() => {
+            transform.DOScale(Vector3.zero, 0.3f).OnComplete(() => {
+                gameObject.SetActive(false);
+            });
+        });
+    }
 }

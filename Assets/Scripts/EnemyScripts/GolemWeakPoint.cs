@@ -29,6 +29,8 @@ public class GolemWeakPoint : TakeDamageHandler
         Debug.Log("init weak point");
         transform.localScale = Vector3.zero;
         gameObject.SetActive(true);
+        modelToHideOnDeath.SetActive(true);
+        colliderToDisableOnDeath.enabled = true;
 
         transform.DOScale(Vector3.one, 0.5f).OnComplete(() => {
             transform.localScale = Vector3.one;

@@ -120,6 +120,11 @@ public class Enemy : MonoBehaviour
             isDie = value;
             if (enemyAnimator != null && isDie)
                 enemyAnimator.SetTrigger("Die");
+            if (isDie)
+            {
+                if(staggeredCoreObject != null )staggeredCoreObject.Despawn(staggeredCoreDuration);
+                DestroyAllWeakPoint();
+            }
         }
     }
 
@@ -253,7 +258,7 @@ public class Enemy : MonoBehaviour
     {
         if (IsAtMaxPhase)
         {
-            isDie = true;
+            // isDie = true;
         }
         else
         {
