@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3848893665312160355, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4768864870952434252, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.59
@@ -175,6 +179,30 @@ PrefabInstance:
       propertyPath: damageReduction
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Shoot.ID
+      value: 1073741854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Charge.ID
+      value: 1073741853
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Shoot._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Charge._sourceAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Shoot.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 76401396}
+    - target: {fileID: 5324928209874898373, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+      propertyPath: Golem_Charge.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 76401396}
     - target: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
       propertyPath: m_Name
       value: EnemyGolem
@@ -265,6 +293,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2668034359245774831, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
   m_PrefabInstance: {fileID: 56271103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &76401396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5420691852208598869, guid: 2132b8745f28c694ab99a00763daf18f, type: 3}
+  m_PrefabInstance: {fileID: 50693682}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &231043664
 PrefabInstance:
