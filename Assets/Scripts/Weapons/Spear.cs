@@ -80,8 +80,8 @@ public class Spear : MonoBehaviour, IPoolObject
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, collision.contacts[0].point);
             Events.OnPlayerAttackHitted?.Publish();
-            CreateParticleObject();
-            CreateHitFXObject();
+            // CreateParticleObject();
+            // CreateHitFXObject();
             Despawn();
             Debug.Log("Spear collided with " + collision.gameObject.name);
         }
@@ -104,8 +104,8 @@ public class Spear : MonoBehaviour, IPoolObject
             damageable.TakeDamage(spearDamage, Vector3.zero);
             Events.OnPlayerAttackHitted?.Publish();
             Despawn();
-            CreateParticleObject();
-            CreateHitFXObject();
+            // CreateParticleObject();
+            // CreateHitFXObject();
             Debug.Log("Spear collided with " + collider.gameObject.name);    
         }
         else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
