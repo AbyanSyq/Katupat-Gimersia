@@ -45,19 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDataList:
-  - name: BGM
-    soundData:
-      ID: 268435459
-      _sourceAsset: {fileID: 11400000, guid: 78a4290f889aee34f9c217405512a041, type: 2}
-      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
-  - name: BGMShift
-    soundData:
-      ID: 268435458
-      _sourceAsset: {fileID: 11400000, guid: 78a4290f889aee34f9c217405512a041, type: 2}
-      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: BGMMainMenu
     soundData:
       ID: 268435458
+      _sourceAsset: {fileID: 11400000, guid: 78a4290f889aee34f9c217405512a041, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
+  - name: BGMGolem
+    soundData:
+      ID: 268435459
       _sourceAsset: {fileID: 11400000, guid: 78a4290f889aee34f9c217405512a041, type: 2}
       <DebugObject>k__BackingField: {fileID: 5993980722535095591}
   - name: ButtonClick
@@ -70,8 +65,13 @@ MonoBehaviour:
       ID: 536870912
       _sourceAsset: {fileID: 11400000, guid: 6ae8d9cb032bc1c40a8f7d4bd78c9337, type: 2}
       <DebugObject>k__BackingField: {fileID: 5993980722535095591}
-  - name: OilSlizzing
+  - name: SpearThrow
     soundData:
-      ID: 0
-      _sourceAsset: {fileID: 0}
-      <DebugObject>k__BackingField: {fileID: 0}
+      ID: 1073741845
+      _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}
+  - name: SpearCharge
+    soundData:
+      ID: 1073741842
+      _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+      <DebugObject>k__BackingField: {fileID: 5993980722535095591}

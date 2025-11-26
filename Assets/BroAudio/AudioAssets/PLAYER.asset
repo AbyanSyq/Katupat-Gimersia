@@ -19,12 +19,12 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: e2f81a0070e91384b9a22adb04f08ab5, type: 3}
-      Volume: 1
+      Volume: 1.9464841
       Delay: 0
-      StartPosition: 0
+      StartPosition: 0.862
       EndPosition: 0
-      FadeIn: 0
-      FadeOut: 0
+      FadeIn: 0.185
+      FadeOut: 0.164
       Weight: 0
     <MasterVolume>k__BackingField: 1
     <Loop>k__BackingField: 0
@@ -49,10 +49,10 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 3f55c06092886724ba4c7bd417feed09, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.213
+      StartPosition: 0.385
       EndPosition: 0
-      FadeIn: 0
-      FadeOut: 0
+      FadeIn: 0.078
+      FadeOut: 0.137
       Weight: 0
     <MasterVolume>k__BackingField: 1
     <Loop>k__BackingField: 0
@@ -103,17 +103,17 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 2c238d5e9cfb16e4282c990b161e05cd, type: 3}
-      Volume: 1
+      Volume: 0.115836
       Delay: 0
-      StartPosition: 0
+      StartPosition: 0.111
       EndPosition: 0
-      FadeIn: 0
-      FadeOut: 0
+      FadeIn: 0.03
+      FadeOut: 0.054
       Weight: 0
     <MasterVolume>k__BackingField: 1
     <Loop>k__BackingField: 0
     <SeamlessLoop>k__BackingField: 0
-    <TransitionTime>k__BackingField: 0
+    <TransitionTime>k__BackingField: -1
     <SpatialSetting>k__BackingField: {fileID: 0}
     <Priority>k__BackingField: 128
     <Pitch>k__BackingField: 1

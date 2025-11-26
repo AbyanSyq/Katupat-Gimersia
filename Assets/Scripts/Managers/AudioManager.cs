@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Ami.BroAudio;
 using UnityEngine;
 
@@ -12,11 +11,10 @@ public struct SoundList
 
 public enum Sound
 {
-    BGM,
-    BGMShift,
     BGMMainMenu,
+    BGMGolem,
     ButtonClick,
-    ButtonHover
+    ButtonHover,
 }
 
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
@@ -24,27 +22,35 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     public string MasterKey => masterKey;
     public string MusicKey => musicKey;
     public string SFXKey => sFXKey;
-    private const string masterKey = "BroAudio_MasterVol";
-    private const string musicKey = "BroAudio_MusicVol";
-    private const string sFXKey = "BroAudio_SFXVol";
+    private const string masterKey = "BroAudioVol_Master";
+    private const string musicKey = "BroAudioVol_Music";
+    private const string sFXKey = "BroAudioVol_SFX";
 
     [Header("Sound Database")]
     public SoundList[] soundDataList;  // switched to array (syncs with enum count)
 
-    protected override void Awake()
-    {
-        base.Awake();
-        float savedMaster = PlayerPrefs.GetFloat(MasterKey, 1.0f);
-        float savedMusic = PlayerPrefs.GetFloat(MusicKey, 1.0f);
-        float savedSFX = PlayerPrefs.GetFloat(SFXKey, 1.0f);
-
-        ApplyVolumes(savedMaster, savedMusic, savedSFX);
-    }
+    
     private void Start()
     {
-        PlaySound(Sound.BGM).AsBGM();
+        // 1. Initialize Volumes FIRST
+        InitVolumes();
+
+        // 2. Then Play BGM
+        PlaySound(Sound.BGMMainMenu).AsBGM();
     }
 
+    // --- NEW: Load saved data and apply to BroAudio ---
+    private void InitVolumes()
+    {
+        float masterVol = PlayerPrefs.GetFloat(masterKey, 1f);
+        float musicVol = PlayerPrefs.GetFloat(musicKey, 1f);
+        float sfxVol = PlayerPrefs.GetFloat(sFXKey, 1f);
+
+        BroAudio.SetVolume(BroAudioType.All, masterVol);
+        BroAudio.SetVolume(BroAudioType.Music, musicVol);
+        BroAudio.SetVolume(BroAudioType.SFX, sfxVol);
+    }
+    
     // ------------------- 🔊 Helpers -------------------
     public SoundID GetSoundID(Sound sound)
     {
@@ -161,13 +167,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     }
     
 
-        private void ApplyVolumes(float master, float music, float sfx)
-    {
-
-        SetVolume(BroAudioType.All, master);
-        SetVolume(BroAudioType.Music, music);
-        SetVolume(BroAudioType.SFX, sfx);
-    }
     
 
     // ------------------- 🔊 OnValidate -------------------

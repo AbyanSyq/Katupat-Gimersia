@@ -9,49 +9,54 @@ public class UIVolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
-    // Keys for saving data
-
-    private void Awake()
+    // Use OnEnable so this updates every time the Menu is opened
+    private void OnEnable()
     {
+        // 1. Get current values from PlayerPrefs (or default 1f)
+        float masterVol = PlayerPrefs.GetFloat(AudioManager.Instance.MasterKey, 1f);
+        float musicVol = PlayerPrefs.GetFloat(AudioManager.Instance.MusicKey, 1f);
+        float sfxVol = PlayerPrefs.GetFloat(AudioManager.Instance.SFXKey, 1f);
 
-        if (masterSlider) masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        if (musicSlider) musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        if (sfxSlider) sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        // 2. Set Slider Visuals (without triggering events if possible)
+        if (masterSlider) 
+        {
+            masterSlider.SetValueWithoutNotify(masterVol);
+            masterSlider.onValueChanged.RemoveListener(SetMasterVolume); // Safety remove
+            masterSlider.onValueChanged.AddListener(SetMasterVolume);    // Add fresh listener
+        }
+
+        if (musicSlider)
+        {
+            musicSlider.SetValueWithoutNotify(musicVol);
+            musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
+
+        if (sfxSlider)
+        {
+            sfxSlider.SetValueWithoutNotify(sfxVol);
+            sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        }
     }
-
-
-
-    // ------------------- 🔊 Slider Event Listeners -------------------
 
     public void SetMasterVolume(float value)
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.SetVolume(BroAudioType.All, value);
-        }
-        
+        BroAudio.SetVolume(BroAudioType.All, value);
         PlayerPrefs.SetFloat(AudioManager.Instance.MasterKey, value);
         PlayerPrefs.Save();
     }
 
     public void SetMusicVolume(float value)
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.SetVolume(BroAudioType.Music, value);
-        }
-
+        BroAudio.SetVolume(BroAudioType.Music, value);
         PlayerPrefs.SetFloat(AudioManager.Instance.MusicKey, value);
         PlayerPrefs.Save();
     }
 
     public void SetSFXVolume(float value)
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.SetVolume(BroAudioType.SFX, value);
-        }
-
+        BroAudio.SetVolume(BroAudioType.SFX, value);
         PlayerPrefs.SetFloat(AudioManager.Instance.SFXKey, value);
         PlayerPrefs.Save();
     }

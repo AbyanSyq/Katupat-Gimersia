@@ -18,6 +18,7 @@ public struct SceneConfig
     public UIType initialUI;
     public SceneField scene;
     public TransitionEffect transitionEffect;
+    public Sound bgm;
 }
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
@@ -128,6 +129,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         FindAnyObjectByType<LaunchPanel>()?.ShowLaunchPanel();
         yield return new WaitForSecondsRealtime(0.5f);
         SceneManager.LoadScene(currentSceneConfig.scene.SceneName);
+        AudioManager.Instance.PlayBGM(currentSceneConfig.bgm);
     }
 
     // public void LoadScene(SceneType sceneType)
@@ -161,7 +163,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         isGamePaused = pause;
         Time.timeScale = pause ? 0f : 1f;
-        AudioManager.Instance.SetVolume(Sound.BGM, pause ? 0.2f : 1f);
+        AudioManager.Instance.SetVolume(Sound.BGMMainMenu, pause ? 0.2f : 1f);
     }
 
     // public void ResumeGame(bool pause)

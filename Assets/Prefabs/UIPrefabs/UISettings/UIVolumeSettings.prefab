@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 998343618788960214}
   - component: {fileID: 7232661822001448073}
   - component: {fileID: 1021425558713932519}
-  - component: {fileID: 8827952494586827028}
+  - component: {fileID: 1587419967359123434}
   m_Layer: 5
   m_Name: UIVolumeSettings
   m_TagString: Untagged
@@ -384,7 +384,7 @@ MonoBehaviour:
   masterSlider: {fileID: 2532637657642549599}
   musicSlider: {fileID: 7637177653723840987}
   sfxSlider: {fileID: 6408222489742768694}
---- !u!114 &8827952494586827028
+--- !u!114 &1587419967359123434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,18 +399,18 @@ MonoBehaviour:
   _applyOnEnable: 0
   _onlyApplyOnce: 0
   _resetOnDisable: 0
-  _fadeTime: 0.5
-  _sliderType: 0
+  _fadeTime: 0
+  _sliderType: 2
   _allowBoost: 0
   _settings:
   - _audioType: -1
-    _volume: 0.665
+    _volume: 1
     _slider: {fileID: 2532637657642549599}
   - _audioType: 1
-    _volume: 0.371
+    _volume: 1
     _slider: {fileID: 7637177653723840987}
   - _audioType: 8
-    _volume: 0.766
+    _volume: 1
     _slider: {fileID: 6408222489742768694}
 --- !u!1 &2011118096056208460
 GameObject:
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.76597655
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.37093708
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.6649665
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -53,6 +53,7 @@ MonoBehaviour:
       m_SceneAsset: {fileID: 102900000, guid: c9b2e8b38c00ba94380cdde8cac8c74a, type: 3}
       m_SceneName: MainMenuScene
     transitionEffect: 0
+    bgm: 0
   - name: STAGE1
     sceneType: 1
     initialUI: 1
@@ -60,6 +61,7 @@ MonoBehaviour:
       m_SceneAsset: {fileID: 102900000, guid: a7db86b8ba553054f8643b16650956d1, type: 3}
       m_SceneName: MainScene
     transitionEffect: 0
+    bgm: 1
   - name: TUTORIAL
     sceneType: 2
     initialUI: 1
@@ -67,6 +69,7 @@ MonoBehaviour:
       m_SceneAsset: {fileID: 102900000, guid: 7163c555d5a850147b54ca53f713b796, type: 3}
       m_SceneName: TutorialScene
     transitionEffect: 0
+    bgm: 0
   currentSceneConfig:
     name: 
     sceneType: 0
@@ -75,3 +78,4 @@ MonoBehaviour:
       m_SceneAsset: {fileID: 0}
       m_SceneName: 
     transitionEffect: 0
+    bgm: 0

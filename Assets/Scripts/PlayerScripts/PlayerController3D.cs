@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Data.Common;
+using Ami.BroAudio;
+
+
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -100,6 +103,11 @@ public class PlayerController3D : MonoBehaviour
 
     #endregion
 
+
+    [FoldoutGroup("Player Audios"), SerializeField] private SoundID spearThrow;
+    [FoldoutGroup("Player Audios"), SerializeField] private SoundID spearCharge;
+    [FoldoutGroup("Player Audios"), SerializeField] private SoundID playerMove;
+
     #region Input System Declares
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private CharacterController controller;
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private PlayerInputHandler input;
@@ -125,7 +133,9 @@ public class PlayerController3D : MonoBehaviour
     {
         ONLAND,
         ONFOODSTEP,
-        ONINSPECTCOMPLETE
+        ONINSPECTCOMPLETE,
+        ONSPEARTHROW,
+        ONSPEARCHARGE,
     }
 
     [Space]
@@ -179,6 +189,7 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
+
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -272,7 +283,6 @@ public class PlayerController3D : MonoBehaviour
 
                 return;
             }
-
             // Air control enabled: steer the stored horizontal velocity towards input direction
             float camYawLocal = mainCamera.transform.eulerAngles.y;
             Vector3 inputDirLocal = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
@@ -298,6 +308,7 @@ public class PlayerController3D : MonoBehaviour
         if (input.move == Vector2.zero) targetSpeed = 0.0f;
         float groundedMultiplier = grounded ? 1f : 0.01f;
 
+        
         float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude * groundedMultiplier;
         float speedOffset = 0.1f;
         float inputMagnitude = input.move.magnitude;
@@ -321,7 +332,7 @@ public class PlayerController3D : MonoBehaviour
 
         controller.Move(moveDirection.normalized * (speed * Time.deltaTime) +
                         new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
-
+    
         if (hasAnimator)
         {
             animator.SetFloat(animParameterIDSpeed, animationBlend);
@@ -442,11 +453,21 @@ public class PlayerController3D : MonoBehaviour
         switch (type)
         {
             case AnimationEventTriggerType.ONFOODSTEP:
+                if (grounded && speed > 0.5f)
+                {
+                    BroAudio.Play(playerMove);
+                }
                 break;
             case AnimationEventTriggerType.ONLAND:
                 break;
             case AnimationEventTriggerType.ONINSPECTCOMPLETE:
                 isInspecting = false;
+                break;
+            case AnimationEventTriggerType.ONSPEARTHROW:
+                BroAudio.Play(spearThrow);
+                break;
+            case AnimationEventTriggerType.ONSPEARCHARGE:
+                BroAudio.Play(spearCharge);
                 break;
             default:
                 break;
@@ -473,7 +494,7 @@ public class PlayerController3D : MonoBehaviour
 
     #region Attack (Throw Spear)
     public void StartCharging()
-    {
+    {   
         if (isInspecting) CancelInspectSpear();
         if (isCharging || throwCooldown > 0f || isKnocked) return;
         isCharging = true;
@@ -509,7 +530,7 @@ public class PlayerController3D : MonoBehaviour
     public void CancelThrow()
     {
         if (!isCharging || throwCooldown > 0f) return;
-
+        BroAudio.Stop(spearCharge);
         isCharging = false;
 
         if (chargeShakeCoroutine != null)
@@ -631,11 +652,13 @@ public class PlayerController3D : MonoBehaviour
         Spear spearRotator = spearInstance.GetComponent<Spear>();
         if (spearRotator == null)
             spearRotator = spearInstance.AddComponent<Spear>();
+
     }
 
     private IEnumerator CameraShakeDuringCharge()
     {
         float intensity = 0f;
+            
 
         while (isCharging)
         {
@@ -788,4 +811,5 @@ public class PlayerController3D : MonoBehaviour
         }
     }
     #endregion
+   
 }

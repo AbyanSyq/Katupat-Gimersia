@@ -31,9 +31,25 @@ namespace Ami.BroAudio
             private bool AllowBoost => _onGetSliderSetting.Invoke().Item2;
             public bool IsInit => _onGetSliderSetting != null;
 
+            // --- NEW: Helper to get a unique key for this audio type ---
+            private string SaveKey => $"BroAudioVol_{_audioType}";
+
             public void Init(GetSliderSetting onGetSliderSetting)
             {
                 _onGetSliderSetting = onGetSliderSetting;
+            }
+
+            // --- NEW: Method to load data from PlayerPrefs ---
+            public void LoadSavedData()
+            {
+                if (PlayerPrefs.HasKey(SaveKey))
+                {
+                    _volume = PlayerPrefs.GetFloat(SaveKey);
+                    
+                    // Updates the Slider UI visually, but 'false' ensures we don't 
+                    // trigger the OnValueChanged event recursively or unnecessarily.
+                    SetVolumeToSlider(notify: false); 
+                }
             }
 
             public void ApplyVolumeToSystem(float fadeTime)
@@ -47,7 +63,7 @@ namespace Ami.BroAudio
                 {
                     float value = Utility.VolumeToSlider(SliderType, _volume, AllowBoost);
                     value = (float)Math.Round(value, RoundingDigits);
-                    if(notify)
+                    if (notify)
                     {
                         _slider.normalizedValue = value;
                     }
@@ -62,8 +78,8 @@ namespace Ami.BroAudio
             {
                 _originalVolume = _volume;
                 _systemOriginalVolumes = new Dictionary<BroAudioType, float>();
-                
-                Utility.ForeachConcreteAudioType(new OriginVolumeRecorder() 
+
+                Utility.ForeachConcreteAudioType(new OriginVolumeRecorder()
                 {
                     TargetType = _audioType,
                     SystemOriginalVolumes = _systemOriginalVolumes,
@@ -81,12 +97,12 @@ namespace Ami.BroAudio
                         BroAudio.SetVolume(pair.Key, pair.Value, fadeTime);
                     }
                     _systemOriginalVolumes = null;
-                }               
+                }
             }
 
             public void AddSliderListener()
             {
-                if(_slider)
+                if (_slider)
                 {
                     _slider.onValueChanged.AddListener(OnValueChanged);
                 }
@@ -105,6 +121,9 @@ namespace Ami.BroAudio
                 float volume = Utility.SliderToVolume(SliderType, _slider.normalizedValue, AllowBoost);
                 _volume = volume;
                 BroAudio.SetVolume(_audioType, volume);
+
+                // --- NEW: Save the volume whenever the slider moves ---
+                PlayerPrefs.SetFloat(SaveKey, _volume);
             }
 
             public static class NameOf
@@ -142,9 +161,12 @@ namespace Ami.BroAudio
                     setting.Init(onGetSliderSetting);
                 }
 
+                // --- NEW: Load saved data immediately upon enabling ---
+                setting.LoadSavedData();
+
                 setting.AddSliderListener();
 
-                if(_resetOnDisable)
+                if (_resetOnDisable)
                 {
                     setting.RecordOrigin();
                 }
@@ -162,7 +184,7 @@ namespace Ami.BroAudio
         {
             foreach (var setting in _settings)
             {
-                if(_resetOnDisable)
+                if (_resetOnDisable)
                 {
                     setting.ResetToOrigin(_fadeTime);
                     // will trigger onValueChanged and set the volume to system
