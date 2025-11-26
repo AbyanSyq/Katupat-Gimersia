@@ -232,6 +232,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player3D
       objectReference: {fileID: 0}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: playerMove.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1999202474}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearThrow.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1999202474}
+    - target: {fileID: 8923425595094491887, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+      propertyPath: spearCharge.<DebugObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1999202474}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1231,6 +1243,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ad2f82503e60024e8b7f3e9b652347c, type: 3}
+--- !u!1 &1999202474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7679298912095861667, guid: 4b762dbe74711d64999c982cbb86596d, type: 3}
+  m_PrefabInstance: {fileID: 56271103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70478815451789463
 PrefabInstance:
   m_ObjectHideFlags: 0
