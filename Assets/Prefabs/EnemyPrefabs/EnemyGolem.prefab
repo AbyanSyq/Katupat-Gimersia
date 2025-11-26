@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9621298e4c4c946b26b085bd0c7de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 100
   currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
@@ -1402,7 +1402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7212621487865749444, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1414,6 +1414,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7212621487865749444, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6106161543645150529}
+    - targetCorrespondingSourceObject: {fileID: 7212621487865749444, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4004839439339777102}
   m_SourcePrefab: {fileID: 100100000, guid: 08530d612e5e63f448a30b395c18c301, type: 3}
 --- !u!120 &4408843008945474464 stripped
 LineRenderer:
@@ -1467,6 +1470,27 @@ MonoBehaviour:
   spawnPoint: {fileID: 7450415348694235971}
   targetLineTransform: {fileID: 5556588469935449061}
   easeType: 27
+--- !u!135 &4004839439339777102
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887261401612972704}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.85
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2702212720690757420
 PrefabInstance:
   m_ObjectHideFlags: 0
