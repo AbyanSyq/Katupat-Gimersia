@@ -215,7 +215,7 @@ Material:
     - _HeightColorsAlpha: 2
     - _HeightColorsBlend: 0
     - _HeightColorsEdgeThickness: 1
-    - _HeightColorsHeight: -10.5
+    - _HeightColorsHeight: -6
     - _HeightColorsSpace: 0
     - _HeightColorsThickness: 0
     - _IgnoreMainTexAlpha: 0
