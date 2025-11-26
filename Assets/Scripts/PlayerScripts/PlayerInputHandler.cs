@@ -25,6 +25,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
+
+        Events.OnPlayerDeath.Add(DisableInput);
         _inputActions.Player.Enable();
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMove;
@@ -45,6 +47,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        Events.OnPlayerDeath.Remove(DisableInput);
+    
         _inputActions.Player.Move.performed -= OnMove;
         _inputActions.Player.Move.canceled -= OnMove;
 
@@ -135,6 +139,15 @@ public class PlayerInputHandler : MonoBehaviour
     public void RestartScene()
     {
         SceneTransitionManager.Instance.LoadScene(SceneManager.GetActiveScene().name, TransitionEffect.Slide);
+    }
+
+    public void DisableInput()
+    {
+        _inputActions.Player.Disable();
+    }
+    public void EnableInput()
+    {
+        _inputActions.Player.Enable();
     }
 }
 

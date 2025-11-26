@@ -7,6 +7,7 @@ using System.Collections;
 using System;
 using System.Linq;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public static partial class Events
 {
@@ -106,12 +107,14 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     void OnEnable()
     {
+
         inputActions.UI.Enable();
         inputActions.UI.Escape.performed += ctx => OnEscape();
     }
 
     void OnDisable()
     {
+
         inputActions.UI.Disable();
         inputActions.UI.Escape.performed -= ctx => OnEscape();
     }

@@ -23,6 +23,7 @@ public class PlayerHealth : Health, IDamageable
     {
         base.Die();
         Events.OnPlayerDied.Publish();
+
     }    
     
     public void TakeDamage(float dmg, Vector3 dmgPos)
