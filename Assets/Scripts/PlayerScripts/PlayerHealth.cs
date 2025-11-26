@@ -2,6 +2,11 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+public static partial class Events
+{
+    public static readonly GameEvent OnPlayerDied = new GameEvent();
+}
 public class PlayerHealth : Health, IDamageable
 {
     [Header("Health Change Cooldown")]
@@ -16,9 +21,10 @@ public class PlayerHealth : Health, IDamageable
     [ContextMenu("Die Now")]
     protected override void Die()
     {
-        UIManager.Instance.ChangeUI(UIType.GAMEOVER);
+        base.Die();
+        Events.OnPlayerDied.Publish();
     }    
-
+    
     public void TakeDamage(float dmg, Vector3 dmgPos)
     {
         if (Time.time - lastHitTime > reduceHealthCooldown)
