@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 0}
   damageMultiplaier: 1
+  damageReduction: 18
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
