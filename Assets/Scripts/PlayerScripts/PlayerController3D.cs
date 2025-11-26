@@ -829,6 +829,6 @@ public class PlayerController3D : MonoBehaviour
     #endregion
    public void OnDeath()
     {
-        animator.SetTrigger(animParameterIDDeath);
+        animator.SetBool(animParameterIDDeath, true);
     }
 }
