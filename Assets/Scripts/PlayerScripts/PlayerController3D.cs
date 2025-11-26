@@ -136,6 +136,7 @@ public class PlayerController3D : MonoBehaviour
         ONINSPECTCOMPLETE,
         ONSPEARTHROW,
         ONSPEARCHARGE,
+        ONPLAYERDEATH
     }
 
     [Space]
@@ -147,6 +148,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField] private string animParameterThrowForceName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterInspectName;
     [FoldoutGroup("Animation"), SerializeField] private string animParameterCancelInspectName;
+    [FoldoutGroup("Animation"), SerializeField] private string animParameterDeathName;
 
     [Space]
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDSpeed;
@@ -157,6 +159,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDThrowForce;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDInspect;
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDCancelInspect;
+    [FoldoutGroup("Animation"), SerializeField, ReadOnly] private int animParameterIDDeath;
 
     [FoldoutGroup("Animation"), SerializeField, ReadOnly] private Animator animator;
     [FoldoutGroup("Animation"), SerializeField] private Animator animatorSpear;
@@ -189,7 +192,15 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
+    void OnEnable()
+    {
+        Events.OnPlayerDied.Add(OnDeath);
+    }
 
+    void OnDisable()
+    {
+        Events.OnPlayerDied.Remove(OnDeath);
+    }
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -446,6 +457,7 @@ public class PlayerController3D : MonoBehaviour
         animParameterIDThrowForce = Animator.StringToHash(animParameterThrowForceName);
         animParameterIDInspect = Animator.StringToHash(animParameterInspectName);
         animParameterIDCancelInspect = Animator.StringToHash(animParameterCancelInspectName);
+        animParameterIDDeath = Animator.StringToHash(animParameterDeathName);
     }
 
     public void OnAnimationEventTrigger(AnimationEventTriggerType type)
@@ -459,6 +471,10 @@ public class PlayerController3D : MonoBehaviour
                 }
                 break;
             case AnimationEventTriggerType.ONLAND:
+                break;
+
+            case AnimationEventTriggerType.ONPLAYERDEATH:
+                UIManager.Instance.ChangeUI(UIType.GAMEOVER);
                 break;
             case AnimationEventTriggerType.ONINSPECTCOMPLETE:
                 isInspecting = false;
@@ -811,5 +827,8 @@ public class PlayerController3D : MonoBehaviour
         }
     }
     #endregion
-   
+   public void OnDeath()
+    {
+        animator.SetTrigger(animParameterIDDeath);
+    }
 }
