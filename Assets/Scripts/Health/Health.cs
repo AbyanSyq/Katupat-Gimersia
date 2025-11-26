@@ -5,8 +5,8 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] protected float maxHealth = 100f;
+    [SerializeField] protected float currentHealth;
 
     [Header("Events")]
     public UnityEvent<float, float> onHealthChanged;//mungkin nanti dibuat di player pake partial Events
@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
     private bool isDead = false;
+    public float healthPercentage => currentHealth / maxHealth;
 
     protected virtual void Awake()
     {

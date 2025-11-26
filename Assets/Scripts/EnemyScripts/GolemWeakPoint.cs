@@ -30,6 +30,6 @@ public class GolemWeakPoint : TakeDamageHandler
 
         yield return new WaitForSeconds(hitEffect.main.duration);
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

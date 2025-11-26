@@ -1,269 +1,350 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using Unity.Behavior;
 using Redcode.Pools;
-using Unity.VisualScripting;
 using Ami.BroAudio;
-
-public static partial class Events
-{
-    public static readonly GameEvent<float, float> OnEnemyHealthChanged = new GameEvent<float, float>();
-    public static readonly GameEvent<float> OnEnemyTakeDamaged = new GameEvent<float>();
-    public static readonly GameEvent OnEnemyDied = new GameEvent();
-}
+using DG.Tweening;
+using System.Collections;
 
 [RequireComponent(typeof(EnemyHealth))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(BehaviorGraphAgent))]
 public class Enemy : MonoBehaviour
 {
+    #region Configuration & References
     
-    [Header("References")]
-    [SerializeField] private Health healthComponent;
+    [Header("Core Components")]
+    [SerializeField] private EnemyHealth healthComponent;
     [SerializeField] private BehaviorGraphAgent enemyBehaviorGraphAgent;
-    [SerializeField] private BlackboardVariable<bool> IsEnemyAttacking;
+    [SerializeField] private Renderer enemyMeshRenderer;
 
-    [Header("Enemy Stats")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float movementSpeed = 3f;
+    [Header("Blackboard Variables")]
+    [SerializeField] private BlackboardVariable<bool> isEnemyAttacking;
+    [SerializeField] private BlackboardVariable<bool> isEnemyStaggered;
 
-    [Header("Enemy Attack")]
-    [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float attackDamage = 10f; 
-    [SerializeField] private Transform detectionStartPoint;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField, ReadOnly] private bool isEnemyInRangeAttack = false;
+    [Header("Combat Settings")]
+    [SerializeField] private float attackDamage = 10f;
+    
+    [Header("Phase Settings")]
+    [SerializeField, ReadOnly] private int currentPhase = 1; 
+    [SerializeField] private int maxPhase = 2;
 
-    public float AttackDamage => attackDamage;
-    [Header("Attack Rock Appear")]
-    [SerializeField] private RockFromGround rockFromGroundPrefab;
-    private Pool<RockFromGround> rockPool;
+    // HAPUS threshold health list, ganti logic ke WeakPoint
+    [Header("Golem Weak Point Settings")]
+    public List<GolemWeakPoint> weakPoints; 
+
+    [Header("Attack: Rock Skill")]
     [SerializeField] private int rockTotalSpawn = 10;
     [SerializeField] private float rockAppearRange = 5f;
-    [SerializeField] private float rockAppearInterval = 1f;
 
-    
+    [Header("Attack: Projectile Skill")]
+    [SerializeField] private Transform projectileSpawnPoint; 
+    [SerializeField] private float projectileSpeed = 15f; 
 
-    [Header("Facing / Rotation")]
+    [Header("Phase: Staggered")]
+    [SerializeField] private Transform staggeredCoreSpawnPoint; 
+    [SerializeField] private Transform staggeredCoreTargetPoint; 
+    [SerializeField] private GolemCore staggeredCoreObject;
+    [SerializeField] private float staggeredCoreDuration = 5f; 
+    [SerializeField,ReadOnly] private bool hasSpawnEventTriggered = false;
+
+    [Header("Movement & Rotation")]
     [SerializeField, ReadOnly] private Transform playerTarget;
     [SerializeField] private float rotationLerpSpeed = 10f;
 
-    [Header("Enemy Visuals")]
-    [SerializeField] private Renderer enemyMeshRenderer;
-    [SerializeField, ReadOnly] private Material enemyMaterial;
-
-    [Header("Animation ")]
-    [SerializeField, ReadOnly] private Animator enemyAnimator;
-    [SerializeField, ReadOnly] private bool isDie;
-    public bool IsDie => isDie;
-
-    [Header("Audio")]
+    [Header("Audio Settings")]
     [SerializeField] private SoundID Golem_Attack_Slam;
     [SerializeField] private SoundID Golem_Attack_Sweep;
     [SerializeField] private SoundID Golem_Attack_Grow;
     [SerializeField] private SoundID Golem_Attack_Ultimate;
     [SerializeField] private SoundID Golem_Roar;
 
-    public enum EnemyAnimationEventTriggerType
+    [Header("Debug & Development")]
+    [SerializeField, ReadOnly] private Animator enemyAnimator;
+    [SerializeField, ReadOnly] private bool isDie;
+    [SerializeField, ReadOnly] private Material enemyMaterial; 
+
+    #endregion
+
+    #region Properties
+
+    public float AttackDamage => attackDamage;
+    public bool IsAtMaxPhase => CurrentPhase >= maxPhase;
+    public int MaxPhase => maxPhase;
+
+    public bool IsEnemyStaggered
     {
-        OnAttackGroundSlam,
-        OnAttackRockAppear,
-        OnPlaySlamSound,
-        OnPlaySweepSound,
-        OnPlayGrowSound,
-        OnPlayUltimateSound,
-        OnPlayRoarSound
+        get => isEnemyStaggered != null && isEnemyStaggered.Value;
+        set
+        {
+            if (isEnemyStaggered != null) 
+            {
+                isEnemyStaggered.Value = value; 
+            }
+        }
     }
 
-    #region Unity Methods
+    public int CurrentPhase
+    {
+        get => currentPhase;
+        private set
+        {
+            if (currentPhase != value)
+            {
+                currentPhase = value;
+                
+                if (enemyBehaviorGraphAgent != null)
+                    enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("Phase", currentPhase);
+            }
+        }
+    }
+
+    public bool IsDie
+    {
+        get => isDie;
+        set
+        {
+            isDie = value;
+            if (enemyAnimator != null && isDie)
+                enemyAnimator.SetTrigger("Die");
+        }
+    }
+
+    #endregion
+
+    #region Unity Lifecycle
 
     private void Awake()
     {
-        enemyBehaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
-        enemyBehaviorGraphAgent.GetVariable("IsEnemyAttacking", out IsEnemyAttacking);
+        InitializeComponents();
+        InitializeBlackboard();
 
-        playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
-        enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
-
-        enemyAnimator = GetComponent<Animator>();
+        CurrentPhase = 1;
     }
+
     private void Start()
     {
-        rockPool = Pool.Create(rockFromGroundPrefab, rockTotalSpawn).NonLazy();
         Events.OnEnemyHealthChanged?.Publish(healthComponent.CurrentHealth, healthComponent.MaxHealth);
-    }
-
-    private void OnEnable()
-    {
-        if (healthComponent != null)
-        {
-            healthComponent.onHealthChanged.AddListener(OnHealthChanged);
-            healthComponent.onDeath.AddListener(Die);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (healthComponent != null)
-        {
-            healthComponent.onHealthChanged.RemoveListener(OnHealthChanged);
-            healthComponent.onDeath.RemoveListener(Die);
-        }
+    
     }
 
     private void Update()
     {
-        DetectPlayer();
         RotateTowardsPlayer();
     }
 
-    private void OnDrawGizmosSelected()
+    void OnEnable()
     {
-        if (detectionStartPoint == null) return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(detectionStartPoint.position, attackRange);
+        Events.OnEnemyHealthChanged?.Add(OnHealthChanged);
+    }
+    void OnDisable()
+    {
+        Events.OnEnemyHealthChanged?.Remove(OnHealthChanged);
     }
 
     #endregion
 
-    #region Health & Damage
+    #region Initialization
 
-    private void OnHealthChanged(float currentHealth, float maxHealth)
+    private void InitializeComponents()
     {
-        Events.OnEnemyHealthChanged?.Publish(currentHealth, maxHealth);
-        Events.OnEnemyTakeDamaged?.Publish(currentHealth);
-    }
-    private void Die()
-    {
-        if (isDie) return;
-        isDie = true;
-
-        enemyAnimator.SetTrigger("Die");
+        enemyAnimator = GetComponent<Animator>();
         
-        if (enemyBehaviorGraphAgent != null)
-        {
-            enemyBehaviorGraphAgent.enabled = false;
-        }
+        if (enemyMeshRenderer != null) 
+            enemyMaterial = enemyMeshRenderer.material;
 
-        EnemyDamageHandler[] enemyDamageHandlers = GetComponentsInChildren<EnemyDamageHandler>();
-        Collider[] enemyColliders = GetComponentsInChildren<Collider>();
-        foreach (var handler in enemyDamageHandlers) handler.enabled = false;
-        foreach (var col in enemyColliders) col.isTrigger = false;
+        if (playerTarget == null)
+            playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
+    }
 
-        Events.OnEnemyDied?.Publish();
-        this.enabled = false;
+    private void InitializeBlackboard()
+    {
+        if (enemyBehaviorGraphAgent == null) 
+            enemyBehaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
+
+        enemyBehaviorGraphAgent.GetVariable("IsEnemyAttacking", out isEnemyAttacking);
+        enemyBehaviorGraphAgent.GetVariable("IsEnemyStaggered", out isEnemyStaggered);
+        
+        if (playerTarget != null)
+            enemyBehaviorGraphAgent.BlackboardReference.SetVariableValue("PlayerTransform", playerTarget);
     }
 
     #endregion
 
-    #region Detection & Facing
+    #region Logic: Weak Point & Phase Control (NEW SYSTEM)
 
-    private void DetectPlayer()
+    // Method ini DIPANGGIL oleh script GolemWeakPoint ketika hancur
+    public void OnWeakPointDestroyed()
     {
-        if (detectionStartPoint == null) return;
-
-        var hitColliders = Physics.OverlapSphere(
-            detectionStartPoint.position,
-            attackRange,
-            playerLayer
-        );
-
-        isEnemyInRangeAttack = hitColliders.Length > 0;
-
-        if (enemyBehaviorGraphAgent != null)
+        if (CheckAllWeakPointsDestroyed())
         {
-            enemyBehaviorGraphAgent.BlackboardReference
-                .SetVariableValue(nameof(isEnemyInRangeAttack), isEnemyInRangeAttack);
-        }
-
-        if (isEnemyInRangeAttack && playerTarget == null)
-        {
-            playerTarget = hitColliders[0].transform;
+            
         }
     }
 
+    private bool CheckAllWeakPointsDestroyed()
+    {
+        if (weakPoints == null || weakPoints.Count == 0) return true;
+
+        foreach (var wp in weakPoints)
+        {
+            // Cek jika WeakPoint masih aktif (belum hancur)
+            // Asumsi: WeakPoint yang hancur gameObject-nya di-set active false
+            if (wp != null && wp.gameObject.activeSelf)
+            {
+                return false; // Masih ada yang hidup
+            }
+        }
+        return true; // Semua mati
+    }
+
+    // OnHealthChanged tidak lagi mengurus Phase, hanya purely logic Health
+    public void OnHealthChanged(float currentHealth, float maxHealth)
+    {
+        // Kosongkan logic phase disini, atau gunakan hanya untuk UI update
+    }
+
+    
+    private void Revive()
+    {
+        healthComponent.Revive();
+        GoToNextPhase();
+
+        Debug.Log("Enemy Revived and moved to next phase.");
+    }
+
+    public void GoToNextPhase()
+    {
+        if (IsAtMaxPhase)
+        {
+            isDie = true;
+        }
+        else
+        {
+            CurrentPhase += 1;
+            Debug.Log($"Going to next phase: {CurrentPhase + 1}");
+        }
+    }
+    #endregion
+
+    #region Logic: Staggered Core Sequence
+
+    public void StartStaggerSequence()
+    {
+        IsEnemyStaggered = true;
+
+        if (staggeredCoreObject == null)
+        {
+            Debug.LogWarning("[Enemy] Staggered Core Prefab belum di-assign!");
+            IsEnemyStaggered = false;
+            return;
+        }
+
+        healthComponent.Stagger();
+        
+        // Play Animasi Die (Stagger Awal)
+        if(enemyAnimator != null) enemyAnimator.SetTrigger("Die");
+    }
+
+    private IEnumerator SpawnStaggeredCore()
+    {
+        if(isDie) yield break;
+        
+        // Reset Posisi
+        if (staggeredCoreSpawnPoint != null)
+            staggeredCoreObject.transform.position = staggeredCoreSpawnPoint.position;
+        else
+            staggeredCoreObject.transform.position = transform.position + Vector3.up;
+
+        staggeredCoreObject.gameObject.SetActive(true);
+
+        Vector3 targetPos = (staggeredCoreTargetPoint != null) ? staggeredCoreTargetPoint.position : playerTarget.position;
+
+        Debug.Log("Move Staggered Core.");
+
+        staggeredCoreObject.Spawn(staggeredCoreDuration);
+
+        yield return new WaitForSeconds(staggeredCoreDuration + 0.5f);
+
+        IsEnemyStaggered = false; 
+        if (enemyAnimator != null) enemyAnimator.SetTrigger("Revive");
+        Revive();
+    }
+
+    #endregion
+
+    #region Logic: Movement & Rotation
+    // ... (Sama seperti sebelumnya) ...
     private void RotateTowardsPlayer()
     {
-        if (isDie) return;
-        if (playerTarget == null) return;
-        if (IsEnemyAttacking == true) return;
-        
+        if (isDie || playerTarget == null) return;
+        if (IsEnemyStaggered) return;
+        if (isEnemyAttacking != null && isEnemyAttacking.Value) return;
 
         Vector3 direction = playerTarget.position - transform.position;
-        direction.y = 0f;
+        direction.y = 0f; 
 
         if (direction.sqrMagnitude < 0.0001f) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationLerpSpeed * Time.deltaTime
-        );
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationLerpSpeed * Time.deltaTime);
     }
-
     #endregion
-    #region Attack Rock From Ground
+
+    #region Logic: Combat Skills
+    // ... (Sama seperti sebelumnya) ...
     private void SpawnRocks()
     {
         for (int i = 0; i < rockTotalSpawn; i++)
         {
-            // Ambil dari PoolManager berdasarkan index pool RockFromGround
-            var rock = PoolManager.Instance.GetFromPool<RockFromGround>(3);
+            var rock = PoolManager.Instance.GetFromPool<RockFromGround>(3); 
             if (rock == null) continue;
-
-            Vector3 randomPos = transform.position + new Vector3(
-                UnityEngine.Random.Range(-rockAppearRange, rockAppearRange),
-                0,
-                UnityEngine.Random.Range(-rockAppearRange, rockAppearRange)
-            );
-
-            // Batu pertama muncul di bawah player
-            if (i == 0 && playerTarget != null)
-                randomPos = playerTarget.position;
-
-            rock.InitRock(randomPos, attackDamage);
+            Vector3 spawnPos = (i == 0 && playerTarget != null) ? playerTarget.position : 
+                transform.position + new Vector3(UnityEngine.Random.insideUnitCircle.x * rockAppearRange, 0, UnityEngine.Random.insideUnitCircle.y * rockAppearRange);
+            rock.InitRock(spawnPos, attackDamage);
         }
     }
-
-
-    private System.Collections.IEnumerator ReturnRockToPoolAfterDelay(RockFromGround rock, float delay)
+    private void ShootProjectile()
     {
-        yield return new WaitForSeconds(delay);
-        rockPool.Take(rock);
+        if (projectileSpawnPoint == null) projectileSpawnPoint = transform; 
+        var projectile = PoolManager.Instance.GetFromPool<EnemyProjectile>();
+        if (projectile == null) return;
+        projectile.transform.position = projectileSpawnPoint.position;
+        projectile.transform.rotation = Quaternion.LookRotation(transform.forward);
+        Vector3 targetPosition = playerTarget != null ? playerTarget.position : transform.forward * 10f;
+        targetPosition.y += 1.0f; 
+        Vector3 shootDirection = (targetPosition - projectileSpawnPoint.position).normalized;
+        projectile.InitProjectile(shootDirection);
     }
-
     #endregion
 
-    #region Animation Trigger
-    
+    #region Animation Events
+    public enum EnemyAnimationEventTriggerType
+    {
+        OnAttackGroundSlam, OnAttackRockAppear, OnShootProjectile, OnSpawnStaggeredCore,
+        OnPlaySlamSound, OnPlaySweepSound, OnPlayGrowSound, OnPlayUltimateSound, OnPlayRoarSound
+    }
     public void OnAnimationEventTrigger(EnemyAnimationEventTriggerType type)
     {
         switch (type)
         {
-            case EnemyAnimationEventTriggerType.OnAttackGroundSlam:
-
-                break;
-            case EnemyAnimationEventTriggerType.OnAttackRockAppear:
-                    SpawnRocks();
-                break;
-            case EnemyAnimationEventTriggerType.OnPlaySlamSound:
-                BroAudio.Play(Golem_Attack_Slam);
-                break;
-            case EnemyAnimationEventTriggerType.OnPlaySweepSound:
-                BroAudio.Play(Golem_Attack_Sweep);
-                break;
-            case EnemyAnimationEventTriggerType.OnPlayGrowSound:
-                BroAudio.Play(Golem_Attack_Grow);
-                break;
-            case EnemyAnimationEventTriggerType.OnPlayUltimateSound:
-                BroAudio.Play(Golem_Attack_Ultimate);
-                break;
-            case EnemyAnimationEventTriggerType.OnPlayRoarSound:
-                BroAudio.Play(Golem_Roar);
-                break;
+            case EnemyAnimationEventTriggerType.OnAttackGroundSlam: break;
+            case EnemyAnimationEventTriggerType.OnAttackRockAppear: SpawnRocks(); break;
+            case EnemyAnimationEventTriggerType.OnShootProjectile: ShootProjectile(); break;
+            case EnemyAnimationEventTriggerType.OnSpawnStaggeredCore: StartCoroutine(SpawnStaggeredCore()); break;
+            case EnemyAnimationEventTriggerType.OnPlaySlamSound: BroAudio.Play(Golem_Attack_Slam); break;
+            case EnemyAnimationEventTriggerType.OnPlaySweepSound: BroAudio.Play(Golem_Attack_Sweep); break;
+            case EnemyAnimationEventTriggerType.OnPlayGrowSound: BroAudio.Play(Golem_Attack_Grow); break;
+            case EnemyAnimationEventTriggerType.OnPlayUltimateSound: BroAudio.Play(Golem_Attack_Ultimate); break;
+            case EnemyAnimationEventTriggerType.OnPlayRoarSound: BroAudio.Play(Golem_Roar); break;
         }
     }
-
     #endregion
+
+    [ContextMenu("Get All WeakPoints")]
+    public void GetAllWeakPointa()
+    {
+        weakPoints = new List<GolemWeakPoint>(GetComponentsInChildren<GolemWeakPoint>());
+    }
 }
