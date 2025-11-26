@@ -12,7 +12,9 @@ using System.Data.Common;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController3D : MonoBehaviour
 {
-    #region State
+    #region Declarations
+
+    #region State Declares
     [Flags]
     public enum PlayerState
     {
@@ -27,7 +29,7 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("State Settings")] public PlayerState CurrentState => currentState;
     #endregion
 
-    #region Movement
+    #region Movement Declares
     [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeed = 8.0f;
     [FoldoutGroup("Movement Settings"), SerializeField] private float moveSpeedWhenCharge = 2.0f;
     [FoldoutGroup("Movement Settings"), SerializeField, Range(0.0f, 0.3f)] private float rotationSmoothTime = 0.12f;
@@ -38,11 +40,13 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float animationBlend;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float targetRotation = 0.0f;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float rotationVelocity;
+    [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float pitchVelocity;
+
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float verticalVelocity;
     [FoldoutGroup("Movement Settings"), SerializeField, ReadOnly] private float terminalVelocity = 53.0f;
     #endregion
 
-    #region Jump & Gravity
+    #region Jump & Gravity Declares
     [Header("Jump & Gravity")]
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float jumpHeight = 1.2f;
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float gravity = -15.0f;
@@ -62,21 +66,21 @@ public class PlayerController3D : MonoBehaviour
     [Header("Knockback")]
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float knockbackForce = 15f; // horizontal force magnitude
     [FoldoutGroup("Jump & Gravity"), SerializeField] private float knockbackHeight = 10f; // vertical velocity magnitude
-    private bool isKnocked = false;
-    bool originalAirControl;
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private bool isKnocked = false;
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private bool originalAirControl;
     // landing/knockback tracking
-    private bool prevGrounded = true;
-    private bool knockbackInProgress = false;
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private bool prevGrounded = true;
+    [FoldoutGroup("Jump & Gravity"), SerializeField] private bool knockbackInProgress = false;
     #endregion
 
-    #region Ground Check
+    #region Ground Check Declares
     [FoldoutGroup("Ground Check"), SerializeField] public bool grounded = true;
     [FoldoutGroup("Ground Check"), SerializeField] private float groundedOffset = -0.14f;
     [FoldoutGroup("Ground Check"), SerializeField] private float groundedRadius = 0.28f;
     [FoldoutGroup("Ground Check"), SerializeField] private LayerMask groundLayers;
     #endregion
 
-    #region Camera
+    #region Camera Declares
     [FoldoutGroup("Cinemachine Camera"), SerializeField] private GameObject cinemachineCameraTarget;
     [FoldoutGroup("Cinemachine Camera"), SerializeField] private float rotationSpeed = 1.0f;
     [FoldoutGroup("Cinemachine Camera"), SerializeField] private float topClamp = 70.0f;
@@ -96,7 +100,7 @@ public class PlayerController3D : MonoBehaviour
 
     #endregion
 
-    #region Input System
+    #region Input System Declares
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private CharacterController controller;
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private PlayerInputHandler input;
     [FoldoutGroup("Input System"), SerializeField, ReadOnly] private PlayerInput playerInput;
@@ -115,7 +119,7 @@ public class PlayerController3D : MonoBehaviour
     }
     #endregion
 
-    #region Animation
+    #region Animation Declares
     [Serializable]
     public enum AnimationEventTriggerType
     {
@@ -166,6 +170,11 @@ public class PlayerController3D : MonoBehaviour
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForce;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] private float currentThrowForceNormalized;
     [FoldoutGroup("Throw"), SerializeField, ReadOnly] float initialThrowCooldown;
+    #endregion
+
+    #region Others
+    [FoldoutGroup("Others"), SerializeField] GameObject playerHand;
+    #endregion
 
     #endregion
 
@@ -190,6 +199,7 @@ public class PlayerController3D : MonoBehaviour
     private void Start()
     {
         cinemachineTargetYaw = cinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        cinemachineTargetPitch = cinemachineCameraTarget.transform.rotation.eulerAngles.x;
         AssignAnimationID();
 
         jumpTimeoutDelta = jumpTimeout;
@@ -228,15 +238,8 @@ public class PlayerController3D : MonoBehaviour
     private void LateUpdate()
     {
         CameraRotation();
-
-        float targetFOV = isCharging ? originalCameraFOV * 1.2f : originalCameraFOV;
-        float fovDifference = Mathf.Abs(targetFOV - originalCameraFOV);
-        float fovSpeed = isCharging ? fovDifference / chargeSpeed : fovResetSpeed;
-        cinemachineCameraComponent.Lens.FieldOfView = Mathf.MoveTowards(
-            cinemachineCameraComponent.Lens.FieldOfView,
-            targetFOV,
-            fovSpeed * Time.deltaTime
-        );
+        ChargingFOV();
+        HandSmoothing();
     }
     #endregion
 
@@ -369,7 +372,14 @@ public class PlayerController3D : MonoBehaviour
             rotationSmoothTime
         );
 
-        transform.rotation = Quaternion.Euler(0.0f, smoothYaw, 0.0f);
+        float smoothPitch = Mathf.SmoothDampAngle(
+            transform.eulerAngles.x,
+            cinemachineTargetPitch,
+            ref pitchVelocity,
+            rotationSmoothTime
+        );
+
+        transform.rotation = Quaternion.Euler(smoothPitch, smoothYaw, 0.0f);
     }
 
     private static float ClampAngle(float angle, float min, float max)
@@ -377,6 +387,25 @@ public class PlayerController3D : MonoBehaviour
         if (angle < -360f) angle += 360f;
         if (angle > 360f) angle -= 360f;
         return Mathf.Clamp(angle, min, max);
+    }
+
+    void ChargingFOV()
+    {
+        float targetFOV = isCharging ? originalCameraFOV * 1.2f : originalCameraFOV;
+        float fovDifference = Mathf.Abs(targetFOV - originalCameraFOV);
+        float fovSpeed = isCharging ? fovDifference / chargeSpeed : fovResetSpeed;
+        cinemachineCameraComponent.Lens.FieldOfView = Mathf.MoveTowards(
+            cinemachineCameraComponent.Lens.FieldOfView,
+            targetFOV,
+            fovSpeed * Time.deltaTime
+        );
+    }
+
+    void HandSmoothing()
+    {
+        Quaternion camRotation = mainCamera.transform.rotation;
+
+        playerHand.transform.rotation = camRotation;
     }
     #endregion
 

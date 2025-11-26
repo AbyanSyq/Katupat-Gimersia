@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 693636388108444792}
   - component: {fileID: 7047431119396913727}
   - component: {fileID: 5415329435382175984}
+  - component: {fileID: 6993718037843986699}
   m_Layer: 3
   m_Name: Player3D
   m_TagString: Player
@@ -288,12 +289,13 @@ MonoBehaviour:
   currentState: 0
   moveSpeed: 8
   moveSpeedWhenCharge: 2
-  rotationSmoothTime: 0.12
+  rotationSmoothTime: 0.03
   speedChangeRate: 10
   speed: 0
   animationBlend: 0
   targetRotation: 0
   rotationVelocity: 0
+  pitchVelocity: 0
   verticalVelocity: 0
   terminalVelocity: 53
   jumpHeight: 2.5
@@ -307,6 +309,10 @@ MonoBehaviour:
   airControlLerpSpeed: 5
   knockbackForce: 15
   knockbackHeight: 10
+  isKnocked: 0
+  originalAirControl: 0
+  prevGrounded: 1
+  knockbackInProgress: 0
   grounded: 1
   groundedOffset: -0.14
   groundedRadius: 0.28
@@ -315,8 +321,8 @@ MonoBehaviour:
     m_Bits: 64
   cinemachineCameraTarget: {fileID: 6796305601557293915}
   rotationSpeed: 1
-  topClamp: 60
-  bottomClamp: -100
+  topClamp: 50
+  bottomClamp: -80
   cameraAngleOverride: 0
   lockCameraPosition: 0
   cinemachineCameraComponent: {fileID: 0}
@@ -360,6 +366,7 @@ MonoBehaviour:
   currentThrowForce: 0
   currentThrowForceNormalized: 0
   initialThrowCooldown: 0
+  playerHand: {fileID: 6796305601557293915}
 --- !u!114 &3566239037623672089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +598,29 @@ MonoBehaviour:
   lastHitTime: 0
   takeDamageImpulseSource: {fileID: 6765743461238087195}
   impulseIntensity: 1
+--- !u!114 &6993718037843986699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679298912095861667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385ffc06106304cc3824d5bcf25a7037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onlyPlayOnce: 0
+  _playOnEnable: 0
+  _stopOnDisable: 0
+  _overrideFadeOut: -1
+  _sound:
+    ID: 1073741844
+    _sourceAsset: {fileID: 11400000, guid: f4dbe988cef571f4883999c5f9906d4d, type: 2}
+    <DebugObject>k__BackingField: {fileID: 7679298912095861667}
+  _overrideGroup: {fileID: 0}
+  _positionMode: 0
+  _delay: 0
 --- !u!1 &7813797393314642714
 GameObject:
   m_ObjectHideFlags: 0
