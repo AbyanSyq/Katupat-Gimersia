@@ -831,5 +831,6 @@ public class PlayerController3D : MonoBehaviour
     public void OnDeath()
     {
         animator.SetBool(animParameterIDDeath, true);
+        UIManager.Instance.ChangeUI(UIType.GAMEOVER);
     }
 }

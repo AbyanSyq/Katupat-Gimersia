@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4376514844155596739}
   - component: {fileID: 3645947990228757266}
   - component: {fileID: 1427314972550816394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shot_Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4855,7 +4855,9 @@ GameObject:
   - component: {fileID: 1002944422475021778}
   - component: {fileID: 3601192700184711473}
   - component: {fileID: 8601051694517411372}
-  m_Layer: 0
+  - component: {fileID: 5488278247673828738}
+  - component: {fileID: 5560550608431898227}
+  m_Layer: 7
   m_Name: Golem_Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9720,10 +9722,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   damage: 1
   speed: 10
   lifeTime: 5
+--- !u!114 &5488278247673828738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445575882747361396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48772d994d4756141bceba7d7c576af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &5560550608431898227
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445575882747361396}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3629682863527124964
 GameObject:
   m_ObjectHideFlags: 0
@@ -9734,13 +9769,13 @@ GameObject:
   m_Component:
   - component: {fileID: 829206075600054663}
   - component: {fileID: 460111482034847651}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &829206075600054663
 Transform:
   m_ObjectHideFlags: 0

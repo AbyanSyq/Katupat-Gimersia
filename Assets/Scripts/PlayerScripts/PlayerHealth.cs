@@ -23,6 +23,7 @@ public class PlayerHealth : Health, IDamageable
     {
         base.Die();
         Events.OnPlayerDied.Publish();
+        Debug.Log("player died published");
 
     }    
     
