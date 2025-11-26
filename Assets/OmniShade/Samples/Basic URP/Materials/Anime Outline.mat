@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Anime Outline
   m_Shader: {fileID: 4800000, guid: a2a06e22c08354d9699356710b69ca9c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - AMBIENT
   - ANIME
@@ -23,27 +25,32 @@ Material:
   - _DETAILUV_UV1
   - _HEIGHTCOLORSBLEND_ALPHA_BLEND
   - _LAYER1BLEND_ALPHA_BLEND
+  - _LAYER1UV_UV1
   - _LAYER2BLEND_ALPHA_BLEND
+  - _LAYER2UV_UV1
   - _LAYER3BLEND_ALPHA_BLEND
+  - _LAYER3UV_UV1
   - _LIGHTMAPUV_UV1
   - _MATCAPBLEND_MULTIPLY
+  - _NORMALUV2_UV1
   - _NORMALUV_UV1
+  - _PLANTTYPE_PLANT
+  - _RIMBLEND_ADDITIVE
+  - _SHADOWOVERLAYANIMATION_SCROLL
+  - _SPECULARUV_UV1
+  m_InvalidKeywords:
   - _OPTFALLBACK_ALL
   - _OPTFOG_ALL
   - _OPTLIGHTMAPPING_ALL
   - _OPTPOINTLIGHTS_ALL
   - _OPTSHADOW_ALL
-  - _PLANTTYPE_PLANT
-  - _RIMBLEND_ADDITIVE
-  - _SHADOWOVERLAYANIMATION_SCROLL
-  - _SPECULARUV_UV1
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -154,11 +161,13 @@ Material:
     - _Brightness: 1
     - _BumpScale: 1
     - _CameraFadeEnd: 0
+    - _CameraFadeInvert: 0
     - _CameraFadeStart: 0
     - _Contrast: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _Cutout: 0
+    - _CutoutCutoff: 0.5
     - _DestBlend: 0
     - _DetailBlend: 2
     - _DetailBrightness: 1
@@ -189,14 +198,17 @@ Material:
     - _Layer1Alpha: 1
     - _Layer1Blend: 0
     - _Layer1Brightness: 1
+    - _Layer1UV: 0
     - _Layer1VertexColor: 0
     - _Layer2Alpha: 1
     - _Layer2Blend: 0
     - _Layer2Brightness: 1
+    - _Layer2UV: 0
     - _Layer2VertexColor: 0
     - _Layer3Alpha: 1
     - _Layer3Blend: 0
     - _Layer3Brightness: 1
+    - _Layer3UV: 0
     - _Layer3VertexColor: 0
     - _LightmapBrightness: 1
     - _LightmapHDR: 0
@@ -209,8 +221,10 @@ Material:
     - _Metallic: 0
     - _MixedLighting: 0
     - _Mode: 0
+    - _Normal2Strength: 1
     - _NormalStrength: 1
     - _NormalUV: 0
+    - _NormalUV2: 0
     - _OcclusionStrength: 1
     - _OptFallback: 0
     - _OptFog: 0
@@ -218,10 +232,16 @@ Material:
     - _OptPointLights: 0
     - _OptShadow: 0
     - _Outline: 1
+    - _OutlineComp: 8
+    - _OutlineGroup: 0
+    - _OutlinePass: 0
     - _OutlineWidth: 0.014
+    - _OutlineWidthIndependent: 0
+    - _OutlineZPos: 0
     - _Parallax: 0.02
     - _Plant: 0
     - _PlantBaseHeight: 0
+    - _PlantLocal: 0
     - _PlantPhaseVariation: 0.3
     - _PlantSwayAmount: 0.15
     - _PlantSwaySpeed: 1
@@ -256,6 +276,24 @@ Material:
     - _TransparencyMaskAmount: 1
     - _TransparencyMaskContrast: 1
     - _UVSec: 0
+    - _UVTile: 0
+    - _UVTileDiscardUV: 1
+    - _UVTileV0U0: 0
+    - _UVTileV0U1: 0
+    - _UVTileV0U2: 0
+    - _UVTileV0U3: 0
+    - _UVTileV1U0: 0
+    - _UVTileV1U1: 0
+    - _UVTileV1U2: 0
+    - _UVTileV1U3: 0
+    - _UVTileV2U0: 0
+    - _UVTileV2U1: 0
+    - _UVTileV2U2: 0
+    - _UVTileV2U3: 0
+    - _UVTileV3U0: 0
+    - _UVTileV3U1: 0
+    - _UVTileV3U2: 0
+    - _UVTileV3U3: 0
     - _VertexColors: 0
     - _VertexColorsAmount: 1
     - _VertexColorsContrast: 1
@@ -284,3 +322,4 @@ Material:
     - _ShadowColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -9,6 +9,8 @@ public class Spear : MonoBehaviour, IPoolObject
     [Header("References")]
     [SerializeField] GameObject tailObject;
     [SerializeField] GameObject spearModel;
+    [SerializeField] GameObject spearBreakParticle;
+    [SerializeField] GameObject spearHitParticle;
 
     [Header("Inputs")]
     [SerializeField] LayerMask spearObstructorLayer;
@@ -78,12 +80,15 @@ public class Spear : MonoBehaviour, IPoolObject
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, collision.contacts[0].point);
             Events.OnPlayerAttackHitted?.Publish();
+            CreateParticleObject();
+            CreateHitFXObject();
             Despawn();
         }
         else if (((1 << collision.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
             Events.OnPlayerAttackMissed.Publish();
             CreateDummyObject();
+            CreateParticleObject();
             Despawn();
         }
 
@@ -99,12 +104,15 @@ public class Spear : MonoBehaviour, IPoolObject
             // transform.SetParent(collision.transform);
             damageable.TakeDamage(spearDamage, Vector3.zero);
             Events.OnPlayerAttackHitted?.Publish();
+            CreateParticleObject();
+            CreateHitFXObject();
             Despawn();
         }
         else if (((1 << collider.gameObject.layer) & spearObstructorLayer.value) != 0) // convert the layer to bitmask first and check
         {
             Events.OnPlayerAttackMissed.Publish();
             CreateDummyObject();
+            CreateParticleObject();
             Despawn();
         }
 
@@ -134,6 +142,18 @@ public class Spear : MonoBehaviour, IPoolObject
     void CreateDummyObject()
     {
         var dummy = PoolManager.Instance.GetFromPool<SpearDummy>(2);
+        dummy.transform.position = transform.position;
+        dummy.transform.rotation = transform.rotation;
+    }
+    void CreateParticleObject()
+    {
+        var dummy = PoolManager.Instance.GetFromPool<SpearBreakParticle>(5);
+        dummy.transform.position = transform.position;
+        dummy.transform.rotation = transform.rotation;
+    }
+    void CreateHitFXObject()
+    {
+        var dummy = PoolManager.Instance.GetFromPool<SpearHitFX>(5);
         dummy.transform.position = transform.position;
         dummy.transform.rotation = transform.rotation;
     }
