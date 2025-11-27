@@ -10,7 +10,7 @@ public static partial class Events
     public static readonly GameEvent OnEnemyDied = new GameEvent();
 }
 
-public class EnemyHealth : Health
+    public class EnemyHealth : Health
 {
     [Header("References")]
     [SerializeField,ReadOnly] private Enemy enemyComponent;
@@ -111,6 +111,7 @@ public class EnemyHealth : Health
         }
         base.Die();
         Events.OnEnemyDied?.Publish();
+
 
         if (enemyComponent != null)
         {
