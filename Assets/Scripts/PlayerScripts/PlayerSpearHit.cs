@@ -29,9 +29,9 @@ public class PlayerSpearHit : MonoBehaviour
         Vector3 randomDir = UnityEngine.Random.insideUnitSphere.normalized * 0.2f;
         
         if (lastBossHealth - currentHealth <= 5f)
-            impulseSource.GenerateImpulse(randomDir * impulseIntensity * 0.5f);
+            impulseSource.GenerateImpulse(impulseIntensity * 0.5f);
         else
-            impulseSource.GenerateImpulse(randomDir * impulseIntensity);
+            impulseSource.GenerateImpulse(impulseIntensity);
         
         lastBossHealth = currentHealth;
     }
