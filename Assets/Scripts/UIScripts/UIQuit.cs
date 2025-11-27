@@ -22,8 +22,4 @@ public class UIQuit : UIBase
             UIManager.Instance.ChangeUI(UIType.MAINMENU);
         });
     }
-    public void CloseButton()
-    {
-        UIManager.Instance.ChangeUI(UIType.GAMEPLAY);
-    } 
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8963073175230724163}
   - component: {fileID: 558992381761917297}
-  - component: {fileID: 5357642957962150586}
   - component: {fileID: 385008743043540203}
+  - component: {fileID: 7753313915235736879}
   m_Layer: 5
   m_Name: UIQuit
   m_TagString: Untagged
@@ -48,23 +48,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666949904216747320}
   m_CullTransparentMesh: 1
---- !u!114 &5357642957962150586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666949904216747320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec8faa7bdc6f0546b1026e829634a14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationController: {fileID: 385008743043540203}
-  firstSelected: {fileID: 0}
-  isActive: 0
-  yesButton: {fileID: 316352098439209393}
-  noButton: {fileID: 2022048545956512901}
 --- !u!114 &385008743043540203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +65,23 @@ MonoBehaviour:
   animations:
   - {fileID: 3170449019779529487}
   - {fileID: 3004882849745470254}
+--- !u!114 &7753313915235736879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666949904216747320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88581a359dcc9847ae27658421ba5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationController: {fileID: 385008743043540203}
+  firstSelected: {fileID: 0}
+  isActive: 0
+  yesButton: {fileID: 316352098439209393}
+  noButton: {fileID: 2022048545956512901}
 --- !u!1 &2536046907391686015
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,11 +112,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9176363668005117908}
+  m_Father: {fileID: 2377661239949508794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 966, y: -396}
   m_SizeDelta: {x: 413.62, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126055424361313591
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit Game?
+  m_text: QUIT GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5845467f017a9c441828962a764b44c8, type: 2}
   m_sharedMaterial: {fileID: -6842088191155152069, guid: 5845467f017a9c441828962a764b44c8, type: 2}
@@ -174,8 +174,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -490,6 +490,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9176363668005117908}
+  - {fileID: 8888132183377928199}
   m_Father: {fileID: 8963073175230724163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -547,7 +548,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8888132183377928199}
   - {fileID: 1550076916135334843}
   - {fileID: 8312973620234731347}
   m_Father: {fileID: 2377661239949508794}
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 132
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 50

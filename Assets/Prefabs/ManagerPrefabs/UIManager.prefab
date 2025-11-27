@@ -220,3 +220,10 @@ MonoBehaviour:
     pauseGame: 1
     enablePlayerInput: 0
     cursorVisibility: 1
+  - name: QUIT
+    type: 8
+    layer: 1
+    prefab: {fileID: 7753313915235736879, guid: cdbf10fd54506b148ba30e7430402768, type: 3}
+    pauseGame: 1
+    enablePlayerInput: 0
+    cursorVisibility: 1
