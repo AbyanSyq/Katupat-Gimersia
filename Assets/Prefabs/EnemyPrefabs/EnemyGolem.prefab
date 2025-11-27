@@ -1030,6 +1030,14 @@ MonoBehaviour:
     ID: 1073741849
     _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
     <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Charge:
+    ID: 1073741853
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
+  Golem_Shoot:
+    ID: 1073741854
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5420691852208598869}
   enemyAnimator: {fileID: 0}
   isDie: 0
   enemyMaterial: {fileID: 0}
@@ -1451,8 +1459,8 @@ MonoBehaviour:
   rendererComponent: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   Damage_Sound:
-    ID: 0
-    _sourceAsset: {fileID: 0}
+    ID: 1073741846
+    _sourceAsset: {fileID: 11400000, guid: 440f54099cba7d6429b292c5be4254cf, type: 2}
     <DebugObject>k__BackingField: {fileID: 8887261401612972704}
 --- !u!114 &6106161543645150529
 MonoBehaviour:

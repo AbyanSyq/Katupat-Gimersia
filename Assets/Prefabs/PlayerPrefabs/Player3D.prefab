@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 693636388108444792}
   - component: {fileID: 7047431119396913727}
   - component: {fileID: 5415329435382175984}
+  - component: {fileID: 6024502931182635673}
   - component: {fileID: 6993718037843986699}
   m_Layer: 3
   m_Name: Player3D
@@ -610,6 +611,22 @@ MonoBehaviour:
       m_Calls: []
   reduceHealthCooldown: 0
   lastHitTime: 0
+--- !u!114 &6024502931182635673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679298912095861667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b913b6d2021c6242916d73380a5a49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseSource: {fileID: 7047431119396913727}
+  impulseIntensity: 0.1
+  lastBossHealth: 0
+  currBossHealth: 0
 --- !u!114 &6993718037843986699
 MonoBehaviour:
   m_ObjectHideFlags: 0

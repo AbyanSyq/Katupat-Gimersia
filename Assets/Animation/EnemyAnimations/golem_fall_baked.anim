@@ -126415,6 +126415,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 11
     messageOptions: 0
+  - time: 3.0416667
+    functionName: GenerateImpulseWithForce
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.5
+    intParameter: 0
+    messageOptions: 0
   - time: 3.4583333
     functionName: OnAnimationEventTrigger
     data: 

@@ -12,7 +12,7 @@ public class EnvironmentPhase : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Animator anim;
-    // [SerializeField] CinemachineImpulseSource cinemachineImpulseSource;
+    [SerializeField] CinemachineImpulseSource cinemachineImpulseSource;
 
     [Header("Phase Effects List")]
     [Tooltip("Each index element below is for each phase. In 1-based.")]
@@ -39,11 +39,13 @@ public class EnvironmentPhase : MonoBehaviour
     {
         anim.SetInteger("phase", phase);
         TriggerPhaseTransitionEffects(--phase);
-        // cinemachineImpulseSource.GenerateImpulseWithForce(0.5f);
+        cinemachineImpulseSource.GenerateImpulseWithForce(0.2f);
     }
 
     void TriggerPhaseTransitionEffects(int phase)
     {
+        if(phaseTransitionParticlesList[phase] == null) return;
+
         foreach(ParticleSystem particle in phaseTransitionParticlesList[phase].particles)
         {
             particle.Play();
