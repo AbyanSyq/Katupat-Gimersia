@@ -19,7 +19,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: edc4007cdf9258b43a9d373e32d39e4b, type: 3}
-      Volume: 1
+      Volume: 1.243761
       Delay: 0
       StartPosition: 0
       EndPosition: 0.16
@@ -47,7 +47,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 131639dcee445544ca49c7badc4f7e0c, type: 3}
-      Volume: 0.24045168
+      Volume: 0.38857406
       Delay: 0
       StartPosition: 2.792
       EndPosition: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 99a2d96f707721349bfddb144d5f61f0, type: 3}
-      Volume: 2.1675484
+      Volume: 2.6899774
       Delay: 0
       StartPosition: 1.096
       EndPosition: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 5204a8c1448422044837466b71dda2f2, type: 3}
-      Volume: 1
+      Volume: 1.243761
       Delay: 0
       StartPosition: 0
       EndPosition: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: b861d3291b91adb4781f929fc219dd7e, type: 3}
-      Volume: 0.7528005
+      Volume: 0.89396596
       Delay: 0
       StartPosition: 2.1
       EndPosition: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 09b2796921d36d946bcfcb5d83191655, type: 3}
-      Volume: 0.40615854
+      Volume: 0.54796904
       Delay: 0
       StartPosition: 1.279
       EndPosition: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 622d963bf163d63469ee44bd01022f80, type: 3}
-      Volume: 2.613515
+      Volume: 3.503466
       Delay: 0
       StartPosition: 0
       EndPosition: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 3688784a0ca2ba34988280832734dc3f, type: 3}
-      Volume: 1
+      Volume: 1.2603134
       Delay: 0
       StartPosition: 0
       EndPosition: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: c3c05ee760b926d4dbc39ae64a559558, type: 3}
-      Volume: 0.47380343
+      Volume: 0.6507246
       Delay: 0
       StartPosition: 1.753
       EndPosition: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
     _group: {fileID: 0}
     Clips:
     - AudioClip: {fileID: 8300000, guid: 51ac712c33b29c34190dd29bf33601f1, type: 3}
-      Volume: 0.5932064
+      Volume: 0.75258434
       Delay: 0
       StartPosition: 0.643
       EndPosition: 0
