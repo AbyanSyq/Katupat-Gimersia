@@ -557,7 +557,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ImpulseDuration: 0.2
+    ImpulseDuration: 0.1
     ImpulseType: 0
     DissipationRate: 0.25
     RawSignal: {fileID: 0}
@@ -624,9 +624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulseSource: {fileID: 7047431119396913727}
-  impulseIntensity: 0.1
+  impulseIntensity: 0.3
   lastBossHealth: 0
-  currBossHealth: 0
+  currentBossHealth: 0
 --- !u!114 &6993718037843986699
 MonoBehaviour:
   m_ObjectHideFlags: 0
